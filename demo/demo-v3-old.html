@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zannid & Co. — Ideas That Scale</title>
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f1ee;--ink:#0b0b0f;--muted:#76767c;--line:#dcdbd6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;display:block}
+.scroll{height:600vh}
+.mono{font-family:'JetBrains Mono',monospace}
+/* nav — Ollama-clean */
+nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;z-index:10}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+.dot{width:22px;height:22px;border-radius:50%;background:conic-gradient(#4fe3ff,#8a6bff,#ff5ec8,#ffd36e,#4fe3ff);box-shadow:inset 3px 3px 6px #fff8}
+nav ul{display:flex;gap:28px;list-style:none;font-size:14px;color:var(--muted)}
+nav li{cursor:pointer;transition:color .2s}nav li:hover{color:var(--ink)}
+.pill{background:var(--ink);color:#fff;border:none;border-radius:999px;padding:10px 18px;font:500 14px Inter;cursor:pointer;text-decoration:none;display:inline-block}
+.pill.light{background:#fff;color:var(--ink);border:1px solid var(--line)}
+/* hero overlay */
+.hero{position:fixed;inset:0;pointer-events:none;z-index:5}
+.corner{position:absolute;top:84px;font-family:Syncopate;font-weight:700;font-size:12px;letter-spacing:4px}
+.corner.l{left:32px}.corner.r{right:32px;padding-right:12px;border-right:2px solid var(--ink)}
+.word{position:absolute;left:50%;top:50%;translate:-50% -50%;text-align:center;width:100%}
+.word h1{font-family:Syncopate;font-weight:700;font-size:clamp(54px,12vw,190px);letter-spacing:-.02em;line-height:1}
+.word .co{font-family:Syncopate;font-weight:700;font-size:clamp(22px,4vw,64px);display:block;text-align:right;width:min(78vw,1100px);margin:6px auto 0}
+.hero .bottom{position:absolute;bottom:34px;left:32px;right:32px;display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+/* hashtag pinned to the ring */
+#hash{position:fixed;left:0;top:0;font:700 64px Syncopate;z-index:6;pointer-events:none;translate:-50% -50%}
+/* panels */
+.panel{position:fixed;z-index:7;width:min(440px,90vw);background:rgba(255,255,255,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:22px;padding:32px;opacity:0;pointer-events:none;will-change:transform,opacity}
+.panel.on{pointer-events:auto}
+.panel .k{font-size:12px;color:var(--muted);margin-bottom:18px}
+.panel h2{font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.panel p{color:#4a4a50;line-height:1.6;font-size:15px}
+.p-left{left:6vw;top:50%;margin-top:-190px}
+.p-right{right:6vw;top:50%;margin-top:-240px}
+.p-up{left:50%;bottom:7vh;margin-left:min(-340px,-45vw);width:min(680px,90vw)}
+.p-down{left:50%;top:13vh;margin-left:min(-300px,-45vw);width:min(600px,90vw);text-align:center}
+.rows{margin-top:10px;border-top:1px solid var(--line)}
+.rows div{display:flex;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.rows span{color:var(--muted);font-size:12px;padding-top:2px;width:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips b{font-weight:500;font-size:13px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.cols h3{font-family:Syncopate;font-size:20px;margin:8px 0 4px}
+.cmd{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink);color:#e9e9ee;border-radius:12px;padding:14px 18px;margin:22px auto 18px;max-width:380px;font-size:14px;text-align:left}
+.cmd i{color:#ff5ec8;font-style:normal}
+/* progress rail */
+.rail{position:fixed;right:22px;top:50%;translate:0 -50%;display:flex;flex-direction:column;gap:10px;z-index:8}
+.rail b{width:6px;height:6px;border-radius:50%;background:#c9c8c2;transition:.3s}
+.rail b.a{background:var(--ink);height:22px;border-radius:4px}
+@media(max-width:760px){nav ul{display:none}.cols{grid-template-columns:1fr}.p-left,.p-right{left:5vw;right:auto}}
+
+/* ===== v3: conversion sections ===== */
+.hero .bottom{pointer-events:auto;align-items:flex-end}
+.vp{max-width:430px}.vp p{color:var(--ink);font-size:17px;line-height:1.45;margin-bottom:16px}
+.vp .row{display:flex;gap:10px;flex-wrap:wrap}
+.badge-live{display:inline-flex;align-items:center;gap:8px;font-size:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;margin-bottom:14px;color:var(--ink)}
+.badge-live i{width:7px;height:7px;border-radius:50%;background:#1ec773;box-shadow:0 0 0 4px #1ec77333;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px #1ec77300}}
+.pill{transition:transform .25s,box-shadow .25s}
+.pill:hover{transform:translateY(-2px);box-shadow:-3px 3px 0 #22e4ff,3px -3px 0 #ff2bd6}
+.grad{background:linear-gradient(90deg,#3fd8ff,#8a6bff,#ff4fc4);-webkit-background-clip:text;background-clip:text;color:transparent}
+main{position:relative;z-index:9;background:var(--bg)}
+.sec{padding:110px 6vw;max-width:1280px;margin:0 auto}
+.eyebrow{font:500 12px 'JetBrains Mono';color:var(--muted);letter-spacing:1px;margin-bottom:14px}
+.h2{font-size:clamp(32px,4.4vw,58px);font-weight:600;letter-spacing:-.035em;line-height:1.05;margin-bottom:18px}
+.lead{color:#55555b;font-size:17px;max-width:560px;line-height:1.55}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:48px;flex-wrap:wrap}
+.sample{font:500 10px 'JetBrains Mono';background:#fff3c4;color:#8a6a00;border-radius:6px;padding:3px 7px;vertical-align:middle;margin-left:8px;letter-spacing:.5px}
+/* trust */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;overflow:hidden;white-space:nowrap;background:#fff}
+.trust .t{display:inline-block;animation:scroll 32s linear infinite}
+.trust span{font:700 18px Syncopate;color:#b9b8b2;margin:0 38px;transition:color .3s}.trust span:hover{color:var(--ink)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:22px;background:#fff;overflow:hidden}
+.stats div{padding:30px;border-right:1px solid var(--line)}.stats div:last-child{border:none}
+.stats b{display:block;font-size:44px;letter-spacing:-.04em;font-weight:600}.stats small{color:var(--muted);font-size:14px}
+/* bento services */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px}
+.svc{position:relative;background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;overflow:hidden;cursor:pointer;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .4s;display:flex;flex-direction:column;justify-content:space-between}
+.svc.w2{grid-column:span 2}.svc.h2r{grid-row:span 2}
+.svc .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--bg);font-size:20px}
+.svc h3{font-size:20px;font-weight:600;letter-spacing:-.02em}
+.svc p{color:var(--muted);font-size:14px;line-height:1.5;margin-top:6px}
+.svc ul{list-style:none;font:13px 'JetBrains Mono';color:#55555b;max-height:0;opacity:0;transition:.45s;overflow:hidden}
+.svc ul li{padding:3px 0}.svc ul li:before{content:"→ ";color:#8a6bff}
+.svc .arrow{position:absolute;top:22px;right:22px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.4s}
+.svc:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-110px;bottom:-110px;background:conic-gradient(#4fe3ff,#8a6bff,#ff5ec8,#ffd36e,#4fe3ff);filter:blur(50px);opacity:0;transition:.5s}
+.svc:hover{transform:translateY(-6px);box-shadow:0 30px 60px -20px rgba(40,20,90,.25);border-color:#cfc8ff}
+.svc:hover:before{opacity:.55}.svc:hover ul{max-height:120px;opacity:1;margin-top:10px}
+.svc:hover .arrow{background:var(--ink);color:#fff;transform:rotate(-45deg)}
+.svc.dark{background:var(--ink);color:#fff;border-color:var(--ink)}.svc.dark p,.svc.dark ul{color:#a9a9b2}.svc.dark .ico{background:#1d1d24}
+/* work */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.case{border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);text-decoration:none;color:inherit;transition:.4s}
+.case .vis{aspect-ratio:4/5;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:22px}
+.case .vis:before{content:"";position:absolute;inset:0;background:var(--g);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.case:hover .vis:before{transform:scale(1.08) rotate(2deg)}
+.case .vis b{position:relative;font:700 26px Syncopate;color:#fff;line-height:1.1;text-shadow:0 2px 20px #0004}
+.case .play{position:absolute;top:18px;right:18px;background:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:500;opacity:0;transform:translateY(-6px);transition:.35s}
+.case:hover .play{opacity:1;transform:none}
+.case .meta{padding:18px 22px;display:flex;justify-content:space-between;font-size:14px}.case .meta span{color:var(--muted)}
+/* industries tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 18px;font:500 14px Inter;cursor:pointer;transition:.25s}
+.tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tabpane{display:none;grid-template-columns:1fr 1fr;gap:16px}.tabpane.on{display:grid;animation:rise .5s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+.box{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px}
+.box h4{font-size:13px;font-family:'JetBrains Mono';color:var(--muted);font-weight:500;margin-bottom:12px}
+.box li{list-style:none;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15px}
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+.step{border-top:2px solid var(--ink);padding-top:20px}
+.step small{font:12px 'JetBrains Mono';color:var(--muted)}.step h3{font-size:22px;margin:10px 0 8px;letter-spacing:-.02em}.step p{color:var(--muted);font-size:14px;line-height:1.5}
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.plan{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;display:flex;flex-direction:column;transition:.35s}
+.plan:hover{transform:translateY(-6px);box-shadow:0 30px 60px -25px #0003}
+.plan h3{font-size:20px}.plan .for{color:var(--muted);font-size:14px;margin:6px 0 22px}
+.plan .price{font-size:38px;font-weight:600;letter-spacing:-.03em}.plan .price small{font-size:14px;color:var(--muted);font-weight:400}
+.plan ul{list-style:none;margin:22px 0 28px;flex:1}.plan li{padding:7px 0;font-size:14px}.plan li:before{content:"✓  ";color:#8a6bff;font-weight:700}
+.plan.hot{background:var(--ink);color:#fff;border:none;position:relative;overflow:hidden}
+.plan.hot .for,.plan.hot .price small{color:#a9a9b2}.plan.hot .pill{background:#fff;color:var(--ink)}
+.plan.hot:before{content:"";position:absolute;width:300px;height:300px;top:-150px;right:-120px;border-radius:50%;background:conic-gradient(#4fe3ff,#8a6bff,#ff5ec8,#4fe3ff);filter:blur(70px);opacity:.5}
+.plan.hot>*{position:relative}.tag{position:absolute;top:22px;right:22px;font:500 11px 'JetBrains Mono';background:linear-gradient(90deg,#3fd8ff,#ff4fc4);color:#000;border-radius:999px;padding:5px 10px}
+/* testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.q{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;font-size:16px;line-height:1.55}
+.q .who{display:flex;align-items:center;gap:12px;margin-top:22px;font-size:14px}.q .who i{width:38px;height:38px;border-radius:50%;background:conic-gradient(#4fe3ff,#8a6bff,#ff5ec8,#4fe3ff)}
+.q .who span{color:var(--muted);display:block;font-size:13px}.stars{color:#f5b400;letter-spacing:2px;margin-bottom:12px}
+/* faq */
+.faq details{border-bottom:1px solid var(--line);padding:22px 0}
+.faq summary{list-style:none;cursor:pointer;font-size:19px;font-weight:500;display:flex;justify-content:space-between}
+.faq summary:after{content:"+";font-size:24px;transition:.3s}.faq details[open] summary:after{transform:rotate(45deg)}
+.faq details p{color:#55555b;margin-top:12px;line-height:1.6;max-width:720px}
+/* contact */
+.cta-wrap{background:var(--ink);color:#fff;border-radius:36px;padding:70px 6vw;display:grid;grid-template-columns:1fr 1fr;gap:50px;position:relative;overflow:hidden;margin:0 3vw}
+.cta-wrap:before{content:"";position:absolute;width:520px;height:520px;left:-160px;bottom:-220px;border-radius:50%;background:conic-gradient(#4fe3ff,#8a6bff,#ff5ec8,#ffd36e,#4fe3ff);filter:blur(110px);opacity:.45;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cta-wrap>*{position:relative}.cta-wrap .lead{color:#b4b4bd}
+.ways{margin-top:28px;display:grid;gap:10px}
+.ways a{display:flex;justify-content:space-between;color:#fff;text-decoration:none;border:1px solid #2b2b33;border-radius:14px;padding:14px 18px;transition:.25s}.ways a:hover{background:#1b1b22;border-color:#55556a}
+form{background:#fff;color:var(--ink);border-radius:24px;padding:30px;display:grid;gap:14px}
+form label{font-size:13px;font-weight:500;display:grid;gap:6px}
+form input,form select{font:15px Inter;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);outline:none;transition:.2s}
+form input:focus,form select:focus{border-color:#8a6bff;box-shadow:0 0 0 4px #8a6bff22}
+.chipsel{display:flex;flex-wrap:wrap;gap:8px}.chipsel b{font-weight:500;font-size:13px;border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;user-select:none;transition:.2s}
+.chipsel b.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+form .pill{padding:15px;font-size:15px;width:100%}form .note{font-size:12px;color:var(--muted);text-align:center}
+footer.f{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;padding:70px 6vw 40px;font-size:14px;color:var(--muted);max-width:1280px;margin:0 auto}
+footer.f b{color:var(--ink);display:block;margin-bottom:12px}footer.f a{display:block;color:inherit;text-decoration:none;padding:4px 0}footer.f a:hover{color:var(--ink)}
+.big{font:700 clamp(50px,13vw,200px) Syncopate;text-align:center;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.2px #c9c8c2;padding-bottom:30px;overflow:hidden;white-space:nowrap}
+/* floating whatsapp + reveal */
+.wa{position:fixed;right:22px;bottom:22px;z-index:20;background:#25d366;color:#fff;border-radius:999px;padding:14px 18px;font:600 14px Inter;text-decoration:none;box-shadow:0 12px 30px -8px #25d36699;display:flex;gap:8px;align-items:center;transition:.3s}
+.wa:hover{transform:translateY(-3px) scale(1.03)}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+@media(max-width:900px){.bento,.work,.plans,.quotes,.steps,.stats{grid-template-columns:1fr 1fr}.svc.w2{grid-column:span 2}.cta-wrap,.tabpane.on{grid-template-columns:1fr}footer.f{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.bento,.work,.plans,.quotes,.steps{grid-template-columns:1fr}.svc.w2{grid-column:auto}.svc.h2r{grid-row:auto}.hero .bottom{flex-direction:column;align-items:flex-start;gap:14px}}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js"}}</script>
+</head>
+<body>
+<canvas id="gl"></canvas>
+
+<nav>
+ <div class="brand"><div class="dot"></div>Zannid &amp; Co.</div>
+ <ul><li data-go="2">About</li><li onclick="go('services')">Services</li><li onclick="go('work')">Work</li><li onclick="go('pricing')">Pricing</li><li onclick="go('faq')">FAQ</li></ul>
+ <a class="pill" href="#contact" onclick="go('contact');return false">Get a free growth audit</a>
+</nav>
+
+<div class="hero" id="hero">
+ <div class="corner l">GROWTH</div><div class="corner r">SCALE</div>
+ <div class="word"><h1>ZANNID</h1><span class="co">&amp; CO.</span></div>
+ <div class="bottom"><div class="vp">
+  <div class="badge-live"><i></i>Taking on new Hyderabad brands this month</div>
+  <p>We turn cafés, restaurants &amp; startups into brands people <b>notice, remember and choose</b>: strategy, reels, ads and websites under one roof.</p>
+  <div class="row"><a class="pill" href="#contact" onclick="go('contact');return false">Get a free growth audit →</a><a class="pill light" href="#work" onclick="go('work');return false">See our work</a></div>
+ </div><span class="mono">scroll to explore ↓</span></div>
+</div>
+<div id="hash">#</div>
+
+<div class="panel p-left" data-k="2" data-dir="left">
+ <div class="k mono">01 — WHO WE ARE</div>
+ <h2>We don't just build presence. We build brands that grow.</h2>
+ <p>A growth-focused team bringing strategy, creativity and technology together, from the first idea to the next milestone.</p>
+ <div class="chips"><b>Cafés &amp; restaurants</b><b>Startups</b><b>Founders</b><b>Local brands</b></div>
+</div>
+
+<div class="panel p-right" data-k="3" data-dir="right">
+ <div class="k mono">02 — CAPABILITIES</div>
+ <h2>Everything under one roof.</h2>
+ <div class="rows mono">
+  <div><span>01</span>Social media management</div><div><span>02</span>Reel &amp; camera shoots</div><div><span>03</span>Video editing &amp; design</div>
+  <div><span>04</span>Meta ads &amp; paid campaigns</div><div><span>05</span>Influencer marketing</div><div><span>06</span>Website development</div><div><span>07</span>AI automations</div>
+ </div>
+</div>
+
+<div class="panel p-up" data-k="4" data-dir="up">
+ <div class="k mono">03 — THE METHOD</div>
+ <h2>Good growth is designed, not guessed.</h2>
+ <div class="cols">
+  <div><span class="mono k">01</span><h3>Think.</h3><p>Find the focus.</p></div>
+  <div><span class="mono k">02</span><h3>Create.</h3><p>Make it matter.</p></div>
+  <div><span class="mono k">03</span><h3>Scale.</h3><p>Learn and grow.</p></div>
+ </div>
+</div>
+
+<div class="panel p-down" data-k="5" data-dir="down">
+ <div class="k mono">04 — LET'S TALK</div>
+ <h2>Ready to grow your brand?</h2>
+ <p>Tell us your vision. The first consultation call is on us.</p>
+ <div class="cmd mono"><span><i>$</i> dm @zannid.co "GROW"</span><span>↗</span></div>
+ <a class="pill" href="#contact" onclick="go('contact');return false">Book a free consultation</a>
+</div>
+
+<div class="rail" id="rail"></div>
+<div class="scroll" id="journey"></div>
+<main>
+ <div class="trust"><div class="t">
+  <span>CAFÉS</span><span>RESTAURANTS</span><span>STARTUPS</span><span>EVENTS</span><span>RETAIL</span><span>FOUNDERS</span><span>D2C BRANDS</span><span>EDUCATION</span>
+  <span>CAFÉS</span><span>RESTAURANTS</span><span>STARTUPS</span><span>EVENTS</span><span>RETAIL</span><span>FOUNDERS</span><span>D2C BRANDS</span><span>EDUCATION</span>
+ </div></div>
+
+ <section class="sec">
+  <div class="stats rv">
+   <div><b data-n="50">0</b><small>+ brands helped grow</small></div>
+   <div><b data-n="500">0</b><small>+ reels produced</small></div>
+   <div><b data-n="10">0</b><small>M+ views generated</small></div>
+   <div><b data-n="48">0</b><small>hr first-draft turnaround</small></div>
+  </div>
+  <p class="eyebrow" style="margin-top:12px">↑ placeholder numbers <span class="sample">SAMPLE · REPLACE</span></p>
+ </section>
+
+ <section class="sec" id="services">
+  <div class="head"><div><div class="eyebrow">02 / SERVICES</div><h2 class="h2">Everything your brand needs<br>to <span class="grad">grow</span>, under one roof.</h2></div>
+  <p class="lead">Pick one service or let us run the whole engine. Hover a card to see what's included.</p></div>
+  <div class="bento">
+   <div class="svc w2 h2r dark rv"><div><div class="ico">📱</div><div class="arrow">→</div></div><div><h3>Social Media Management</h3><p>Content calendars, posting, community and monthly growth reports, done for you.</p><ul><li>Monthly content strategy</li><li>12–30 posts / month</li><li>Captions, hashtags, DMs</li><li>Analytics report</li></ul></div></div>
+   <div class="svc rv"><div><div class="ico">🎬</div><div class="arrow">→</div></div><div><h3>Reel Shoots</h3><p>Scroll-stopping reels, scripted and shot.</p><ul><li>Hooks &amp; scripts</li><li>On-site shoot</li></ul></div></div>
+   <div class="svc rv"><div><div class="ico">📸</div><div class="arrow">→</div></div><div><h3>Camera Shoots</h3><p>Food, product &amp; brand photography.</p><ul><li>Menu &amp; product shots</li><li>Founder portraits</li></ul></div></div>
+   <div class="svc rv"><div><div class="ico">✂️</div><div class="arrow">→</div></div><div><h3>Video Editing</h3><p>Trend-ready edits, fast.</p><ul><li>Reels &amp; shorts</li><li>Subtitles &amp; motion</li></ul></div></div>
+   <div class="svc rv"><div><div class="ico">🎨</div><div class="arrow">→</div></div><div><h3>Graphic Design</h3><p>Posts, menus, brand kits.</p><ul><li>Brand identity</li><li>Carousels &amp; creatives</li></ul></div></div>
+   <div class="svc w2 rv"><div><div class="ico">🎯</div><div class="arrow">→</div></div><div><h3>Meta Ads &amp; Paid Campaigns</h3><p>Ads that bring walk-ins, orders and leads, not just likes.</p><ul><li>Audience &amp; offer strategy</li><li>Creative testing</li><li>Weekly optimisation</li></ul></div></div>
+   <div class="svc rv"><div><div class="ico">⭐</div><div class="arrow">→</div></div><div><h3>Influencer Marketing</h3><p>Hyderabad creators that fit your brand.</p><ul><li>Creator matching</li><li>Collab management</li></ul></div></div>
+   <div class="svc rv"><div><div class="ico">🌐</div><div class="arrow">→</div></div><div><h3>Website Development</h3><p>Fast sites that convert.</p><ul><li>Design + build</li><li>SEO basics</li></ul></div></div>
+   <div class="svc w2 rv"><div><div class="ico">🤖</div><div class="arrow">→</div></div><div><h3>AI Automations</h3><p>Instagram DM, WhatsApp &amp; call automations that reply, qualify and book customers 24/7.</p><ul><li>Auto-replies to "GROW" / "PRICE"</li><li>Lead capture to WhatsApp</li><li>Follow-up sequences</li></ul></div></div>
+  </div>
+ </section>
+
+ <section class="sec" id="work">
+  <div class="head"><div><div class="eyebrow">03 / OUR WORK</div><h2 class="h2">Content Hyderabad<br>actually stops for.</h2></div>
+  <a class="pill light" href="https://www.instagram.com/zannid.co/" target="_blank">View all on Instagram ↗</a></div>
+  <div class="work">
+   <a class="case rv" href="https://www.instagram.com/zannid.co/reel/DfUrl5zo91N/" target="_blank"><div class="vis" style="--g:linear-gradient(160deg,#f6b73c,#d9480f 60%,#5c1a00)"><span class="play">▶ Watch reel</span><b>Biryani me<br>dum nahi?</b></div><div class="meta">Restaurant marketing<span>Reel · Hinglish</span></div></a>
+   <a class="case rv" href="https://www.instagram.com/zaidhussain1316/reel/DfWeENpMRGj/" target="_blank"><div class="vis" style="--g:linear-gradient(160deg,#4fe3ff,#6d6bff 55%,#1b1464)"><span class="play">▶ Watch reel</span><b>Konsi café<br>jaenge yaaro?</b></div><div class="meta">Café marketing<span>AI content</span></div></a>
+   <a class="case rv" href="https://www.instagram.com/zannid.co/reel/DfH0IH7stQP/" target="_blank"><div class="vis" style="--g:linear-gradient(160deg,#e9e9e9,#7b7b85 55%,#111)"><span class="play">▶ Watch reel</span><b>Hello,<br>Hyderabad!</b></div><div class="meta">Brand launch<span>Reel</span></div></a>
+  </div>
+ </section>
+
+ <section class="sec">
+  <div class="eyebrow">04 / WHO WE HELP</div><h2 class="h2">Built for your kind of business.</h2>
+  <div class="tabs" id="tabs"><button class="tab on" data-t="0">☕ Cafés &amp; restaurants</button><button class="tab" data-t="1">🚀 Startups &amp; founders</button><button class="tab" data-t="2">🏪 Local businesses</button><button class="tab" data-t="3">🎤 Events</button></div>
+  <div class="tabpane on"><div class="box"><h4>THE PROBLEM</h4><ul><li>Great food, empty tables on weekdays</li><li>Reels that get likes but no footfall</li><li>No time to post consistently</li></ul></div><div class="box"><h4>WHAT WE DO</h4><ul><li>Food reels &amp; creator visits</li><li>Local Meta ads around your area</li><li>Offers that turn views into visits</li></ul></div></div>
+  <div class="tabpane"><div class="box"><h4>THE PROBLEM</h4><ul><li>Nobody knows your brand yet</li><li>No clear story or positioning</li><li>Leads are inconsistent</li></ul></div><div class="box"><h4>WHAT WE DO</h4><ul><li>Brand strategy &amp; identity</li><li>Founder-led content</li><li>Website + lead funnel + automations</li></ul></div></div>
+  <div class="tabpane"><div class="box"><h4>THE PROBLEM</h4><ul><li>Customers only come by word of mouth</li><li>Outdated Instagram page</li><li>Competitors look more premium</li></ul></div><div class="box"><h4>WHAT WE DO</h4><ul><li>Profile makeover &amp; content system</li><li>Product shoots &amp; reels</li><li>WhatsApp enquiry automation</li></ul></div></div>
+  <div class="tabpane"><div class="box"><h4>THE PROBLEM</h4><ul><li>Tickets sell late (or not at all)</li><li>Buzz dies after the event</li></ul></div><div class="box"><h4>WHAT WE DO</h4><ul><li>Pre-event hype campaigns</li><li>Ads + influencer push</li><li>Event coverage &amp; aftermovie</li></ul></div></div>
+ </section>
+
+ <section class="sec">
+  <div class="eyebrow">05 / HOW IT WORKS</div><h2 class="h2">From first call to growth in 4 steps.</h2>
+  <div class="steps">
+   <div class="step rv"><small>STEP 01 · DAY 1</small><h3>Free call</h3><p>15 minutes. Tell us your goals, we tell you honestly if we can help.</p></div>
+   <div class="step rv"><small>STEP 02 · DAY 2–3</small><h3>Growth audit</h3><p>We review your page, competitors and audience and send a clear plan.</p></div>
+   <div class="step rv"><small>STEP 03 · WEEK 1</small><h3>Create &amp; launch</h3><p>Shoots, edits, ads and automations go live.</p></div>
+   <div class="step rv"><small>STEP 04 · MONTHLY</small><h3>Measure &amp; scale</h3><p>Monthly reports, double down on what works.</p></div>
+  </div>
+ </section>
+
+ <section class="sec" id="pricing">
+  <div class="head"><div><div class="eyebrow">06 / PACKAGES <span class="sample">PRICES · REPLACE</span></div><h2 class="h2">Simple plans. No guesswork.</h2></div><p class="lead">Every plan starts with a free growth audit. Cancel anytime.</p></div>
+  <div class="plans">
+   <div class="plan rv"><h3>Starter</h3><p class="for">For new cafés &amp; local brands</p><div class="price">₹XX,XXX<small> /month</small></div><ul><li>Social media management</li><li>8 reels / month</li><li>Graphic posts &amp; stories</li><li>Monthly report</li></ul><a class="pill light" href="#contact" onclick="go('contact');return false">Start with Starter</a></div>
+   <div class="plan hot rv"><span class="tag">MOST POPULAR</span><h3>Growth</h3><p class="for">For brands ready to scale</p><div class="price">₹XX,XXX<small> /month</small></div><ul><li>Everything in Starter</li><li>15 reels + shoot days</li><li>Meta ads management</li><li>Influencer collabs</li><li>DM automation</li></ul><a class="pill" href="#contact" onclick="go('contact');return false">Get the Growth plan</a></div>
+   <div class="plan rv"><h3>Scale</h3><p class="for">Full growth partner</p><div class="price">Custom</div><ul><li>Everything in Growth</li><li>Brand strategy &amp; identity</li><li>Website development</li><li>Full AI automation suite</li><li>Dedicated manager</li></ul><a class="pill light" href="#contact" onclick="go('contact');return false">Talk to us</a></div>
+  </div>
+ </section>
+
+ <section class="sec">
+  <div class="eyebrow">07 / CLIENT LOVE <span class="sample">SAMPLE QUOTES · REPLACE WITH REAL ONES</span></div><h2 class="h2">Don't take our word for it.</h2>
+  <div class="quotes">
+   <div class="q rv"><div class="stars">★★★★★</div>"[Real client quote about results, e.g. footfall or enquiries after working with Zannid.]"<div class="who"><i></i><div>Client name<span>Café owner, Banjara Hills</span></div></div></div>
+   <div class="q rv"><div class="stars">★★★★★</div>"[Real client quote about content quality and speed.]"<div class="who"><i></i><div>Client name<span>Founder, startup</span></div></div></div>
+   <div class="q rv"><div class="stars">★★★★★</div>"[Real client quote about the team and process.]"<div class="who"><i></i><div>Client name<span>Event organiser</span></div></div></div>
+  </div>
+ </section>
+
+ <section class="sec faq" id="faq">
+  <div class="eyebrow">08 / FAQ</div><h2 class="h2">Questions, answered.</h2>
+  <details open><summary>How soon will I see results?</summary><p>Content goes live in the first week. Most brands see engagement move within the first month; ads can bring enquiries within days of launch.</p></details>
+  <details><summary>Do you only work with Hyderabad businesses?</summary><p>We're Hyderabad-based and love local brands, but we work with businesses anywhere in India.</p></details>
+  <details><summary>Do I need to sign a long contract?</summary><p>No. Plans are monthly. We earn your next month by delivering this one.</p></details>
+  <details><summary>Can I pick just one service, like only reels?</summary><p>Yes. Choose any single service, or combine them into a plan.</p></details>
+  <details><summary>What happens on the free consultation call?</summary><p>We look at your current presence, understand your goals and suggest 2–3 quick wins, whether or not you hire us.</p></details>
+ </section>
+
+ <section class="sec" id="contact" style="max-width:none;padding-left:0;padding-right:0">
+  <div class="cta-wrap">
+   <div><div class="eyebrow" style="color:#8a8a96">09 / LET'S TALK</div><h2 class="h2">Ready to grow<br>your <span class="grad">brand</span>?</h2>
+    <p class="lead">Get a free growth audit of your Instagram and a 30-day plan. No strings attached.</p>
+    <div class="ways">
+     <a href="#" class="wa-link"><span>💬 WhatsApp us</span><span>Reply in minutes →</span></a>
+     <a href="https://www.instagram.com/zannid.co/" target="_blank"><span>📩 DM "GROW" on Instagram</span><span>@zannid.co →</span></a>
+     <a href="mailto:hello@zannid.co"><span>✉️ Email</span><span>hello@zannid.co →</span></a>
+    </div></div>
+   <form id="lead">
+    <label>Your name<input required name="name" placeholder="e.g. Aamir"></label>
+    <label>Business name<input required name="biz" placeholder="e.g. Brew &amp; Co. Café"></label>
+    <label>WhatsApp number<input required name="phone" type="tel" placeholder="+91"></label>
+    <label>What do you need?<div class="chipsel" id="need"><b>Reels</b><b>Social media</b><b>Meta ads</b><b>Influencers</b><b>Website</b><b>AI automation</b><b>Branding</b></div></label>
+    <label>Monthly budget<select name="budget"><option>Under ₹25k</option><option>₹25k – ₹50k</option><option>₹50k – ₹1L</option><option>₹1L+</option></select></label>
+    <button class="pill" type="submit">Get my free growth audit →</button>
+    <p class="note">We reply within 24 hours · No spam, ever</p>
+   </form>
+  </div>
+ </section>
+
+ <footer class="f">
+  <div><b>Zannid &amp; Co.</b>Strategy · Content · Growth.<br>A growth agency in Hyderabad, Telangana.</div>
+  <div><b>Services</b><a href="#services">Social media</a><a href="#services">Reels &amp; shoots</a><a href="#services">Meta ads</a><a href="#services">AI automations</a></div>
+  <div><b>Company</b><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+  <div><b>Connect</b><a href="https://www.instagram.com/zannid.co/" target="_blank">Instagram</a><a href="#" class="wa-link">WhatsApp</a><a href="mailto:hello@zannid.co">Email</a></div>
+ </footer>
+ <div class="big">ZANNID &amp; CO.</div>
+</main>
+<a class="wa wa-link" href="#">💬 Chat on WhatsApp</a>
+
+<script type="module">
+import * as THREE from 'three';
+
+const NOISE=`
+vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
+float snoise(vec3 v){
+ const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);
+ vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);
+ vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);
+ vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;i=mod289(i);
+ vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
+ float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);
+ vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);
+ vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));
+ vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+ vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);
+ vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;
+ vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;
+ return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}`;
+
+const canvas=document.getElementById('gl');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xf2f1ee);
+const camera=new THREE.PerspectiveCamera(35,1,.1,100);
+
+// colourful studio environment -> iridescent reflections
+const env=new THREE.Scene();
+env.add(new THREE.Mesh(new THREE.SphereGeometry(10,64,32),new THREE.ShaderMaterial({side:THREE.BackSide,
+ vertexShader:`varying vec3 v;void main(){v=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+ fragmentShader:`varying vec3 v;void main(){float a=atan(v.z,v.x)/6.2831;vec3 c=.5+.5*cos(6.2831*(a*2.+v.y*.8+vec3(0.,.33,.67)));gl_FragColor=vec4(mix(c,vec3(1.),.2)*1.15,1.);}`})));
+[[0,6,3],[5,2,-2],[-5,1,4],[0,-6,-3]].forEach(p=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(5,2.5),new THREE.MeshBasicMaterial({color:new THREE.Color().setScalar(4),toneMapped:false,side:THREE.DoubleSide}));m.position.set(...p);m.lookAt(0,0,0);env.add(m)});
+scene.environment=new THREE.PMREMGenerator(renderer).fromScene(env,.03).texture;
+
+// saturn group
+const group=new THREE.Group();scene.add(group);
+
+// liquid glass blob
+const U={uTime:{value:0},uAmp:{value:1},uPull:{value:.1},uMouse:{value:new THREE.Vector3(0,0,1)}};
+const glass=new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:.1,transmission:1,thickness:1.4,ior:1.45,
+ iridescence:1,iridescenceIOR:1.6,iridescenceThicknessRange:[150,900],clearcoat:1,clearcoatRoughness:.04,envMapIntensity:1.5,dispersion:3});
+glass.onBeforeCompile=s=>{
+ Object.assign(s.uniforms,U);
+ s.vertexShader=s.vertexShader
+ .replace('#include <common>',`#include <common>
+uniform float uTime,uAmp,uPull;uniform vec3 uMouse;${NOISE}
+float disp(vec3 p){vec3 n=normalize(p);
+ float d=snoise(n*1.1+uTime*.32)*.26*uAmp+snoise(n*2.4-uTime*.55)*.07*uAmp;
+ d+=pow(max(dot(n,uMouse),0.),3.)*uPull;return d;}
+vec3 dsp(vec3 p){return p+normalize(p)*disp(p);}`)
+ .replace('#include <beginnormal_vertex>',`
+ vec3 n0=normalize(normal);vec3 t1=normalize(abs(n0.y)>.99?cross(n0,vec3(1.,0.,0.)):cross(n0,vec3(0.,1.,0.)));vec3 t2=cross(n0,t1);
+ vec3 pA=dsp(position);vec3 pB=dsp(position+t1*.01);vec3 pC=dsp(position+t2*.01);
+ vec3 objectNormal=normalize(cross(pB-pA,pC-pA));`)
+ .replace('#include <begin_vertex>','vec3 transformed=pA;');
+};
+const blob=new THREE.Mesh(new THREE.IcosahedronGeometry(1,64),glass);
+blob.scale.set(1,1.28,1);group.add(blob);
+
+// swirling colour core (refracted through the glass = liquid rainbow inside)
+const coreU={uTime:U.uTime};
+const core=new THREE.Mesh(new THREE.IcosahedronGeometry(.62,24),new THREE.ShaderMaterial({uniforms:coreU,
+ vertexShader:`varying vec3 vp;void main(){vp=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+ fragmentShader:`uniform float uTime;varying vec3 vp;${NOISE}
+ void main(){float n=snoise(vp*2.2+uTime*.25);vec3 c=.5+.5*cos(6.2831*(n*.7+vp.y*.5+uTime*.05+vec3(0.,.33,.67)));
+ gl_FragColor=vec4(mix(c,vec3(1.),.12),1.);}`}));
+blob.add(core);
+
+// saturn ring
+const ring=new THREE.Mesh(new THREE.TorusGeometry(2.55,.011,8,256),new THREE.MeshBasicMaterial({color:0x0b0b0f}));
+ring.rotation.set(1.28,0.18,-0.42);group.add(ring);
+const hashAnchor=new THREE.Object3D();hashAnchor.position.set(2.55*Math.cos(.55),2.55*Math.sin(.55),0);ring.add(hashAnchor);
+
+// scroll stages: hero → zoom into ring → left → right → up → down
+const S=[
+ {cam:[0,0,7.6],pos:[0,0,0],rot:[0,0,0]},
+ {cam:[0,.15,2.7],pos:[0,0,0],rot:[.55,.7,0]},
+ {cam:[0,0,6.2],pos:[1.55,0,0],rot:[.15,1.25,0]},
+ {cam:[0,0,6.2],pos:[-1.55,.1,0],rot:[.35,-1.05,.25]},
+ {cam:[0,0,6.6],pos:[0,1.15,0],rot:[1.25,.4,0]},
+ {cam:[0,0,6.6],pos:[0,-1.05,0],rot:[-.7,2.6,0]}];
+const lerp=(a,b,t)=>a+(b-a)*t, ease=t=>t*t*(3-2*t), clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const cur={cam:[...S[0].cam],pos:[0,0,0],rot:[0,0,0]};
+
+const rail=document.getElementById('rail');S.forEach(()=>rail.appendChild(document.createElement('b')));
+const journey=document.getElementById('journey');const maxScroll=()=>journey.offsetHeight-innerHeight;
+document.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>scrollTo({top:maxScroll()*el.dataset.go/(S.length-1),behavior:'smooth'}));
+
+// pointer
+const m={x:0,y:0,sx:0,sy:0,vel:0,kick:0};
+addEventListener('pointermove',e=>{const nx=e.clientX/innerWidth*2-1,ny=-(e.clientY/innerHeight*2-1);m.vel+=Math.hypot(nx-m.x,ny-m.y);m.x=nx;m.y=ny});
+addEventListener('pointerdown',()=>m.kick=.7);
+
+const panels=[...document.querySelectorAll('.panel')],DIR={left:[-1,0],right:[1,0],up:[0,1],down:[0,-1]};
+const hero=document.getElementById('hero'),hash=document.getElementById('hash');
+const tmpQ=new THREE.Quaternion(),tmpV=new THREE.Vector3();
+function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}
+addEventListener('resize',resize);resize();
+
+const clock=new THREE.Clock();
+renderer.setAnimationLoop(()=>{
+ const dt=Math.min(clock.getDelta(),.05),k=1-Math.exp(-dt*4),t=clock.elapsedTime;
+ U.uTime.value=t;
+ // scroll → stage
+ const f=clamp(scrollY/maxScroll())*(S.length-1),i=Math.min(Math.floor(f),S.length-2);
+ const lt=ease(clamp(((f-i)-.2)/.6)),A=S[i],B=S[i+1];
+ for(const key of ['cam','pos','rot'])for(let j=0;j<3;j++)cur[key][j]=lerp(cur[key][j],lerp(A[key][j],B[key][j],lt),k);
+ camera.position.set(...cur.cam);camera.lookAt(0,0,0);
+ group.position.set(...cur.pos);group.rotation.set(cur.rot[0],cur.rot[1]+t*.04,cur.rot[2]);
+ // blob follows cursor + slime
+ m.sx=lerp(m.sx,m.x,1-Math.exp(-dt*3));m.sy=lerp(m.sy,m.y,1-Math.exp(-dt*3));
+ const follow=1-clamp(f);
+ tmpV.set(m.sx*.55*follow,m.sy*.4*follow,0);group.worldToLocal(tmpV.add(group.getWorldPosition(new THREE.Vector3())));
+ blob.position.lerp(tmpV,k);
+ m.vel*=Math.exp(-dt*5);m.kick*=Math.exp(-dt*3);
+ U.uAmp.value=lerp(U.uAmp.value,1+Math.min(m.vel*3,1.6),k);
+ U.uPull.value=lerp(U.uPull.value,.1+Math.min(m.vel*2.5,.55)+m.kick,k*2);
+ blob.getWorldQuaternion(tmpQ).invert();
+ U.uMouse.value.set(m.x*1.4,m.y*1.4,.7).normalize().applyQuaternion(tmpQ);
+ blob.rotation.y=t*.15;
+ // overlays
+ const post=clamp((scrollY-maxScroll())/(innerHeight*.6));
+ hero.style.opacity=1-clamp(f*2.2);hero.style.visibility=f>.5?'hidden':'visible';rail.style.opacity=1-post;hero.querySelector('.word').style.scale=1+f*.6;
+ hashAnchor.getWorldPosition(tmpV).project(camera);
+ hash.style.transform=`translate(${(tmpV.x*.5+.5)*innerWidth}px,${(-tmpV.y*.5+.5)*innerHeight}px)`;
+ hash.style.opacity=(f<1.5?1-clamp(f-.6)*1.5:.15)*(1-post);
+ panels.forEach(p=>{const d=+p.dataset.k-f,[dx,dy]=DIR[p.dataset.dir],o=1-clamp(Math.abs(d)*2.4);
+  p.style.opacity=o*(1-post);p.classList.toggle('on',o*(1-post)>.5);
+  p.style.transform=`translate(${dx*d*340}px,${-dy*d*-340}px) scale(${.96+o*.04})`;});
+ [...rail.children].forEach((b,n)=>b.classList.toggle('a',Math.round(f)===n));
+ if(post<1)renderer.render(scene,camera);
+});
+</script>
+<script>
+const WHATSAPP='91XXXXXXXXXX'; // TODO: your WhatsApp number
+const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth'});
+document.querySelectorAll('.wa-link').forEach(a=>a.href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi Zannid & Co., I want to GROW my business!')}`);
+// reveal + counters
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');
+ e.target.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n,t0=performance.now();(function tick(t){const p=Math.min((t-t0)/1400,1);b.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(t0)});io.unobserve(e.target)}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*.08+'s';io.observe(el)});
+// tabs
+const tabs=[...document.querySelectorAll('.tab')],panes=[...document.querySelectorAll('.tabpane')];
+tabs.forEach(t=>t.onclick=()=>{tabs.forEach(x=>x.classList.toggle('on',x===t));panes.forEach((p,i)=>p.classList.toggle('on',i==t.dataset.t))});
+// tilt on service + plan cards
+document.querySelectorAll('.svc,.plan,.case').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${-y*5}deg) rotateY(${x*6}deg) translateY(-6px)`});c.addEventListener('mouseleave',()=>c.style.transform='')});
+// need chips + form -> WhatsApp
+document.querySelectorAll('#need b').forEach(b=>b.onclick=()=>b.classList.toggle('on'));
+document.getElementById('lead').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),need=[...document.querySelectorAll('#need b.on')].map(b=>b.textContent).join(', ')||'Not sure yet';
+ const msg=`Hi Zannid & Co.! I'd like a free growth audit.\nName: ${f.get('name')}\nBusiness: ${f.get('biz')}\nWhatsApp: ${f.get('phone')}\nNeed: ${need}\nBudget: ${f.get('budget')}`;
+ window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank')};
+</script>
+</body>
+</html>

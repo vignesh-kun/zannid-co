@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zannid & Co. | Growth Agency in Hyderabad</title>
+<link rel="icon" href="zannid-z-logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Unbounded:wght@600;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f3ef;--ink:#0b0b0f;--muted:#74747b;--line:#e0dfd9;--vio:#7c4dff;--vio2:#4b25c9;--pink:#ff3fb4;--cyan:#22d8ff;--yel:#ffe14d;--g:linear-gradient(90deg,#22d8ff,#7c4dff,#ff3fb4)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:0}
+.mono{font-family:'JetBrains Mono',monospace}
+.grad{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mark{position:relative;white-space:nowrap;z-index:0}.mark:after{content:"";position:absolute;left:-.08em;right:-.08em;bottom:.08em;height:.42em;background:var(--yel);z-index:-1;transform:skewX(-12deg) scaleX(0);transform-origin:left;transition:transform .7s .4s cubic-bezier(.2,.8,.2,1)}
+.in .mark:after,.mark.in:after{transform:skewX(-12deg) scaleX(1)}
+.sample{font:600 10px 'JetBrains Mono';background:#fff3c4;color:#8a6a00;border-radius:6px;padding:3px 7px;vertical-align:middle;letter-spacing:.5px;white-space:nowrap}
+
+/* ===== SALE BANNER (Amazon / Flipkart style) ===== */
+.sale{position:fixed;top:0;left:0;right:0;height:46px;z-index:40;display:flex;align-items:center;gap:16px;padding:0 18px;color:#fff;
+ background:linear-gradient(90deg,#ff1f4b,#ff6a00 55%,#ff1f4b);background-size:200% 100%;animation:sheen 6s linear infinite;font-weight:700;font-size:14px;overflow:hidden}
+@keyframes sheen{to{background-position:200% 0}}
+.sale .deal{background:var(--yel);color:#000;font-weight:900;font-size:12px;letter-spacing:.5px;padding:5px 10px;border-radius:6px;transform:skewX(-10deg);animation:blink 1.2s steps(2) infinite;white-space:nowrap}
+@keyframes blink{50%{background:#fff}}
+.sale .msg{flex:1;white-space:nowrap;overflow:hidden}.sale .msg s{opacity:.75;font-weight:500}
+.sale .cd{display:flex;gap:5px;align-items:center;font:700 13px 'JetBrains Mono'}.sale .cd b{background:#000;padding:4px 6px;border-radius:5px;min-width:30px;text-align:center}
+.sale .claim{background:#ffd814;color:#111;border-radius:999px;padding:7px 16px;font-weight:800;text-decoration:none;box-shadow:0 3px 0 #c7a500;white-space:nowrap}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:46px;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:14px 32px;background:rgba(244,243,239,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:8px;font:700 15px Syncopate;letter-spacing:1px;text-decoration:none;color:inherit}
+.brand svg{width:44px;height:36px}
+nav ul{display:flex;gap:26px;list-style:none;font-size:14px;font-weight:500;color:var(--muted)}nav li{cursor:pointer;transition:.2s}nav li:hover{color:var(--ink)}
+
+/* ===== DUOLINGO-STYLE CHUNKY BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;text-decoration:none;font:800 15px Inter;letter-spacing:.2px;border-radius:16px;padding:16px 24px;background:var(--vio);color:#fff;box-shadow:0 6px 0 var(--vio2);transition:transform .12s,box-shadow .12s,filter .2s;text-transform:uppercase}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:translateY(6px);box-shadow:0 0 0 var(--vio2)}
+.btn.w{background:#fff;color:var(--ink);box-shadow:0 6px 0 #d4d3cd;border:2px solid #e4e3dd}.btn.w:active{box-shadow:0 0 0 #d4d3cd}
+.btn.k{background:var(--ink);box-shadow:0 6px 0 #3a3a44}.btn.sm{padding:11px 16px;font-size:13px;border-radius:12px;box-shadow:0 4px 0 var(--vio2)}
+
+/* ===== LAYOUT ===== */
+main{position:relative;z-index:5}
+.sec{min-height:100vh;padding:150px 34vw 90px 6vw;display:flex;flex-direction:column;justify-content:center;position:relative}
+.eyebrow{font:600 12px 'JetBrains Mono';color:var(--muted);letter-spacing:1.5px;margin-bottom:16px;text-transform:uppercase}
+.h2{font:800 clamp(38px,5.4vw,84px)/1 Unbounded;letter-spacing:-.04em;margin-bottom:22px}
+.lead{font-size:clamp(16px,1.4vw,20px);color:#4f4f56;line-height:1.55;max-width:620px}
+.split .w{display:inline-block;overflow:hidden;vertical-align:top}.split .w>span{display:inline-block;transform:translateY(105%) rotate(4deg);transition:transform .8s cubic-bezier(.2,.9,.2,1.15)}
+.split.in .w>span{transform:none}
+.rv{opacity:0;transform:translateY(40px) scale(.97);transition:opacity .8s,transform .9s cubic-bezier(.2,.9,.2,1.1)}.rv.in{opacity:1;transform:none}
+.sticker{position:absolute;font:800 13px Inter;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:8px 14px;box-shadow:4px 4px 0 var(--ink);white-space:nowrap;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{translate:0 -10px}}
+
+/* ===== HERO (centered) ===== */
+.hero{padding:120px 6vw 70px;text-align:center;align-items:center}
+.corner{position:absolute;top:130px;font:700 12px Syncopate;letter-spacing:4px}.corner.l{left:32px}.corner.r{right:32px;padding-right:12px;border-right:2px solid var(--ink)}
+.hero .zmark{width:86px;height:70px;margin-bottom:6px}
+.hero h1{font:700 clamp(54px,11.5vw,180px)/1 Syncopate;letter-spacing:-.02em;pointer-events:none}
+.hero .co{font:700 clamp(20px,3.4vw,54px) Syncopate;display:block;text-align:right;width:min(80vw,1080px);margin:4px auto 0}
+.dealtile{display:inline-flex;align-items:center;gap:14px;margin:26px 0 18px;background:#fff;border:2px dashed #ff1f4b;border-radius:16px;padding:10px 18px 10px 10px;box-shadow:0 10px 30px -10px #ff1f4b55;position:relative}
+.dealtile .off{background:linear-gradient(135deg,#ff1f4b,#ff6a00);color:#fff;font:900 20px Unbounded;padding:10px 14px;border-radius:10px;transform:rotate(-4deg)}
+.dealtile .t{text-align:left;font-size:14px;line-height:1.35}.dealtile .t b{font-size:16px}.dealtile .t s{color:var(--muted)}
+.dealtile .left{position:absolute;top:-12px;right:-12px;background:var(--yel);font:800 11px Inter;padding:4px 9px;border-radius:999px;border:1.5px solid #000;transform:rotate(6deg)}
+.hero .desc{font-size:clamp(17px,1.6vw,22px);line-height:1.5;max-width:640px;margin:0 auto 26px}
+.hero .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero .proof{margin-top:26px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);justify-content:center}
+.faces{display:flex}.faces i{width:30px;height:30px;border-radius:50%;border:2px solid var(--bg);margin-left:-8px;background:var(--g)}.faces i:nth-child(2){background:linear-gradient(135deg,#ffb86b,#ff3fb4)}.faces i:nth-child(3){background:linear-gradient(135deg,#22d8ff,#1ec773)}
+.scrollhint{position:absolute;bottom:26px;left:50%;translate:-50% 0;font:12px 'JetBrains Mono';color:var(--muted);animation:bob 2s infinite}
+
+/* ===== DIAL INDEX (labels on the ring) ===== */
+#hash{position:fixed;left:0;top:0;font:700 60px Syncopate;z-index:3;pointer-events:none;translate:-50% -50%}
+.dl{position:fixed;left:0;top:0;z-index:4;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:10px;font:600 14px Inter;color:var(--muted);transform-origin:right center;will-change:transform,opacity;transition:color .3s}
+.dl span{font:600 11px 'JetBrains Mono'}
+.dl.on{color:var(--ink);font:800 20px Unbounded}.dl.on span{font-size:13px;color:var(--vio)}
+.dl.on:after{content:"";width:12px;height:12px;border-radius:50%;background:var(--g);box-shadow:0 0 0 5px #7c4dff33}
+
+/* ===== MASCOT (Duolingo-style emotions) ===== */
+.zanny{width:130px;height:130px;border-radius:46% 54% 50% 50%/55% 52% 48% 45%;position:relative;background:radial-gradient(circle at 32% 26%,#fff 0 7%,transparent 22%),conic-gradient(from 40deg,#22d8ff,#7c4dff,#ff3fb4,#ffb86b,#22d8ff);box-shadow:inset -12px -16px 30px #4b25c955,0 20px 40px -10px #7c4dff66;animation:squish 2.4s ease-in-out infinite}
+@keyframes squish{50%{border-radius:54% 46% 45% 55%/48% 55% 45% 52%;transform:scale(1.04,.96)}}
+.zanny .eye{position:absolute;top:40%;width:24px;height:28px;background:#fff;border-radius:50%;overflow:hidden;animation:blinkE 4s infinite}.zanny .eye.l{left:28%}.zanny .eye.r{right:28%}
+.zanny .eye i{position:absolute;width:12px;height:14px;border-radius:50%;background:#111;left:6px;top:7px}
+@keyframes blinkE{0%,46%,50%,100%{transform:scaleY(1)}48%{transform:scaleY(.1)}}
+.zanny .mouth{position:absolute;left:50%;top:66%;width:30px;height:14px;translate:-50% 0;border:4px solid #111;border-top:none;border-radius:0 0 30px 30px}
+.zanny.sad .mouth{border:4px solid #111;border-bottom:none;border-radius:30px 30px 0 0;top:72%}
+.zanny.sad .tear{position:absolute;left:30%;top:62%;width:9px;height:12px;background:#7fd9ff;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:tear 1.6s infinite}
+@keyframes tear{to{transform:translateY(26px);opacity:0}}
+.bubble{position:absolute;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:8px 12px;font:700 13px Inter;white-space:nowrap;box-shadow:3px 3px 0 var(--ink)}
+
+/* ===== PROBLEM ===== */
+.problem .big{font:900 clamp(44px,7vw,120px)/.98 Unbounded;letter-spacing:-.05em}
+.problem .big .no{color:#b9b8b2;text-decoration:line-through;text-decoration-thickness:6px;text-decoration-color:#ff1f4b}
+.problem .emo{font-size:.9em}
+.problem .row{display:flex;align-items:center;gap:40px;margin-top:40px;flex-wrap:wrap}
+.reacts{display:flex;gap:10px}.reacts b{font-size:30px;background:#fff;border:2px solid var(--ink);border-radius:16px;width:58px;height:58px;display:grid;place-items:center;box-shadow:3px 3px 0 var(--ink);transition:.2s;cursor:pointer}.reacts b:hover{transform:translateY(-6px) rotate(-8deg)}
+
+/* ===== SERVICES (photo bento) ===== */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(170px,22vh,240px);gap:14px;margin-top:30px}
+.svc{position:relative;border-radius:22px;overflow:hidden;cursor:pointer;color:#fff;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;transition:transform .45s cubic-bezier(.2,.9,.2,1.1),box-shadow .45s}
+.svc:before{content:"";position:absolute;inset:0;z-index:-2;background:var(--img) center/cover,linear-gradient(135deg,#7c4dff,#ff3fb4);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.svc:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 25%,rgba(8,6,20,.88));transition:.4s}
+.svc.w2{grid-column:span 2}.svc.h2r{grid-row:span 2}
+.svc .n{position:absolute;top:16px;left:18px;font:600 11px 'JetBrains Mono';background:#ffffff26;backdrop-filter:blur(8px);padding:5px 9px;border-radius:999px}
+.svc .go{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:#fff;color:#000;display:grid;place-items:center;font-weight:800;transform:scale(0) rotate(-90deg);transition:.4s cubic-bezier(.2,.9,.2,1.3)}
+.svc h3{font:800 clamp(17px,1.5vw,22px) Unbounded;letter-spacing:-.02em}
+.svc p{font-size:13px;opacity:.85;margin-top:4px;line-height:1.4}
+.svc ul{list-style:none;font:12px 'JetBrains Mono';max-height:0;overflow:hidden;opacity:0;transition:.45s}.svc ul li:before{content:"✓ ";color:var(--yel)}
+.svc:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:0 30px 50px -18px #4b25c988}
+.svc:hover:before{transform:scale(1.12)}.svc:hover:after{background:linear-gradient(180deg,rgba(124,77,255,.25),rgba(8,6,20,.92) 70%)}
+.svc:hover .go{transform:none}.svc:hover ul{max-height:90px;opacity:1;margin-top:8px}
+
+/* ===== WORK ===== */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.post{position:relative;border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);text-decoration:none;color:inherit;transition:.45s cubic-bezier(.2,.9,.2,1.1);box-shadow:0 20px 40px -24px #0004}
+.post:nth-child(odd){transform:rotate(-2deg)}.post:nth-child(even){transform:rotate(2deg) translateY(30px)}
+.post:hover{transform:rotate(0) translateY(-10px) scale(1.03);z-index:2;box-shadow:0 40px 60px -20px #4b25c966}
+.post .im{aspect-ratio:4/5;background:linear-gradient(135deg,#7c4dff,#ff3fb4);overflow:hidden}.post img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}.post:hover img{transform:scale(1.08)}
+.post .meta{padding:14px 16px;display:flex;justify-content:space-between;font-size:13px;font-weight:600}.post .meta span{color:var(--muted);font-weight:400}
+.post .play{position:absolute;top:14px;right:14px;background:#fff;border-radius:999px;padding:6px 12px;font:700 12px Inter;box-shadow:0 4px 14px #0003}
+.post .views{position:absolute;left:14px;top:14px;background:#000a;color:#fff;border-radius:999px;padding:5px 10px;font:600 12px Inter;backdrop-filter:blur(6px)}
+
+/* ===== RESULTS: graphs + automation phone ===== */
+.dash{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:16px;margin-top:30px}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;position:relative;overflow:hidden}
+.card h4{font:600 12px 'JetBrains Mono';color:var(--muted);letter-spacing:1px;margin-bottom:6px}
+.card .kpi{font:800 clamp(30px,3vw,46px) Unbounded;letter-spacing:-.04em}.card .kpi small{font:700 14px Inter;color:#1ec773;margin-left:6px}
+.line path.after{stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 2.2s .3s ease-out}.in .line path.after{stroke-dashoffset:0}
+.bars{display:flex;align-items:flex-end;gap:10px;height:150px;margin-top:14px}
+.bars i{flex:1;border-radius:10px 10px 4px 4px;background:#e9e7ff;height:8%;transition:height 1.2s cubic-bezier(.2,.9,.2,1.15)}.bars i.hi{background:var(--g)}
+.in .bars i{height:var(--h)}
+.bars+.lbl{display:flex;justify-content:space-between;font:11px 'JetBrains Mono';color:var(--muted);margin-top:6px}
+.phone{grid-row:span 2;background:var(--ink);border-radius:34px;padding:14px;color:#fff;min-height:420px}
+.phone .scr{background:#131318;border-radius:24px;height:100%;padding:16px;display:flex;flex-direction:column;gap:10px;font-size:13px}
+.phone .top{display:flex;align-items:center;gap:8px;font-weight:700;border-bottom:1px solid #2a2a33;padding-bottom:10px}.phone .top i{width:26px;height:26px;border-radius:50%;background:var(--g)}
+.msg{max-width:80%;padding:9px 13px;border-radius:16px;opacity:0;transform:translateY(10px) scale(.95);transition:.5s cubic-bezier(.2,.9,.2,1.3)}
+.msg.u{align-self:flex-end;background:var(--vio);border-bottom-right-radius:4px}.msg.b{background:#24242c;border-bottom-left-radius:4px}
+.in .msg{opacity:1;transform:none}.in .msg:nth-child(2){transition-delay:.4s}.in .msg:nth-child(3){transition-delay:1.2s}.in .msg:nth-child(4){transition-delay:2s}.in .msg:nth-child(5){transition-delay:2.8s}.in .msg:nth-child(6){transition-delay:3.6s}
+.happy-wrap{display:flex;align-items:center;gap:18px}
+
+/* ===== WORKFLOW ===== */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:40px;position:relative}
+.flow svg.path{position:absolute;left:0;top:44px;width:100%;height:20px;z-index:-1}
+.flow svg.path line{stroke:var(--ink);stroke-width:3;stroke-dasharray:10 10;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-20}}
+.node{text-align:center;padding:0 8px}
+.node .ic{width:88px;height:88px;margin:0 auto 16px;border-radius:26px;background:#fff;border:2.5px solid var(--ink);display:grid;place-items:center;font-size:38px;box-shadow:0 6px 0 var(--ink);transition:.3s cubic-bezier(.2,.9,.2,1.4)}
+.node:hover .ic{transform:translateY(-8px) rotate(-6deg);background:var(--yel)}
+.node:last-child .ic{background:var(--g);border-color:var(--vio2);box-shadow:0 6px 0 var(--vio2)}
+.node small{font:600 11px 'JetBrains Mono';color:var(--vio)}.node h3{font:800 18px Unbounded;margin:6px 0}.node p{font-size:13px;color:var(--muted);line-height:1.45}
+
+/* ===== PRICING ===== */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px;align-items:stretch}
+.plan{background:#fff;border:2.5px solid var(--ink);border-radius:26px;padding:28px;display:flex;flex-direction:column;box-shadow:0 8px 0 var(--ink);transition:.3s cubic-bezier(.2,.9,.2,1.3)}
+.plan:hover{transform:translateY(-8px)}
+.plan .emo{font-size:40px}.plan h3{font:800 22px Unbounded;margin:8px 0 2px}.plan .for{color:var(--muted);font-size:14px}
+.plan .price{font:800 34px Unbounded;letter-spacing:-.04em;margin:16px 0}.plan .price small{font:500 13px Inter;color:var(--muted)}
+.plan ul{list-style:none;flex:1;margin-bottom:22px}.plan li{padding:7px 0;font-size:14px;border-bottom:1px dashed var(--line)}.plan li:before{content:"✓ ";color:var(--vio);font-weight:900}
+.plan.hot{background:var(--ink);color:#fff;transform:scale(1.04);box-shadow:0 8px 0 var(--vio)}.plan.hot .for,.plan.hot .price small{color:#a9a9b2}.plan.hot li{border-color:#2a2a33}
+.plan.hot:hover{transform:scale(1.04) translateY(-8px)}
+.ribbon{align-self:flex-start;background:var(--yel);color:#000;font:800 11px Inter;padding:5px 10px;border-radius:999px;margin-bottom:6px}
+
+/* ===== REVIEWS ===== */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.q{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;font-size:15px;line-height:1.55;transition:.3s}.q:hover{transform:translateY(-6px) rotate(-1deg)}
+.q .stars{color:#ffb400;font-size:18px;letter-spacing:2px;margin-bottom:10px}
+.q .who{display:flex;gap:10px;align-items:center;margin-top:16px;font-weight:700;font-size:14px}.q .who i{width:36px;height:36px;border-radius:50%;background:var(--g)}.q .who span{display:block;font-weight:400;color:var(--muted);font-size:12px}
+
+/* ===== FAQ ===== */
+.faq details{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:18px 22px;margin-bottom:12px;box-shadow:0 5px 0 var(--ink);transition:.2s}
+.faq details[open]{background:#fffbea}
+.faq summary{list-style:none;cursor:pointer;font:700 17px Inter;display:flex;justify-content:space-between;gap:20px}.faq summary:after{content:"+";font-size:22px;transition:.3s}.faq details[open] summary:after{transform:rotate(45deg)}
+.faq p{color:#4f4f56;margin-top:10px;line-height:1.6}
+
+/* ===== CONTACT ===== */
+.contact{padding-right:6vw}
+.cta{background:var(--ink);color:#fff;border-radius:36px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:44px;position:relative;overflow:hidden}
+.cta:before{content:"";position:absolute;width:560px;height:560px;left:-180px;bottom:-260px;border-radius:50%;background:conic-gradient(#22d8ff,#7c4dff,#ff3fb4,#ffb86b,#22d8ff);filter:blur(110px);opacity:.5;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cta>*{position:relative}.cta .lead{color:#b4b4bd}
+.ways{display:grid;gap:10px;margin-top:26px}.ways a{display:flex;justify-content:space-between;color:#fff;text-decoration:none;border:1px solid #2d2d36;border-radius:14px;padding:14px 18px;font-weight:600;transition:.25s}.ways a:hover{background:#1c1c24;transform:translateX(6px)}
+form{background:#fff;color:var(--ink);border-radius:24px;padding:28px;display:grid;gap:14px}
+form label{font-size:13px;font-weight:700;display:grid;gap:6px}
+form input,form select{font:15px Inter;padding:13px 14px;border:2px solid var(--line);border-radius:14px;background:var(--bg);outline:none;transition:.2s}
+form input:focus,form select:focus{border-color:var(--vio);box-shadow:0 0 0 4px #7c4dff22}
+.chipsel{display:flex;flex-wrap:wrap;gap:8px}.chipsel b{font-weight:600;font-size:13px;border:2px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;user-select:none;transition:.15s}.chipsel b.on{background:var(--ink);color:#fff;border-color:var(--ink);transform:scale(1.05)}
+form .btn{justify-content:center}.note{font-size:12px;color:var(--muted);text-align:center}
+footer{position:relative;z-index:5;padding:60px 6vw 30px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;font-size:14px;color:var(--muted)}
+footer b{color:var(--ink);display:block;margin-bottom:10px}footer a{display:block;color:inherit;text-decoration:none;padding:3px 0}footer a:hover{color:var(--ink)}
+.giant{position:relative;z-index:5;display:flex;justify-content:center;align-items:center;gap:2vw;padding:0 0 40px;overflow:hidden}
+.giant svg{width:16vw;height:13vw}.giant span{font:700 11vw Syncopate;color:transparent;-webkit-text-stroke:1.5px #c9c8c2;letter-spacing:-.03em}
+.wa{position:fixed;right:22px;bottom:22px;z-index:35;background:#25d366;color:#fff;border-radius:18px;padding:14px 18px;font:800 14px Inter;text-decoration:none;box-shadow:0 5px 0 #179c4a;display:flex;gap:8px;align-items:center;transition:.15s}
+.wa:active{transform:translateY(5px);box-shadow:none}
+
+@media(max-width:900px){
+ .sec{padding:130px 6vw 70px}.dl{display:none!important}nav ul{display:none}
+ .bento{grid-template-columns:1fr 1fr}.svc.w2{grid-column:span 2}
+ .work,.quotes,.plans{grid-template-columns:1fr}.dash,.cta{grid-template-columns:1fr}.phone{grid-row:auto}
+ .flow{grid-template-columns:1fr;gap:24px}.flow svg.path{display:none}footer{grid-template-columns:1fr 1fr}
+ .sale .msg{display:none}.corner{display:none}.post:nth-child(n){transform:none}
+}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js"}}</script>
+</head>
+<body>
+<!-- Z logo symbol -->
+<svg width="0" height="0" style="position:absolute"><defs>
+ <linearGradient id="zg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d8ff"/><stop offset=".5" stop-color="#7c4dff"/><stop offset="1" stop-color="#ff3fb4"/></linearGradient>
+ <symbol id="zlogo" viewBox="-6 0 150 120"><g transform="skewX(-16) translate(30,0)">
+  <path d="M10 28 L96 12 L104 12 L40 92 L106 84 L98 104 L8 112 L0 112 L66 34 L4 40 Z" fill="none" stroke="#22d8ff" stroke-width="1.4" transform="translate(6,4)"/>
+  <path d="M10 28 L96 12 L104 12 L40 92 L106 84 L98 104 L8 112 L0 112 L66 34 L4 40 Z" fill="currentColor"/>
+  <path d="M-8 76 L126 46" style="stroke:var(--bg)" stroke-width="6"/>
+  <path d="M-14 84 L132 52" stroke="url(#zg)" stroke-width="2"/></g></symbol></defs></svg>
+
+<canvas id="gl"></canvas>
+
+<div class="sale">
+ <span class="deal">⚡ GROWTH SALE</span>
+ <span class="msg">FREE Instagram growth audit + 30-day plan <s>₹4,999</s> → ₹0 · Only <u>3 brand slots</u> left this month</span>
+ <span class="cd" id="cd"><span>Ends in</span><b>00</b>:<b>00</b>:<b>00</b>:<b>00</b></span>
+ <a class="claim" href="#contact" onclick="go('contact');return false">Claim now →</a>
+</div>
+
+<nav>
+ <a class="brand" href="#top"><svg><use href="#zlogo"/></svg>ZANNID</a>
+ <ul><li onclick="go('services')">Services</li><li onclick="go('work')">Work</li><li onclick="go('results')">Results</li><li onclick="go('pricing')">Pricing</li><li onclick="go('faq')">FAQ</li></ul>
+ <a class="btn sm" href="#contact" onclick="go('contact');return false">Free audit</a>
+</nav>
+
+<div id="hash">#</div>
+
+<main>
+<!-- 00 HERO -->
+<section class="sec hero" id="top" data-label="Start">
+ <div class="corner l">GROWTH</div><div class="corner r">SCALE</div>
+ <svg class="zmark"><use href="#zlogo"/></svg>
+ <h1>ZANNID</h1><span class="co">&amp; CO.</span>
+ <div class="dealtile"><span class="off">FREE</span><span class="t"><b>Growth audit + 30-day plan</b><br><s>₹4,999</s> · today ₹0 for Hyderabad brands</span><span class="left">🔥 3 slots left</span></div>
+ <p class="desc">We turn cafés, restaurants &amp; startups into brands people <b>notice, remember and choose</b>, with strategy, reels, ads and AI automations under one roof.</p>
+ <div class="row"><a class="btn" href="#contact" onclick="go('contact');return false">Claim my free audit →</a><a class="btn w" href="#work" onclick="go('work');return false">See our work</a></div>
+ <div class="proof"><span class="faces"><i></i><i></i><i></i></span>Trusted by Hyderabad cafés, founders &amp; events</div>
+ <div class="scrollhint">scroll · the ring guides you ↓</div>
+</section>
+
+<!-- 01 PROBLEM -->
+<section class="sec problem" data-label="The problem">
+ <div class="eyebrow">01 · Real talk</div>
+ <div class="big split" data-split>Your food is <span class="emo">🔥</span><br>Your Instagram is <span class="emo">😴</span></div>
+ <div class="row">
+  <div style="position:relative"><div class="zanny sad"><div class="eye l"><i></i></div><div class="eye r"><i></i></div><div class="tear"></div><div class="mouth"></div></div><div class="bubble" style="top:-34px;left:110px">"0 new customers from 200 likes?" 😩</div></div>
+  <p class="lead rv">Hyderabad is scrolling <span class="mark">right now</span>. If they can't find you, they can't choose you. Likes don't pay rent: <b>footfall, orders and enquiries do.</b></p>
+ </div>
+ <div class="reacts rv" style="margin-top:34px"><b>😴</b><b>📉</b><b>🤷</b><b style="background:var(--yel)">👉</b><span class="lead" style="align-self:center;margin-left:8px">Sound familiar? Keep scrolling.</span></div>
+</section>
+
+<!-- 02 SERVICES -->
+<section class="sec" id="services" data-label="Services">
+ <div class="eyebrow">02 · Services</div>
+ <h2 class="h2 split" data-split>Everything to <span class="grad">grow</span>, under one roof.</h2>
+ <p class="lead rv">Pick one or let us run the whole engine. Hover a card to see what's inside.</p>
+ <div class="bento">
+  <div class="svc w2 h2r rv" style="--img:url(https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&q=70&auto=format&fit=crop)"><span class="n">01</span><span class="go">→</span><h3>Social Media Management</h3><p>Calendars, posting, community and monthly reports, done for you.</p><ul><li>Content strategy</li><li>12–30 posts / month</li><li>Analytics report</li></ul></div>
+  <div class="svc rv" style="--img:url(https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=700&q=70&auto=format&fit=crop)"><span class="n">02</span><span class="go">→</span><h3>Reel Shoots</h3><ul><li>Hooks &amp; scripts</li><li>On-site shoot</li></ul></div>
+  <div class="svc rv" style="--img:url(https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&q=70&auto=format&fit=crop)"><span class="n">03</span><span class="go">→</span><h3>Food &amp; Product Shoots</h3><ul><li>Menu shots</li><li>Product photos</li></ul></div>
+  <div class="svc rv" style="--img:url(https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=700&q=70&auto=format&fit=crop)"><span class="n">04</span><span class="go">→</span><h3>Video Editing</h3><ul><li>Trend-ready edits</li><li>Subtitles &amp; motion</li></ul></div>
+  <div class="svc rv" style="--img:url(https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&q=70&auto=format&fit=crop)"><span class="n">05</span><span class="go">→</span><h3>Graphic Design</h3><ul><li>Brand kits</li><li>Carousels</li></ul></div>
+  <div class="svc w2 rv" style="--img:url(https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&q=70&auto=format&fit=crop)"><span class="n">06</span><span class="go">→</span><h3>Meta Ads &amp; Paid Campaigns</h3><p>Ads that bring walk-ins, orders and leads, not just likes.</p><ul><li>Offer strategy</li><li>Creative testing</li><li>Weekly optimisation</li></ul></div>
+  <div class="svc rv" style="--img:url(https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=70&auto=format&fit=crop)"><span class="n">07</span><span class="go">→</span><h3>Influencer Marketing</h3><ul><li>Hyderabad creators</li><li>Collab management</li></ul></div>
+  <div class="svc rv" style="--img:url(https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&q=70&auto=format&fit=crop)"><span class="n">08</span><span class="go">→</span><h3>Websites</h3><ul><li>Design + build</li><li>SEO basics</li></ul></div>
+  <div class="svc w2 rv" style="--img:url(https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1000&q=70&auto=format&fit=crop)"><span class="n">09</span><span class="go">→</span><h3>AI Automations</h3><p>DM, WhatsApp &amp; call bots that reply, qualify and book customers 24/7.</p><ul><li>Auto-reply to "GROW"</li><li>Lead capture to WhatsApp</li></ul></div>
+ </div>
+</section>
+
+<!-- 03 WORK -->
+<section class="sec" id="work" data-label="Our work">
+ <div class="eyebrow">03 · Our work</div>
+ <h2 class="h2 split" data-split>Content Hyderabad <span class="mark">stops</span> for.</h2>
+ <div class="work">
+  <a class="post rv" target="_blank" href="https://www.instagram.com/zannid.co/reel/DfUrl5zo91N/"><div class="im"><img data-ig="biryani" alt="Biryani reel"></div><span class="play">▶ Reel</span><div class="meta">Biryani me dum nahi?<span>Restaurants</span></div></a>
+  <a class="post rv" target="_blank" href="https://www.instagram.com/zaidhussain1316/reel/DfWeENpMRGj/"><div class="im"><img data-ig="cafe" alt="Café reel"></div><span class="play">▶ Reel</span><div class="meta">Konsi café jaenge?<span>Cafés · AI content</span></div></a>
+  <a class="post rv" target="_blank" href="https://www.instagram.com/zannid.co/reel/DfH0IH7stQP/"><div class="im"><img data-ig="hello" alt="Hello Hyderabad reel"></div><span class="play">▶ Reel</span><div class="meta">Hello, Hyderabad!<span>Brand launch</span></div></a>
+ </div>
+ <div style="margin-top:56px"><a class="btn w" target="_blank" href="https://www.instagram.com/zannid.co/">See more on Instagram ↗</a></div>
+</section>
+
+<!-- 04 RESULTS -->
+<section class="sec" id="results" data-label="Results">
+ <div class="eyebrow">04 · What growth looks like <span class="sample">SAMPLE DATA · REPLACE</span></div>
+ <h2 class="h2 split" data-split>From <span style="color:#b9b8b2">"ghost page"</span> to <span class="grad">fully booked.</span></h2>
+ <div class="dash">
+  <div class="card rv"><h4>MONTHLY REACH · BEFORE vs AFTER ZANNID</h4><div class="kpi">+312%<small>▲ in 90 days</small></div>
+   <svg class="line" viewBox="0 0 400 140" width="100%" height="150" preserveAspectRatio="none">
+    <defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#22d8ff"/><stop offset=".5" stop-color="#7c4dff"/><stop offset="1" stop-color="#ff3fb4"/></linearGradient></defs>
+    <path d="M0 120 L60 118 L120 121 L180 116 L240 119 L300 117 L400 118" fill="none" stroke="#cfcdc6" stroke-width="3" stroke-dasharray="6 6"/>
+    <path class="after" d="M0 120 C60 115 90 100 130 92 S200 70 240 55 S320 30 400 8" fill="none" stroke="url(#lg)" stroke-width="5" stroke-linecap="round"/>
+   </svg><div class="lbl mono" style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>Month 1</span><span>— before ··· after</span><span>Month 3</span></div></div>
+  <div class="phone rv"><div class="scr">
+   <div class="top"><i></i>zannid.co · DM bot</div>
+   <div class="msg u">GROW</div>
+   <div class="msg b">Hey! 👋 Want a free growth audit for your café?</div>
+   <div class="msg u">yes!! we're in Tolichowki</div>
+   <div class="msg b">Perfect. Booked you for tomorrow 11 AM ✅</div>
+   <div class="msg b" style="background:#1ec773">🎉 New lead sent to WhatsApp</div>
+  </div></div>
+  <div class="card rv"><h4>ENQUIRIES PER WEEK</h4><div class="happy-wrap"><div class="kpi">4 → 27<small>▲</small></div><div class="zanny" style="width:70px;height:70px"><div class="eye l" style="width:14px;height:16px"><i style="width:7px;height:8px;left:3px;top:4px"></i></div><div class="eye r" style="width:14px;height:16px"><i style="width:7px;height:8px;left:3px;top:4px"></i></div><div class="mouth" style="width:18px;height:9px;border-width:3px"></div></div></div>
+   <div class="bars"><i style="--h:14%"></i><i style="--h:22%"></i><i style="--h:35%"></i><i style="--h:48%"></i><i style="--h:63%"></i><i class="hi" style="--h:80%"></i><i class="hi" style="--h:100%"></i></div>
+   <div class="lbl"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span></div></div>
+ </div>
+</section>
+
+<!-- 05 WORKFLOW -->
+<section class="sec" data-label="How it works">
+ <div class="eyebrow">05 · How it works</div>
+ <h2 class="h2 split" data-split>From hello to <span class="mark">growth</span> in 5 moves.</h2>
+ <div class="flow">
+  <svg class="path" preserveAspectRatio="none" viewBox="0 0 100 2"><line x1="10" y1="1" x2="90" y2="1"/></svg>
+  <div class="node rv"><div class="ic">📞</div><small>DAY 1</small><h3>Free call</h3><p>15 mins. Your goals, our honest take.</p></div>
+  <div class="node rv"><div class="ic">🔍</div><small>DAY 2–3</small><h3>Audit</h3><p>Page, competitors &amp; audience, decoded.</p></div>
+  <div class="node rv"><div class="ic">🎬</div><small>WEEK 1</small><h3>Create</h3><p>Shoots, reels, designs go live.</p></div>
+  <div class="node rv"><div class="ic">🎯</div><small>WEEK 2</small><h3>Amplify</h3><p>Ads, influencers &amp; DM bots switch on.</p></div>
+  <div class="node rv"><div class="ic">📈</div><small>EVERY MONTH</small><h3>Scale</h3><p>Report, learn, double down.</p></div>
+ </div>
+</section>
+
+<!-- 06 PRICING -->
+<section class="sec" id="pricing" data-label="Pricing">
+ <div class="eyebrow">06 · Plans <span class="sample">PRICES · REPLACE</span></div>
+ <h2 class="h2 split" data-split>Simple plans. No guesswork.</h2>
+ <div class="plans">
+  <div class="plan rv"><span class="emo">🌱</span><h3>Starter</h3><p class="for">New cafés &amp; local brands</p><div class="price">₹XX,XXX<small> /mo</small></div><ul><li>Social media management</li><li>8 reels / month</li><li>Posts &amp; stories</li><li>Monthly report</li></ul><a class="btn w" href="#contact" onclick="go('contact');return false">Start here</a></div>
+  <div class="plan hot rv"><span class="ribbon">⭐ MOST POPULAR</span><span class="emo">🚀</span><h3>Growth</h3><p class="for">Brands ready to scale</p><div class="price">₹XX,XXX<small> /mo</small></div><ul><li>Everything in Starter</li><li>15 reels + shoot days</li><li>Meta ads management</li><li>Influencer collabs</li><li>DM automation</li></ul><a class="btn" href="#contact" onclick="go('contact');return false">Get Growth</a></div>
+  <div class="plan rv"><span class="emo">👑</span><h3>Scale</h3><p class="for">Full growth partner</p><div class="price">Custom</div><ul><li>Everything in Growth</li><li>Brand identity</li><li>Website</li><li>Full AI automation suite</li></ul><a class="btn w" href="#contact" onclick="go('contact');return false">Talk to us</a></div>
+ </div>
+</section>
+
+<!-- 07 REVIEWS -->
+<section class="sec" data-label="Reviews">
+ <div class="eyebrow">07 · Client love <span class="sample">SAMPLE · ADD REAL QUOTES</span></div>
+ <h2 class="h2 split" data-split>Don't take our word for it.</h2>
+ <div class="quotes">
+  <div class="q rv"><div class="stars">★★★★★</div>"[Real client quote, e.g. weekend footfall after the reels went live.]"<div class="who"><i></i><div>Client name<span>Café owner</span></div></div></div>
+  <div class="q rv"><div class="stars">★★★★★</div>"[Real client quote about content quality &amp; speed.]"<div class="who"><i></i><div>Client name<span>Startup founder</span></div></div></div>
+  <div class="q rv"><div class="stars">★★★★★</div>"[Real client quote about the team &amp; process.]"<div class="who"><i></i><div>Client name<span>Event organiser</span></div></div></div>
+ </div>
+</section>
+
+<!-- 08 FAQ -->
+<section class="sec faq" id="faq" data-label="FAQ">
+ <div class="eyebrow">08 · FAQ</div>
+ <h2 class="h2 split" data-split>Questions? Answered.</h2>
+ <details open><summary>How soon will I see results?</summary><p>Content goes live in week one. Engagement usually moves within the first month; ads can bring enquiries within days.</p></details>
+ <details><summary>Do I need a long contract?</summary><p>No. Plans are monthly. We earn next month by delivering this one.</p></details>
+ <details><summary>Can I take just one service, like only reels?</summary><p>Yes. Pick any single service or combine them into a plan.</p></details>
+ <details><summary>Only Hyderabad businesses?</summary><p>We're Hyderabad-born and local-first, but we work with brands across India.</p></details>
+ <details><summary>What happens on the free audit call?</summary><p>We review your presence, understand your goals and hand you 2–3 quick wins, whether or not you hire us.</p></details>
+</section>
+
+<!-- 09 CONTACT -->
+<section class="sec contact" id="contact" data-label="Let's talk">
+ <div class="cta">
+  <div><div class="eyebrow" style="color:#8a8a96">09 · Let's talk</div>
+   <h2 class="h2">Ready to <span class="grad">grow?</span></h2>
+   <p class="lead">Claim your free growth audit + 30-day plan. Only 3 slots left this month.</p>
+   <div class="ways"><a href="#" class="wa-link">💬 WhatsApp us <span>reply in minutes →</span></a><a href="https://www.instagram.com/zannid.co/" target="_blank">📩 DM "GROW" <span>@zannid.co →</span></a><a href="mailto:hello@zannid.co">✉️ hello@zannid.co <span>→</span></a></div></div>
+  <form id="lead">
+   <label>Your name<input required name="name" placeholder="e.g. Aamir"></label>
+   <label>Business name<input required name="biz" placeholder="e.g. Brew &amp; Co. Café"></label>
+   <label>WhatsApp number<input required name="phone" type="tel" placeholder="+91"></label>
+   <label>What do you need?<div class="chipsel" id="need"><b>Reels</b><b>Social media</b><b>Meta ads</b><b>Influencers</b><b>Website</b><b>AI automation</b><b>Branding</b></div></label>
+   <label>Monthly budget<select name="budget"><option>Under ₹25k</option><option>₹25k – ₹50k</option><option>₹50k – ₹1L</option><option>₹1L+</option></select></label>
+   <button class="btn" type="submit">Claim my free audit →</button><p class="note">Reply within 24 hours · No spam, ever</p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div><b>Zannid &amp; Co.</b>Strategy · Content · Growth.<br>Growth agency in Hyderabad, Telangana.</div>
+ <div><b>Services</b><a href="#services">Social media</a><a href="#services">Reels &amp; shoots</a><a href="#services">Meta ads</a><a href="#services">AI automations</a></div>
+ <div><b>Company</b><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+ <div><b>Connect</b><a href="https://www.instagram.com/zannid.co/" target="_blank">Instagram</a><a href="#" class="wa-link">WhatsApp</a></div>
+</footer>
+<div class="giant"><svg><use href="#zlogo"/></svg><span>ZANNID</span></div>
+<a class="wa wa-link" href="#">💬 WhatsApp</a>
+
+<script>
+const WHATSAPP='91XXXXXXXXXX'; // TODO: your number
+const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth'});
+// Instagram images: save copies as assets/ig-*.jpg to make them permanent (CDN links expire)
+const IG={
+ biryani:'https://instagram.fhyd1-3.fna.fbcdn.net/v/t51.82787-15/886842597_18129326863858206_8039799601257618459_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=106&_nc_map=urlgen_bucketless&ig_cache_key=NDAyMzAzMjA4NzgzODk3MzI2MTE4MTI5MzI2ODU3ODU4MjA2.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fdXNlcl9zZWxlY3RlZF90aHVtYm5haWwuQzMifQ%3D%3D&_nc_ohc=3bFoSS9YfdkQ7kNvwFVezk-&_nc_oc=AdoWI8aImFJ6bnHo3Dt6o3qc4Vz14d_6XLNNHmy4nthkKD_5r6LjswbVDZDSrJBAP1Y&_nc_zt=23&_nc_ht=instagram.fhyd1-3.fna&_nc_gid=AnWecM_KeDI1gMdww7yC9A&_nc_ss=7b6a8&_nc_ct=RQosPBUIFQ4lBAAAAA&oh=00_AQTXeqYR-K6cFkmBSm7O8UNnve0sGybgu25a_qX4BC-S8g&oe=6B01BE88',
+ cafe:'https://instagram.fhyd1-3.fna.fbcdn.net/v/t51.82787-15/892040878_18346477453249699_6991781277479083869_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=102&_nc_map=urlgen_bucketless&ig_cache_key=NDAyMzUzNTU0ODAyNTA4MjI3NTE4MzQ2NDc3NDUwMjQ5Njk5.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fdXNlcl9zZWxlY3RlZF90aHVtYm5haWwuQzMifQ%3D%3D&_nc_ohc=0FOhpbzIYegQ7kNvwEuoGOy&_nc_oc=Adoid9yu3oKitwz9hOpjgTvPKMyVAD5RZA7eeeL9AZwGlTWT8Hh-iOXZOyS7oPg-TRo&_nc_zt=23&_nc_ht=instagram.fhyd1-3.fna&_nc_gid=AnWecM_KeDI1gMdww7yC9A&_nc_ss=7b2a8&_nc_ct=RQosPBUIFQ4lBAAAAA&oh=00_AQQxy5KKTKxg3HYaN3QbrG8eFl9A6aAD160MSVWERAYa8g&oe=6B01D2AE',
+ hello:'https://instagram.fhyd1-5.fna.fbcdn.net/v/t51.82787-15/873549209_18128632336858206_4147412719045863611_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=105&_nc_map=urlgen_bucketless&ig_cache_key=NDAxOTQxMDQ0OTE0MzYxNjUyNzE4MTI4NjMyMzMwODU4MjA2.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fdXNlcl9zZWxlY3RlZF90aHVtYm5haWwuQzMifQ%3D%3D&_nc_ohc=pE4AMHKq6NQQ7kNvwGiJilq&_nc_oc=AdqI4ziAAa8B6rFNIll3pcZWutv2Nk9ZWu2LEWPT665KPW2euf8t5Zhl5BN0PpuciEw&_nc_zt=23&_nc_ht=instagram.fhyd1-5.fna&_nc_gid=AnWecM_KeDI1gMdww7yC9A&_nc_ss=7b6a8&_nc_ct=RQosPBUIFQ4lBAAAAA&oh=00_AQQ2hKkYXUKxO0sTs1_TAZSJn6bPTnwd7K5z9SyLs31XsQ&oe=6B01DADD'};
+document.querySelectorAll('img[data-ig]').forEach(i=>{i.referrerPolicy='no-referrer';i.src=`assets/ig-${i.dataset.ig}.jpg`;i.onerror=()=>{i.onerror=()=>i.remove();i.src=IG[i.dataset.ig]}});
+document.querySelectorAll('.wa-link').forEach(a=>a.href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi Zannid & Co., I want to GROW my business!')}`);
+// countdown to end of month
+(function(){const cd=document.querySelectorAll('#cd b'),end=new Date();end.setMonth(end.getMonth()+1,1);end.setHours(0,0,0,0);
+ const t=()=>{let s=Math.max(0,(end-Date.now())/1000|0);[86400,3600,60,1].forEach((u,i)=>{cd[i].textContent=String(s/u|0).padStart(2,'0');s%=u})};t();setInterval(t,1000)})();
+// split words
+document.querySelectorAll('[data-split]').forEach(el=>{const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(w=>{if(!w.trim()){f.append(w);return}const o=document.createElement('span');o.className='w';const i=document.createElement('span');i.textContent=w;o.append(i);f.append(o)});c.replaceWith(f)}else if(c.nodeType===1&&c.tagName!=='BR'&&!c.classList.contains('emo')&&!c.classList.contains('grad')){walk(c)}else if(c.classList&&(c.classList.contains('emo')||c.classList.contains('grad'))){const o=document.createElement('span');o.className='w';c.replaceWith(o);o.append(c);c.style.display='inline-block'}})};walk(el);el.classList.add('split');
+ el.querySelectorAll('.w>*').forEach((s,i)=>s.style.transitionDelay=i*.06+'s')});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv,[data-split],.mark').forEach((el,i)=>{if(el.classList.contains('rv'))el.style.transitionDelay=(i%4)*.08+'s';io.observe(el)});
+// mascot eyes follow cursor
+addEventListener('pointermove',e=>document.querySelectorAll('.zanny .eye i').forEach(p=>{const r=p.parentElement.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),d=Math.hypot(dx,dy)||1,m=r.width*.22;p.style.transform=`translate(${dx/d*m}px,${dy/d*m}px)`}));
+// tilt
+document.querySelectorAll('.svc,.q').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(800px) rotateX(${-y*7}deg) rotateY(${x*8}deg) translateY(-6px)`});c.addEventListener('mouseleave',()=>c.style.transform='')});
+document.querySelectorAll('#need b').forEach(b=>b.onclick=()=>b.classList.toggle('on'));
+document.getElementById('lead').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),need=[...document.querySelectorAll('#need b.on')].map(b=>b.textContent).join(', ')||'Not sure yet';
+ window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hi Zannid & Co.! I'd like my free growth audit.\nName: ${f.get('name')}\nBusiness: ${f.get('biz')}\nWhatsApp: ${f.get('phone')}\nNeed: ${need}\nBudget: ${f.get('budget')}`)}`,'_blank')};
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+const NOISE=`
+vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
+float snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);
+ vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);
+ vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;i=mod289(i);
+ vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
+ float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);
+ vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);
+ vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+ vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);
+ vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;
+ vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}`;
+
+const canvas=document.getElementById('gl');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.ACESFilmicToneMapping;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xf4f3ef);
+const camera=new THREE.PerspectiveCamera(35,1,.1,100);camera.position.set(0,0,7.6);
+
+// saturated rainbow environment (fewer white highlights)
+const env=new THREE.Scene();
+env.add(new THREE.Mesh(new THREE.SphereGeometry(10,64,32),new THREE.ShaderMaterial({side:THREE.BackSide,
+ vertexShader:`varying vec3 v;void main(){v=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+ fragmentShader:`varying vec3 v;void main(){float a=atan(v.z,v.x)/6.2831;vec3 c=.5+.5*cos(6.2831*(a*3.+v.y*1.2+vec3(0.,.33,.67)));c=pow(c,vec3(1.4));gl_FragColor=vec4(c*1.6,1.);}`})));
+[[0,6,3],[-5,1,4]].forEach(p=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(3,1.2),new THREE.MeshBasicMaterial({color:new THREE.Color().setScalar(2),toneMapped:false,side:THREE.DoubleSide}));m.position.set(...p);m.lookAt(0,0,0);env.add(m)});
+scene.environment=new THREE.PMREMGenerator(renderer).fromScene(env,.03).texture;
+
+const group=new THREE.Group();scene.add(group);
+const U={uTime:{value:0},uAmp:{value:1},uPull:{value:.1},uMouse:{value:new THREE.Vector3(0,0,1)}};
+const glass=new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:.14,transmission:1,thickness:2.2,ior:1.5,iridescence:1,iridescenceIOR:1.8,
+ iridescenceThicknessRange:[250,1100],clearcoat:.6,clearcoatRoughness:.08,envMapIntensity:1.1,dispersion:6});
+glass.onBeforeCompile=s=>{Object.assign(s.uniforms,U);
+ s.vertexShader=s.vertexShader.replace('#include <common>',`#include <common>
+uniform float uTime,uAmp,uPull;uniform vec3 uMouse;${NOISE}
+float disp(vec3 p){vec3 n=normalize(p);float d=snoise(n*1.1+uTime*.32)*.26*uAmp+snoise(n*2.4-uTime*.55)*.07*uAmp;return d+pow(max(dot(n,uMouse),0.),3.)*uPull;}
+vec3 dsp(vec3 p){return p+normalize(p)*disp(p);}`)
+ .replace('#include <beginnormal_vertex>',`vec3 n0=normalize(normal);vec3 t1=normalize(abs(n0.y)>.99?cross(n0,vec3(1.,0.,0.)):cross(n0,vec3(0.,1.,0.)));vec3 t2=cross(n0,t1);
+ vec3 pA=dsp(position);vec3 pB=dsp(position+t1*.01);vec3 pC=dsp(position+t2*.01);vec3 objectNormal=normalize(cross(pB-pA,pC-pA));`)
+ .replace('#include <begin_vertex>','vec3 transformed=pA;');};
+const blob=new THREE.Mesh(new THREE.IcosahedronGeometry(1,64),glass);blob.scale.set(1,1.28,1);group.add(blob);
+// vivid swirling core: bigger + fully saturated
+const core=new THREE.Mesh(new THREE.IcosahedronGeometry(.82,24),new THREE.ShaderMaterial({uniforms:{uTime:U.uTime},
+ vertexShader:`varying vec3 vp;void main(){vp=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+ fragmentShader:`uniform float uTime;varying vec3 vp;${NOISE}
+ void main(){float n=snoise(vp*2.4+uTime*.3)+.5*snoise(vp*5.+uTime*.5);vec3 c=.5+.5*cos(6.2831*(n*.55+vp.y*.6+uTime*.06+vec3(0.,.33,.67)));
+ c=mix(vec3(dot(c,vec3(.33))),c,1.6);gl_FragColor=vec4(clamp(c,0.,1.)*1.15,1.);}`}));
+blob.add(core);
+
+// ring: pivot (tilt) > ring (spin)
+const pivot=new THREE.Group();group.add(pivot);
+const R=2.55;
+const ring=new THREE.Mesh(new THREE.TorusGeometry(R,.012,8,320),new THREE.MeshBasicMaterial({color:0x0b0b0f}));pivot.add(ring);
+const ticks=new THREE.Group();ring.add(ticks);
+const hashA=new THREE.Object3D();hashA.position.set(R*Math.cos(.55),R*Math.sin(.55),0);ring.add(hashA);
+
+// dial labels = sections as checkpoints on the ring
+const secs=[...document.querySelectorAll('[data-label]')],STEP=.48,anchors=[],labels=[];
+secs.forEach((s,i)=>{const a=new THREE.Object3D(),ang=Math.PI+i*STEP;a.position.set(R*Math.cos(ang),R*Math.sin(ang),0);ring.add(a);anchors.push(a);
+ const m=new THREE.Mesh(new THREE.SphereGeometry(.045,12,12),new THREE.MeshBasicMaterial({color:0x0b0b0f}));m.position.copy(a.position);ticks.add(m);
+ const d=document.createElement('div');d.className='dl';d.innerHTML=`<span>${String(i).padStart(2,'0')}</span>${s.dataset.label}`;d.onclick=()=>s.scrollIntoView({behavior:'smooth'});document.body.append(d);labels.push(d)});
+
+const HERO={rot:[1.28,.18,-.42]},DIAL={rot:[.22,-.32,0]};
+const lerp=(a,b,t)=>a+(b-a)*t,clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const m={x:0,y:0,sx:0,sy:0,vel:0,kick:0};
+addEventListener('pointermove',e=>{const nx=e.clientX/innerWidth*2-1,ny=-(e.clientY/innerHeight*2-1);m.vel+=Math.hypot(nx-m.x,ny-m.y);m.x=nx;m.y=ny});
+addEventListener('pointerdown',()=>m.kick=.6);
+function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}addEventListener('resize',resize);resize();
+
+const hash=document.getElementById('hash'),tq=new THREE.Quaternion(),tv=new THREE.Vector3(),wp=new THREE.Vector3();
+let pS=0,tS=0;const clock=new THREE.Clock();
+renderer.setAnimationLoop(()=>{
+ const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime,k=1-Math.exp(-dt*6);U.uTime.value=t;
+ // continuous checkpoint progress (piecewise by section tops) → always clockwise, never stops
+ const line=scrollY+innerHeight*.45;let p=0;
+ for(let i=0;i<secs.length;i++){const top=secs[i].offsetTop,nxt=i<secs.length-1?secs[i+1].offsetTop:document.documentElement.scrollHeight;if(line>=top){p=i+clamp((line-top)/(nxt-top))}}
+ p=Math.min(p,secs.length-1+.0);pS=lerp(pS,p,k);
+ tS=lerp(tS,ease(clamp(scrollY/(innerHeight*.85))),k);const T=tS;
+ const halfH=Math.tan(THREE.MathUtils.degToRad(17.5))*7.6,halfW=halfH*camera.aspect,mob=innerWidth<900;
+ // hero (centre) → dial (half off the right edge)
+ group.position.set(lerp(0,mob?halfW*.9:halfW*1.02,T),lerp(0,mob?-halfH*.62:0,T),0);
+ group.scale.setScalar(lerp(1,mob?.7:1.32,T));
+ pivot.rotation.set(lerp(HERO.rot[0],DIAL.rot[0],T),lerp(HERO.rot[1],DIAL.rot[1],T),lerp(HERO.rot[2],DIAL.rot[2],T));
+ ring.rotation.z=-pS*STEP;                     // clockwise as you scroll
+ group.rotation.y=Math.sin(t*.3)*.05;
+ // blob follows cursor (hero) + slime
+ m.sx=lerp(m.sx,m.x,1-Math.exp(-dt*3));m.sy=lerp(m.sy,m.y,1-Math.exp(-dt*3));
+ blob.position.lerp(tv.set(m.sx*.55*(1-T),m.sy*.4*(1-T),0),k);blob.rotation.y=t*.15+pS*.6;
+ m.vel*=Math.exp(-dt*5);m.kick*=Math.exp(-dt*3);
+ U.uAmp.value=lerp(U.uAmp.value,1+Math.min(m.vel*3,1.6),k);U.uPull.value=lerp(U.uPull.value,.1+Math.min(m.vel*2.5,.55)+m.kick,k);
+ blob.getWorldQuaternion(tq).invert();U.uMouse.value.set(m.x*1.4,m.y*1.4,.7).normalize().applyQuaternion(tq);
+ // project overlays
+ const W=innerWidth,H=innerHeight,P=v=>{v.project(camera);return[(v.x*.5+.5)*W,(-v.y*.5+.5)*H]};
+ const[hx,hy]=P(hashA.getWorldPosition(wp));hash.style.transform=`translate(${hx}px,${hy}px)`;hash.style.opacity=1-clamp(T*2.5);
+ labels.forEach((d,i)=>{const[x,y]=P(anchors[i].getWorldPosition(wp)),dist=Math.abs(i-pS),on=Math.round(pS)===i;
+  d.classList.toggle('on',on);d.style.opacity=clamp(T*1.6-.4)*clamp(1-dist*.28)*(x<W-10?1:0);
+  d.style.transform=`translate(${x-18}px,${y}px) translate(-100%,-50%) scale(${on?1:.92})`});
+ renderer.render(scene,camera);
+});
+</script>
+</body>
+</html>

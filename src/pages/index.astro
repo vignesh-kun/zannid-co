@@ -1,0 +1,263 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { contact, offer, work, targets, plans, separately, services } from '../data/site';
+
+const wa = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent('Hi Zannid & Co., I want to grow my brand.')}`;
+const img = (id: string, w: number) => `https://images.unsplash.com/${id}?w=${w}&q=70&auto=format&fit=crop`;
+const rows = [services.slice(0, 5), services.slice(5)];
+const first = services[0];
+---
+<Base>
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <div class="sale" role="region" aria-label="Current offer">
+    <span><strong>{offer.title}</strong><span class="long"> &nbsp;<s>{offer.value}</s> → free · {offer.slots} brand slots left</span></span>
+    <span class="num" data-cd>&nbsp;</span>
+    <a href="#contact">Claim <Icon name="arrow" size={14} /></a>
+  </div>
+
+  <aside class="rail" tabindex="0" aria-label="Current offer, expand for details">
+    <div class="v" aria-hidden="true">Free growth audit <span class="num" data-cd>&nbsp;</span></div>
+    <div class="open">
+      <h3 class="disp">Free growth audit</h3>
+      <p>Worth <s>{offer.value}</s>. We review your page, competitors and audience, then send a 30-day plan you can use with or without us.</p>
+      <ul>
+        <li><Icon name="check" size={16} /> Profile and content teardown</li>
+        <li><Icon name="check" size={16} /> Three quick wins for this week</li>
+        <li><Icon name="check" size={16} /> 30-day content and ads plan</li>
+      </ul>
+      <div><span class="lbl">Ends in</span><div class="cdbig num" data-cd data-long>&nbsp;</div></div>
+      <a class="btn" href="#contact">Claim my slot <Icon name="arrow" /></a>
+    </div>
+  </aside>
+
+  <nav class="top" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Zannid & Co. home"><svg aria-hidden="true"><use href="#zlogo" /></svg>ZANNID</a>
+    <ul>
+      <li><a href="#services">Services</a></li><li><a href="#work">Work</a></li><li><a href="#results">Results</a></li>
+      <li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn sm" href="#contact">Get a free audit</a>
+  </nav>
+  <div id="hash" aria-hidden="true">#</div>
+
+  <main>
+    <section class="sec hero" id="top" data-label="Start">
+      <div class="corner l" aria-hidden="true">GROWTH</div><div class="corner r" aria-hidden="true">SCALE</div>
+      <div class="wordmark" aria-hidden="true">ZANNID<span class="co">&amp; CO.</span></div>
+      <h1>The growth team for brands that refuse to be ignored: <b>strategy, reels, ads, websites and AI automations</b>, all under one roof.</h1>
+      <div class="row">
+        <a class="btn" href="#contact">Get my free growth audit <Icon name="arrow" /></a>
+        <a class="link" href="#work">See the work</a>
+      </div>
+      <p class="small where">Working with brands across India and worldwide</p>
+      <span class="hint" aria-hidden="true">Scroll. The ring shows the way.</span>
+    </section>
+
+    <section class="sec talk" id="talk" data-label="Real talk" aria-labelledby="talk-h">
+      <h2 class="big disp" id="talk-h"><span class="nowrap">Your product is 🔥</span><br /><span class="nowrap x">Your page is 😴</span></h2>
+      <p class="sub" style="margin-top:34px">People are scrolling right now. If they can't find you, they can't choose you. Likes don't pay the bills; customers do.</p>
+      <div class="pains">
+        <div><h3>200 likes.<br />0 customers.</h3><p>Content that looks busy but never turns into orders, calls or bookings.</p></div>
+        <div><h3>Posting daily.<br />Growing never.</h3><p>No hooks, no strategy, no idea what's working, so the same 300 people see every post.</p></div>
+        <div><h3>5 vendors.<br />0 direction.</h3><p>A designer here, an ads guy there, a shooter somewhere. Nobody owns the result.</p></div>
+      </div>
+      <div class="then">
+        <button class="zanny" id="zanny" type="button" aria-label="Zanny, our mascot. Click to cheer him up."><span class="e l"><i></i></span><span class="e r"><i></i></span><span class="m"></span></button>
+        <p><b>Zannid fixes all three.</b> One team that plans, shoots, posts, advertises and automates, measured on growth, not on posts.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="services" data-label="Services" aria-labelledby="svc-h">
+      <h2 class="h2 disp" id="svc-h">One team. Nine ways to grow.</h2>
+      <p class="sub" style="margin-bottom:34px">Hover or tap a cell to see what's inside. Take one service, or let us run the whole hive.</p>
+      <div class="comb" role="group" aria-label="Services">
+        {rows.map((row, r) => (
+          <div class="row">
+            {row.map((s, k) => {
+              const i = r * 5 + k;
+              return (
+                <button class="hex" type="button" data-i={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls="detail">
+                  <img src={img(s.img, 360)} alt="" loading="lazy" decoding="async" onerror="this.remove()" />
+                  <span>{s.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+      <div class="detail" id="detail" aria-live="polite">
+        <div><h3 class="disp" data-d="name">{first.name}</h3><p data-d="text">{first.text}</p>
+          <p style="margin-top:22px"><a class="btn" href="#contact" data-d="cta">Ask about {first.name.toLowerCase()} <Icon name="arrow" /></a></p></div>
+        <ul data-d="rows">{first.rows.map(([a, b]) => <li><span>{a}</span><span>{b}</span></li>)}</ul>
+      </div>
+      <script type="application/json" id="svc-data" set:html={JSON.stringify(services)} />
+    </section>
+
+    <section class="sec" id="work" data-label="Our work" aria-labelledby="work-h">
+      <h2 class="h2 disp" id="work-h">Work people stop scrolling for.</h2>
+      <div class="strip">
+        {work.map((w) => (
+          <a class="post" href={w.href} target="_blank" rel="noopener">
+            <div class="im"><Icon name="play" size={34} /><img src={`/assets/ig-${w.key}.jpg`} alt={w.alt} loading="lazy" decoding="async" onerror="this.remove()" /></div>
+            <div class="tx"><h3>{w.title}</h3><p>{w.text}</p>
+              <div class="meta"><span>{w.tag}</span><span class="num">{w.stat}</span></div></div>
+          </a>
+        ))}
+      </div>
+      <p style="margin-top:28px"><a class="btn ghost" href={contact.instagram} target="_blank" rel="noopener"><Icon name="instagram" /> More on Instagram</a></p>
+    </section>
+
+    <section class="sec res" id="results" data-label="Results" aria-labelledby="res-h">
+      <h2 class="h2 disp" id="res-h">What 90 days is built to do.</h2>
+      <div class="chart" id="chart">
+        <div class="hd">
+          <div><strong class="num-disp">{targets.reachMultiple}×</strong><p>monthly reach a full Growth plan targets by week 12, compared with posting alone.</p></div>
+          <div class="key"><span><i></i>With Zannid</span><span><i class="d"></i>Posting alone</span></div>
+        </div>
+        <svg viewBox="0 0 1000 300" preserveAspectRatio="none" id="cs" role="img" aria-label="Weekly reach over 12 weeks: posting alone stays flat around 10k, with Zannid it grows to about 41k."></svg>
+        <div class="tip" id="tip" aria-hidden="true"></div>
+        <script type="application/json" id="chart-data" set:html={JSON.stringify({ a: targets.chartAlone, b: targets.chartWith })} />
+      </div>
+      <div class="facts">
+        <div><b class="num">{targets.firstContentDays} days</b><span>to first content live</span></div>
+        <div><b class="num">{targets.draftHours} hrs</b><span>first-draft turnaround</span></div>
+        <div><b class="num">24/7</b><span>DM and WhatsApp replies</span></div>
+      </div>
+      <div class="duo">
+        <div class="panel"><h3>Where 100,000 views go: an example funnel</h3>
+          <div class="funnel" id="funnel">
+            <div><span>Views</span><div class="bar"><i data-w="100"></i></div><b class="num">100,000</b></div>
+            <div><span>Profile visits</span><div class="bar"><i data-w="42"></i></div><b class="num">6,000</b></div>
+            <div><span>DMs and clicks</span><div class="bar"><i data-w="20"></i></div><b class="num">1,200</b></div>
+            <div><span>Qualified leads</span><div class="bar"><i data-w="9"></i></div><b class="num">320</b></div>
+            <div><span>Customers</span><div class="bar"><i data-w="4"></i></div><b class="num">80</b></div>
+          </div>
+          <p class="small" style="margin-top:14px">Our job is to widen every step: better hooks, a sharper profile, faster replies.</p></div>
+        <div class="panel calc"><h3>Ad budget estimator</h3>
+          <label for="bud">Monthly ad spend <span class="num" id="budv">₹50,000</span></label>
+          <input id="bud" type="range" min="10000" max="300000" step="5000" value="50000" />
+          <div class="out"><div><span class="small">People reached</span><b class="num" id="o1">55,000</b></div><div><span class="small">Leads</span><b class="num" id="o2">194</b></div></div>
+          <p class="small" style="margin-top:12px">Rough estimate. Real numbers depend on your industry, offer and city.</p></div>
+      </div>
+      <div class="res-row">
+        <div class="phone" id="phone"><div class="scr"><div class="tp"><span>@yourbrand · DM automation</span><span>now</span></div>
+          <div class="msg u">GROW</div><div class="msg b">Hey! Want a free growth audit for your brand?</div><div class="msg u">Yes, we're a café in Bangalore</div>
+          <div class="msg b">Done. You're booked for tomorrow, 11 AM.</div><div class="msg b" style="background:#fff;color:#000">New lead sent to your WhatsApp</div></div></div>
+        <div class="panel why-panel"><h3>Why it works</h3>
+          <p class="lede">Short video earns the attention. Ads put it in front of the right people. Automation answers in seconds, while they're still interested.</p>
+          <div class="fact"><b class="num">63%</b><span>of people would most like to watch a short video to learn about a product or service.<cite>Wyzowl, State of Video Marketing 2026</cite></span></div></div>
+      </div>
+    </section>
+
+    <section class="sec" id="how" data-label="How it works" aria-labelledby="how-h">
+      <h2 class="h2 disp" id="how-h">From hello to growth.</h2>
+      <ol class="steps" style="list-style:none">
+        <li class="step"><span class="t">Day 1</span><div><h3>Free call</h3><p>Fifteen minutes. Your goals, your numbers, our honest take on what will move them.</p></div><div class="fact"><b class="num">15</b><span>minutes, no pitch deck. You leave with at least one idea you can use today.</span></div></li>
+        <li class="step"><span class="t">Day 2–3</span><div><h3>Growth audit</h3><p>We tear down your page, your competitors and your audience, then send a 30-day plan.</p></div><div class="fact"><b class="num">48h</b><span>from call to plan in your inbox.</span></div></li>
+        <li class="step"><span class="t">Week 1</span><div><h3>Create</h3><p>Hooks, scripts, shoots and edits. Content built for the first two seconds.</p></div><div class="fact"><b class="num">89%</b><span>of consumers say video quality affects their trust in a brand.<cite>Wyzowl 2026</cite></span></div></li>
+        <li class="step"><span class="t">Week 2</span><div><h3>Amplify</h3><p>Meta ads and creators push your best content to people ready to buy.</p></div><div class="fact"><b class="num">84%</b><span>of people have been convinced to buy a product or service by watching a video.<cite>Wyzowl 2026</cite></span></div></li>
+        <li class="step"><span class="t">Week 2+</span><div><h3>Automate</h3><p>DM, WhatsApp and call bots reply instantly, qualify leads and book them in.</p></div><div class="fact"><b class="num">24/7</b><span>replies, so no lead waits until Monday.</span></div></li>
+        <li class="step"><span class="t">Monthly</span><div><h3>Scale</h3><p>A clear report: what worked, what didn't, and where the next rupee goes.</p></div><div class="fact"><b class="num">49%</b><span>of marketers rank short-form video as their highest-ROI format.<cite>HubSpot 2026</cite></span></div></li>
+      </ol>
+    </section>
+
+    <section class="sec" id="pricing" data-label="Pricing" aria-labelledby="price-h">
+      <h2 class="h2 disp" id="price-h">One team. One invoice.</h2>
+      <div><div class="cur" role="group" aria-label="Currency"><button type="button" data-c="inr" aria-pressed="true">₹ INR</button><button type="button" data-c="usd" aria-pressed="false">$ USD</button></div></div>
+      <div class="plans">
+        {plans.map((p) => (
+          <div class={`plan${p.best ? ' best' : ''}`}>
+            <div class="nm"><h3>{p.name}</h3>{p.best && <span class="tag">Most chosen</span>}</div>
+            <p class="for">{p.for}</p>
+            <div class="pr"><span data-inr={p.inr} data-usd={p.usd}>{p.inr}</span><small> /month</small></div>
+            <ul>{p.items.map((i) => <li><Icon name="check" size={16} />{i}</li>)}</ul>
+            <a class={`btn${p.best ? '' : ' ghost'}`} href="#contact">{p.best ? 'Get the Growth plan' : p.name === 'Scale' ? 'Talk to us' : 'Start with Starter'}</a>
+          </div>
+        ))}
+      </div>
+      <div class="vs">
+        <div><h3>Hiring it all separately</h3>
+          <ul>{separately.map(([a, b]) => <li><span>{a}</span><span class="num">{b}</span></li>)}</ul>
+          <div class="tot"><span>4 vendors, 4 invoices, 0 owners</span><span class="num">₹45k – 1.85L</span></div>
+          <p class="small" style="margin-top:10px">Monthly ranges from 2026 Indian agency pricing guides (upGrowth). Ad spend is billed separately everywhere, including with us.</p></div>
+        <div><h3>Zannid Growth</h3><div class="big2"><span data-inr="₹79,999" data-usd="$1,199">₹79,999</span></div><p>Strategy, reels, shoots, ads, creators and automation, run by one team that owns the result.</p></div>
+      </div>
+      <p class="small" style="margin-top:14px">No lock-in. Monthly plans, cancel anytime. Ad spend is paid directly to Meta.</p>
+    </section>
+
+    <section class="sec" id="why" data-label="Why Zannid" aria-labelledby="why-h">
+      <h2 class="h2 disp" id="why-h">Why brands pick Zannid.</h2>
+      <div class="why">
+        <div><h3>Strategy first</h3><p>Every reel has a job: reach, trust or sale. We start with the why, not the trend.</p></div>
+        <div><h3>One owner</h3><p>One team, one WhatsApp group, one invoice. No vendor ping-pong.</p></div>
+        <div><h3>No lock-in</h3><p>Monthly plans. We earn next month by delivering this one.</p></div>
+        <div><h3>You own it all</h3><p>Raw footage, edits, ad accounts and automations stay yours, forever.</p></div>
+        <div><h3>Fast</h3><p>First drafts in 48 hours. First content live in 7 days.</p></div>
+        <div><h3>Anywhere</h3><p>From neighbourhood cafés to global D2C brands: same team, same standard.</p></div>
+      </div>
+    </section>
+
+    <section class="sec faq" id="faq" data-label="FAQ" aria-labelledby="faq-h">
+      <h2 class="h2 disp" id="faq-h">Questions, answered.</h2>
+      {[
+        ['How fast will I see results?', 'Content goes live in week one. Engagement usually moves in the first month; paid campaigns can bring enquiries within days of launch. We review the numbers with you every month.'],
+        ['Do you work with clients outside India?', 'Yes. We work with brands across India and internationally, and bill in INR or USD. Shoots outside our base are planned with local crews or remote-first formats.'],
+        ['Is ad spend included in the price?', 'No. Ad spend is paid directly to Meta from your account, so you keep full control and visibility. Our fee covers strategy, creatives and management.'],
+        ['Can I take just one service?', 'Yes. Any service works on its own: only reels, only ads, only a website. Plans bundle them at a better price.'],
+        ['Do I need a long contract?', 'No. Plans are monthly and you can cancel anytime. Everything we create for you stays yours.'],
+        ['What happens on the free audit call?', 'We look at your page, competitors and goals, then send a 30-day plan with three quick wins, whether or not you hire us.'],
+      ].map(([q, a], i) => (
+        <details open={i === 0}><summary>{q}<Icon name="plus" size={22} /></summary><p>{a}</p></details>
+      ))}
+    </section>
+
+    <section class="sec contact" id="contact" data-label="Let's talk" aria-labelledby="ct-h">
+      <div class="box">
+        <div>
+          <h2 class="h2 disp" id="ct-h" style="font-size:clamp(40px,4.4vw,6rem)">Ready to grow?</h2>
+          <p class="sub">Claim your free growth audit and 30-day plan. {offer.slots} slots left this month.</p>
+          <div class="ways">
+            <a href={wa} target="_blank" rel="noopener"><span><Icon name="whatsapp" /> WhatsApp</span><span>replies in minutes</span></a>
+            <a href={contact.instagram} target="_blank" rel="noopener"><span><Icon name="instagram" /> DM "GROW" on Instagram</span><span>{contact.instagramHandle}</span></a>
+            <a href={`mailto:${contact.email}`}><span><Icon name="mail" /> Email</span><span>{contact.email}</span></a>
+          </div>
+        </div>
+        <form class="lead" id="lead" novalidate data-wa={contact.whatsapp}>
+          <label>Your name<input required name="name" autocomplete="name" maxlength="120" /></label>
+          <label>Brand or business<input required name="brand" autocomplete="organization" maxlength="160" /></label>
+          <label>WhatsApp number, with country code<input required name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[+0-9 ()-]{7,}" maxlength="40" /></label>
+          <fieldset><legend>What do you need?</legend><div class="chips">
+            {['Reels', 'Social media', 'Meta ads', 'Creators', 'Website', 'Automation', 'Branding'].map((n) => (
+              <label><input type="checkbox" name="needs" value={n} /><span>{n}</span></label>
+            ))}</div></fieldset>
+          <label>Monthly budget<select name="budget"><option>Under ₹35k</option><option>₹35k – ₹80k</option><option>₹80k – ₹1.5L</option><option>₹1.5L+</option><option>USD / international</option></select></label>
+          <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off" /></label>
+          <button class="btn" type="submit">Claim my free audit <Icon name="arrow" /></button>
+          <p class="status" id="status" role="status">We reply within 24 hours.</p>
+          <div class="done" tabindex="-1">
+            <h3 class="disp">You're in.</h3>
+            <p>We've got your details and will message you on WhatsApp within 24 hours. Want to skip the wait?</p>
+            <a class="btn" id="done-wa" href={wa} target="_blank" rel="noopener"><Icon name="whatsapp" /> Continue on WhatsApp</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div><strong>Zannid &amp; Co.</strong>Strategy · Content · Growth.<br />A growth agency for brands in India and worldwide.</div>
+    <div><strong>Services</strong><a href="#services">Social media</a><a href="#services">Reels and shoots</a><a href="#services">Meta ads</a><a href="#services">AI automation</a></div>
+    <div><strong>Company</strong><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+    <div><strong>Connect</strong><a href={contact.instagram} target="_blank" rel="noopener">Instagram</a><a href={wa} target="_blank" rel="noopener">WhatsApp</a><a href={`mailto:${contact.email}`}>Email</a></div>
+  </footer>
+  <div class="giant" aria-hidden="true"><svg><use href="#zlogo" /></svg><span>ZANNID</span></div>
+  <a class="chat" href={wa} target="_blank" rel="noopener"><Icon name="whatsapp" /> Chat with us</a>
+
+  <script>
+    import '../scripts/ui';
+    const go = () => import('../scripts/saturn');
+    'requestIdleCallback' in window ? requestIdleCallback(go, { timeout: 600 }) : setTimeout(go, 200);
+  </script>
+</Base>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zannid & Co. — Ideas That Scale (Demo)</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f1ee;--ink:#0b0b0f;--cyan:#22e4ff;--mag:#ff2bd6;--muted:#6b6b72}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;overflow-x:hidden}
+h1,h2,h3,.logo{font-family:Unbounded,sans-serif}
+.glitch{text-shadow:-3px -2px 0 var(--cyan),3px 2px 0 var(--mag)}
+/* nav */
+nav{position:fixed;inset:0 0 auto 0;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;z-index:20;backdrop-filter:blur(10px);background:rgba(242,241,238,.6)}
+.logo{font-weight:900;font-size:22px;letter-spacing:2px}.logo small{font-weight:400;font-size:11px;margin-left:4px}
+nav ul{display:flex;gap:32px;list-style:none;font-size:14px;font-weight:500}
+nav a{color:inherit;text-decoration:none}
+.btn{background:var(--ink);color:#fff;padding:14px 26px;border-radius:100px;font-weight:600;font-size:14px;text-decoration:none;display:inline-flex;gap:8px;align-items:center;transition:.3s}
+.btn:hover{transform:translateY(-2px);box-shadow:-4px 4px 0 var(--cyan),4px -4px 0 var(--mag)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;padding:120px 5vw 60px;position:relative}
+.tags{position:absolute;top:110px;font-size:11px;letter-spacing:3px;font-weight:600;line-height:1.7;border-left:2px solid var(--ink);padding-left:10px}
+.tags.r{right:5vw;text-align:right;border:none;border-right:2px solid var(--ink);padding:0 10px 0 0}
+.eyebrow{font-size:12px;letter-spacing:2px;color:var(--muted);margin-bottom:22px}
+.hero h1{font-size:clamp(44px,6.5vw,96px);line-height:1;font-weight:900;margin-bottom:28px}
+.hero p{font-size:19px;max-width:460px;line-height:1.5;margin-bottom:36px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.stage{position:relative;height:560px;display:grid;place-items:center}
+/* blob */
+.blob-wrap{animation:float 7s ease-in-out infinite;transition:transform .2s ease-out}
+.blob{width:min(400px,70vw);aspect-ratio:1;position:relative;overflow:hidden;animation:morph 12s ease-in-out infinite;
+ box-shadow:inset -40px -50px 90px rgba(70,0,140,.45),inset 30px 30px 70px rgba(255,255,255,.7),0 50px 100px rgba(123,97,255,.35)}
+.blob::before{content:"";position:absolute;inset:-50%;background:conic-gradient(from 0deg,#4fe3ff,#6d6bff,#c45cff,#ff5ec8,#ffb8e6,#7ef0ff,#4fe3ff);filter:blur(18px);animation:spin 9s linear infinite}
+.blob::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 30% 18% at 32% 22%,rgba(255,255,255,.95),transparent 70%),radial-gradient(ellipse 14% 30% at 78% 60%,rgba(255,255,255,.55),transparent 70%),radial-gradient(circle at 50% 120%,rgba(255,255,255,.4),transparent 50%)}
+.orbit{position:absolute;width:125%;max-width:640px;animation:tilt 14s ease-in-out infinite;pointer-events:none}
+.hash{position:absolute;top:12%;right:14%;font:900 64px Unbounded;animation:float 5s ease-in-out infinite reverse}
+@keyframes morph{0%,100%{border-radius:42% 58% 63% 37%/41% 44% 56% 59%}25%{border-radius:58% 42% 38% 62%/55% 61% 39% 45%}50%{border-radius:38% 62% 52% 48%/63% 37% 63% 37%}75%{border-radius:63% 37% 45% 55%/42% 58% 42% 58%}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -22px}}
+@keyframes tilt{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(-6deg) scale(1.03)}}
+/* marquee */
+.marquee{background:var(--ink);color:#fff;padding:22px 0;overflow:hidden;white-space:nowrap;transform:rotate(-1.5deg);margin:20px -10px}
+.marquee div{display:inline-block;animation:scroll 30s linear infinite;font:700 22px Unbounded}
+.marquee span{margin:0 26px}.marquee i{color:var(--mag);font-style:normal}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* sections */
+section{padding:120px 5vw}
+.label{font-size:12px;letter-spacing:2px;color:var(--muted);margin-bottom:14px}
+section h2{font-size:clamp(34px,4.5vw,64px);font-weight:900;line-height:1.05;margin-bottom:56px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;border-radius:22px;padding:34px;border:1px solid #e3e2de;transition:.35s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,.08)}
+.card:hover::after{opacity:1}
+.card::after{content:"";position:absolute;width:180px;height:180px;right:-60px;top:-60px;border-radius:50%;background:conic-gradient(#4fe3ff,#c45cff,#ff5ec8,#4fe3ff);filter:blur(30px);opacity:0;transition:.4s}
+.card .n{font-size:12px;color:var(--muted)}.card h3{font-size:20px;margin:22px 0 10px}.card p{color:var(--muted);line-height:1.5;font-size:15px}
+.method{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink)}
+.method div{padding:40px 30px 0 0}.method h3{font-size:42px;font-weight:900;margin:14px 0}
+.dark{background:var(--ink);color:#fff;border-radius:40px;margin:0 3vw;text-align:center;position:relative;overflow:hidden}
+.dark h2{margin-bottom:24px}.dark p{color:#aaa;margin-bottom:40px;font-size:18px}
+.dark .btn{background:#fff;color:var(--ink)}
+.dark .glow{position:absolute;width:500px;height:500px;border-radius:50%;background:conic-gradient(#4fe3ff,#c45cff,#ff5ec8,#4fe3ff);filter:blur(120px);opacity:.35;left:50%;top:50%;translate:-50% -50%;animation:spin 12s linear infinite}
+.dark>*{position:relative}
+footer{padding:50px 5vw;display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+@media(max-width:860px){.hero{grid-template-columns:1fr;text-align:left}.stage{height:420px;order:-1}.grid,.method{grid-template-columns:1fr}nav ul,.tags{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="logo">ZANNID<small>&amp; CO.</small></div>
+<ul><li><a href="#services">Services</a></li><li><a href="#method">Method</a></li><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li></ul>
+<a class="btn" href="#contact">DM "GROW" ↗</a></nav>
+
+<header class="hero">
+ <div class="tags">STRATEGY<br>CONTENT<br>GROWTH</div><div class="tags r">IDEAS<br>THAT<br>SCALE</div>
+ <div class="reveal">
+  <div class="eyebrow">01 / HYDERABAD'S GROWTH PARTNERS</div>
+  <h1 class="glitch">Ideas<br>that scale.</h1>
+  <p>A strategy-led growth agency helping ambitious brands turn good ideas into real momentum.</p>
+  <div class="cta"><a class="btn" href="#contact">Book a free consultation ↗</a><a class="btn ghost" href="#services">What we do</a></div>
+ </div>
+ <div class="stage">
+  <svg class="orbit" viewBox="0 0 600 300"><ellipse cx="300" cy="150" rx="290" ry="120" fill="none" stroke="#0b0b0f" stroke-width="2"/></svg>
+  <div class="blob-wrap" id="blob"><div class="blob"></div></div>
+  <div class="hash glitch">#</div>
+ </div>
+</header>
+
+<div class="marquee"><div>
+<span>SOCIAL MEDIA</span><i>✦</i><span>REEL SHOOTS</span><i>✦</i><span>META ADS</span><i>✦</i><span>INFLUENCER MARKETING</span><i>✦</i><span>WEBSITES</span><i>✦</i><span>AI AUTOMATIONS</span><i>✦</i>
+<span>SOCIAL MEDIA</span><i>✦</i><span>REEL SHOOTS</span><i>✦</i><span>META ADS</span><i>✦</i><span>INFLUENCER MARKETING</span><i>✦</i><span>WEBSITES</span><i>✦</i><span>AI AUTOMATIONS</span><i>✦</i>
+</div></div>
+
+<section id="services">
+ <div class="label">02 / OUR CAPABILITIES</div>
+ <h2 class="reveal">Strategy. Content.<br><span class="glitch">Growth.</span></h2>
+ <div class="grid">
+  <div class="card reveal"><span class="n">01</span><h3>Brand Strategy</h3><p>Positioning, identity and the plan that makes everything else work.</p></div>
+  <div class="card reveal"><span class="n">02</span><h3>Social + Content</h3><p>Reel shoots, camera shoots, editing and design that stop the scroll.</p></div>
+  <div class="card reveal"><span class="n">03</span><h3>Digital Marketing</h3><p>Meta ads and influencer campaigns built to bring real customers.</p></div>
+  <div class="card reveal"><span class="n">04</span><h3>Web + AR Experiences</h3><p>Websites and digital experiences people remember.</p></div>
+  <div class="card reveal"><span class="n">05</span><h3>Lead Generation</h3><p>Funnels and DM systems that turn attention into enquiries.</p></div>
+  <div class="card reveal"><span class="n">06</span><h3>AI Automations</h3><p>WhatsApp, DM and sales automations that work while you sleep.</p></div>
+ </div>
+</section>
+
+<section id="method">
+ <div class="label">03 / THE METHOD</div>
+ <h2 class="reveal">Good growth is designed,<br>not guessed.</h2>
+ <div class="method">
+  <div class="reveal"><span class="n">01</span><h3>Think.</h3><p>Find the focus.</p></div>
+  <div class="reveal"><span class="n">02</span><h3>Create.</h3><p>Make it matter.</p></div>
+  <div class="reveal"><span class="n">03</span><h3 class="glitch">Scale.</h3><p>Learn and grow.</p></div>
+ </div>
+</section>
+
+<section class="dark" id="contact">
+ <div class="glow"></div>
+ <div class="label" style="color:#888">READY TO GROW?</div>
+ <h2>Let's build something<br>worth noticing.</h2>
+ <p>Cafés, restaurants, startups, founders — let's talk about what's next.</p>
+ <a class="btn" href="https://www.instagram.com/zannid.co/">DM us "GROW" ↗</a>
+</section>
+
+<footer><span>© 2026 Zannid &amp; Co. — Hyderabad</span><span>Strategy • Content • Growth</span></footer>
+
+<script>
+const b=document.getElementById('blob');
+addEventListener('mousemove',e=>{const x=(e.clientX/innerWidth-.5)*30,y=(e.clientY/innerHeight-.5)*30;b.style.transform=`translate(${x}px,${y}px)`});
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.15});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3)*0.1+'s';io.observe(el)});
+</script>
+</body>
+</html>

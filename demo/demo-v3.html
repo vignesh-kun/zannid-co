@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zannid & Co. | Growth Agency for Ambitious Brands</title>
+<meta name="description" content="Zannid & Co. is a strategy-led growth agency: reels, social media, Meta ads, influencers, websites and AI automations for brands in India and worldwide.">
+<link rel="icon" href="zannid-z-logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Familjen+Grotesk:wght@400..700&family=Martian+Mono:wdth,wght@75..112.5,400..600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+<style>
+/* One theme: achromatic (Ollama-style). Colour only lives in the 3D nucleus & real photos. */
+:root{--bg:#fafafa;--paper:#fff;--ink:#0a0a0a;--ink2:#262626;--mute:#737373;--line:#e5e5e5;--soft:#f2f2f2;--r:14px;--rail:38px;
+ --disp:'Archivo',sans-serif;--body:'Familjen Grotesk',sans-serif;--mono:'Martian Mono',monospace;--ease:cubic-bezier(.2,.8,.2,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:0}
+a{color:inherit}
+.disp{font-family:var(--disp);font-stretch:125%;font-weight:900;text-transform:uppercase;letter-spacing:-.025em;line-height:.92}
+.mono{font:500 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.nowrap{white-space:nowrap}
+
+/* ---------- sale: top bar → thin left rail ---------- */
+.sale{position:fixed;top:0;left:0;right:0;height:42px;z-index:40;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:14px;transition:transform .5s var(--ease)}
+.sale b{font-weight:700}.sale s{color:#a3a3a3}
+.sale .cd{font:500 12px var(--mono);color:#d4d4d4}
+.sale a{background:#fff;color:var(--ink);text-decoration:none;font-weight:700;border-radius:999px;padding:5px 14px;font-size:13px;transition:transform .15s}
+.sale a:hover{transform:translateY(-1px)}
+.scrolled .sale{transform:translateY(-100%)}
+.rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:39;background:var(--ink);color:#fff;transform:translateX(-100%);transition:transform .5s var(--ease),width .45s var(--ease);overflow:hidden;cursor:pointer}
+.scrolled .rail{transform:none}
+.rail .v{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;writing-mode:vertical-rl;font:600 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;transition:opacity .2s}
+.rail .v i{width:6px;height:6px;border-radius:50%;background:#fff}
+.rail .open{position:absolute;left:0;top:0;bottom:0;width:320px;padding:110px 30px 30px;opacity:0;transition:opacity .25s .1s;display:flex;flex-direction:column;gap:16px}
+.rail:hover,.rail:focus-within{width:340px}.rail:hover .v,.rail:focus-within .v{opacity:0}.rail:hover .open,.rail:focus-within .open{opacity:1}
+.rail .open h3{font-size:30px}.rail .open p{color:#d4d4d4;font-size:15px}
+.rail .open ul{list-style:none;font-size:14px;color:#e5e5e5}.rail .open li{padding:8px 0;border-bottom:1px solid #262626}
+.rail .open .cdbig{font:600 22px var(--mono);letter-spacing:.02em}
+.rail .open .btn{background:#fff;color:var(--ink);justify-content:center}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:42px;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:14px 32px;transition:top .5s var(--ease),padding .5s var(--ease)}
+.scrolled nav{top:0;padding-left:calc(32px + var(--rail));background:rgba(250,250,250,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:6px;text-decoration:none;font:700 14px Syncopate;letter-spacing:.08em}
+.brand svg{width:40px;height:32px;color:var(--ink)}
+nav ul{display:flex;gap:28px;list-style:none;font-size:15px;color:var(--mute)}nav li{cursor:pointer;transition:color .15s}nav li:hover{color:var(--ink)}
+
+/* ---------- buttons (one style, one radius) ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;text-decoration:none;background:var(--ink);color:#fff;font:600 16px var(--body);padding:15px 24px;border-radius:999px;transition:transform .15s var(--ease),background .15s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0) scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn .ar{transition:transform .15s}.btn:hover .ar{transform:translateX(4px)}
+.link{font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--ink);padding-bottom:2px}
+
+/* ---------- layout ---------- */
+main{position:relative;z-index:5}
+.sec{min-height:100vh;padding:140px 30vw 100px max(6vw,calc(var(--rail) + 48px));display:flex;flex-direction:column;justify-content:center}
+.h2{font-size:clamp(34px,4.2vw,80px);margin-bottom:28px}
+.sub{font-size:clamp(18px,1.5vw,22px);color:var(--ink2);max-width:640px;line-height:1.5}
+.small{font-size:13px;color:var(--mute)}
+.up{opacity:0;transform:translateY(36px);transition:opacity .7s var(--ease),transform .8s var(--ease)}.up.in{opacity:1;transform:none}
+.lines>span{display:block;overflow:hidden}.lines>span>span{display:block;transform:translateY(105%);transition:transform .9s var(--ease)}
+.lines.in>span>span{transform:none}.lines>span:nth-child(2)>span{transition-delay:.12s}.lines>span:nth-child(3)>span{transition-delay:.24s}
+
+/* ---------- hero (centered) ---------- */
+.hero{padding:140px 6vw 80px;align-items:center;text-align:center}
+.hero .corner{position:absolute;top:118px;font:700 12px Syncopate;letter-spacing:.3em}.hero .l{left:40px}.hero .r{right:40px;padding-right:12px;border-right:2px solid var(--ink)}
+.hero h1{font:700 clamp(58px,11.8vw,186px)/1 Syncopate;letter-spacing:-.02em;pointer-events:none}
+.hero .co{display:block;font:700 clamp(20px,3.3vw,52px) Syncopate;text-align:right;width:min(82vw,1100px);margin:2px auto 0}
+.hero .line{font-size:clamp(19px,1.8vw,26px);max-width:700px;margin:34px auto 30px;line-height:1.4}
+.hero .row{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap}
+.hero .where{margin-top:30px}
+.hint{position:absolute;bottom:28px;left:50%;translate:-50% 0;color:var(--mute)}
+
+/* ---------- dial labels ---------- */
+#hash{position:fixed;left:0;top:0;font:700 56px Syncopate;z-index:3;pointer-events:none;translate:-50% -50%}
+.dl{position:fixed;left:0;top:0;z-index:4;white-space:nowrap;cursor:pointer;display:flex;align-items:baseline;gap:10px;color:var(--mute);font:500 14px var(--body);will-change:transform,opacity;transition:color .2s}
+.dl span{font:500 10px var(--mono)}
+.dl.on{color:var(--ink);font:900 19px var(--disp);font-stretch:125%;text-transform:uppercase}.dl.on span{color:var(--ink)}
+
+/* ---------- 01 real talk ---------- */
+.talk .big{font-size:clamp(30px,4.3vw,86px)}
+.talk .big .x{color:#c7c7c7}
+.pains{display:grid;grid-template-columns:repeat(3,1fr);margin-top:64px;border-top:1.5px solid var(--ink)}
+.pains div{padding:26px 26px 0 0}.pains div+div{padding-left:26px;border-left:1px solid var(--line)}
+.pains b{display:block;font:900 clamp(22px,2.1vw,34px)/1 var(--disp);font-stretch:112%;text-transform:uppercase;margin-bottom:12px}
+.pains p{color:var(--ink2);font-size:16px}
+.talk .then{display:flex;align-items:center;gap:28px;margin-top:64px}
+.zanny{flex:none;width:92px;height:92px;border-radius:46% 54% 50% 50%/55% 52% 48% 45%;position:relative;background:radial-gradient(circle at 32% 26%,#fff 0 7%,transparent 22%),conic-gradient(from 40deg,#22d8ff,#7c4dff,#ff3fb4,#ffb86b,#22d8ff);animation:squish 2.6s ease-in-out infinite}
+@keyframes squish{50%{border-radius:54% 46% 45% 55%/48% 55% 45% 52%;transform:scale(1.04,.96)}}
+.zanny .e{position:absolute;top:38%;width:18px;height:21px;background:#fff;border-radius:50%;overflow:hidden;animation:bl 4s infinite}.zanny .e.l{left:26%}.zanny .e.r{right:26%}
+.zanny .e i{position:absolute;width:9px;height:11px;border-radius:50%;background:#111;left:4.5px;top:5px}
+@keyframes bl{0%,46%,50%,100%{transform:scaleY(1)}48%{transform:scaleY(.1)}}
+.zanny .m{position:absolute;left:50%;top:70%;width:22px;height:10px;translate:-50% 0;border:3px solid #111;border-bottom:0;border-radius:20px 20px 0 0}
+.zanny.happy .m{border:3px solid #111;border-top:0;border-radius:0 0 20px 20px;top:64%}
+.then p{font-size:clamp(20px,1.9vw,28px);line-height:1.35;max-width:640px}
+
+/* ---------- 02 services: honeycomb ---------- */
+.comb{--w:min(168px,11.2vw);--g:8px;margin-top:20px}
+.comb .row{display:flex;gap:var(--g)}.comb .row+.row{margin-top:calc(var(--w)*-.2887 + var(--g));margin-left:calc(var(--w)/2 + var(--g)/2)}
+.hex{width:var(--w);aspect-ratio:1/1.1547;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);position:relative;cursor:pointer;background:var(--ink);color:#fff;display:grid;place-items:center;text-align:center;transition:transform .25s var(--ease);outline:none}
+.hex:before{content:"";position:absolute;inset:0;background:var(--img) center/cover;filter:grayscale(1) contrast(1.05);opacity:.55;transition:opacity .3s,filter .3s,transform .5s var(--ease)}
+.hex span{position:relative;font:800 clamp(11px,.95vw,15px)/1.05 var(--disp);font-stretch:112%;text-transform:uppercase;padding:0 14px}
+.hex:hover,.hex.on,.hex:focus{transform:scale(1.07);z-index:2}
+.hex:hover:before,.hex.on:before,.hex:focus:before{filter:none;opacity:.8;transform:scale(1.08)}
+.hex.on span{text-shadow:0 2px 12px #000}
+.detail{margin-top:40px;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;border-top:1.5px solid var(--ink);padding-top:28px;min-height:230px}
+.detail h3{font-size:clamp(28px,2.6vw,42px);margin-bottom:12px}
+.detail p{color:var(--ink2);font-size:18px}
+.detail ul{list-style:none}.detail li{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-bottom:1px solid var(--line);font-size:16px}.detail li em{font-style:normal;color:var(--mute)}
+.fade{animation:fade .35s var(--ease)}@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+
+/* ---------- 03 work (plain, no gaps) ---------- */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--ink);border-radius:var(--r);overflow:hidden;margin-top:12px}
+.post{text-decoration:none;display:flex;flex-direction:column;background:var(--paper)}.post+.post{border-left:1.5px solid var(--ink)}
+.post .im{aspect-ratio:4/5;overflow:hidden;background:var(--soft);border-bottom:1.5px solid var(--ink)}
+.post img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}.post:hover img{transform:scale(1.04)}
+.post .tx{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.post h4{font:900 20px/1.05 var(--disp);font-stretch:112%;text-transform:uppercase}
+.post p{color:var(--ink2);font-size:15px}.post .mono{color:var(--mute);margin-top:auto;padding-top:10px}
+
+/* ---------- 04 results ---------- */
+.res .top{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.hero-num{font:900 clamp(90px,12vw,210px)/.8 var(--disp);font-stretch:125%;letter-spacing:-.05em}
+.res .side{display:grid;grid-template-columns:repeat(3,auto);gap:36px}
+.res .side b{display:block;font:900 40px/1 var(--disp);font-stretch:118%}.res .side span{font-size:14px;color:var(--mute)}
+.chart{position:relative;margin-top:44px;background:var(--paper);border:1.5px solid var(--ink);border-radius:var(--r);padding:22px 22px 14px}
+.chart .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.chart .key{display:flex;gap:18px;font-size:13px;color:var(--mute)}.chart .key i{display:inline-block;width:18px;height:2px;background:var(--ink);vertical-align:middle;margin-right:6px}.chart .key i.d{background:none;border-top:2px dashed #a3a3a3}
+.chart svg{width:100%;height:clamp(220px,34vh,360px);display:block;overflow:visible}
+.chart .grow{stroke-dasharray:2000;stroke-dashoffset:2000;transition:stroke-dashoffset 2.4s var(--ease)}.in .chart .grow,.chart.in .grow{stroke-dashoffset:0}
+.chart .area{opacity:0;transition:opacity 1s 1.6s}.chart.in .area{opacity:1}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;border-radius:10px;padding:8px 12px;font-size:13px;white-space:nowrap;opacity:0;transition:opacity .15s;transform:translate(-50%,-120%)}
+.duo{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-top:20px}
+.panel{background:var(--paper);border:1.5px solid var(--ink);border-radius:var(--r);padding:24px}
+.funnel{display:grid;gap:10px;margin-top:14px}
+.funnel div{display:grid;grid-template-columns:120px 1fr 74px;align-items:center;gap:14px;font-size:14px}
+.funnel .bar{height:30px;background:var(--soft);border-radius:8px;overflow:hidden}.funnel .bar i{display:block;height:100%;width:0;background:var(--ink);border-radius:8px;transition:width 1.4s var(--ease)}
+.funnel b{font:700 15px var(--mono);text-align:right}
+.calc label{display:flex;justify-content:space-between;font-weight:600;margin:14px 0 10px}
+.calc input[type=range]{width:100%;accent-color:#0a0a0a}
+.calc .out{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.calc .out div{background:var(--soft);border-radius:10px;padding:14px}.calc .out b{display:block;font:900 30px/1.1 var(--disp);font-stretch:118%}
+.phone{background:var(--ink);border-radius:30px;padding:12px;margin-top:20px}
+.phone .scr{background:#141414;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:9px;font-size:14px;color:#fff;min-height:280px}
+.phone .tp{display:flex;justify-content:space-between;color:#a3a3a3;font-size:12px;border-bottom:1px solid #262626;padding-bottom:9px}
+.msg{max-width:78%;padding:9px 13px;border-radius:16px;opacity:0;transform:translateY(8px);transition:.45s var(--ease)}
+.msg.u{align-self:flex-end;background:#fff;color:#000}.msg.b{background:#2a2a2a}
+.phone.in .msg{opacity:1;transform:none}.phone.in .msg:nth-child(3){transition-delay:.7s}.phone.in .msg:nth-child(4){transition-delay:1.4s}.phone.in .msg:nth-child(5){transition-delay:2.1s}.phone.in .msg:nth-child(6){transition-delay:2.8s}
+.res-row{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;align-items:start}
+
+/* ---------- 05 how ---------- */
+.steps{margin-top:16px;border-top:1.5px solid var(--ink)}
+.step{display:grid;grid-template-columns:90px 1fr 1.1fr;gap:28px;padding:28px 0;border-bottom:1px solid var(--line);align-items:start;transition:background .2s}
+.step:hover{background:linear-gradient(90deg,var(--soft),transparent)}
+.step .t{font:500 11px var(--mono);text-transform:uppercase;color:var(--mute);padding-top:8px}
+.step h3{font:900 clamp(24px,2.2vw,36px)/1 var(--disp);font-stretch:118%;text-transform:uppercase;margin-bottom:8px}
+.step p{color:var(--ink2);font-size:16px}
+.fact{display:flex;gap:16px;align-items:flex-start}
+.fact b{font:900 clamp(34px,3vw,52px)/.9 var(--disp);font-stretch:125%;flex:none;min-width:2.6em}
+.fact span{font-size:15px;color:var(--ink2)}.fact em{display:block;font-style:normal;color:var(--mute);font-size:12px;margin-top:4px}
+
+/* ---------- 06 pricing ---------- */
+.cur{display:inline-flex;border:1.5px solid var(--ink);border-radius:999px;padding:3px;margin-bottom:26px}
+.cur button{border:0;background:none;font:600 14px var(--body);padding:7px 16px;border-radius:999px;cursor:pointer}.cur button.on{background:var(--ink);color:#fff}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--ink);border-radius:var(--r);overflow:hidden}
+.plan{padding:30px;display:flex;flex-direction:column;background:var(--paper)}.plan+.plan{border-left:1.5px solid var(--ink)}
+.plan.best{background:var(--ink);color:#fff}
+.plan .nm{display:flex;justify-content:space-between;align-items:center}.plan .nm h3{font:900 24px var(--disp);font-stretch:118%;text-transform:uppercase}
+.plan .tag{font:500 10px var(--mono);text-transform:uppercase;border:1px solid currentColor;border-radius:999px;padding:4px 9px}
+.plan .for{color:var(--mute);font-size:15px;margin:6px 0 22px}.plan.best .for{color:#a3a3a3}
+.plan .pr{font:900 clamp(34px,3vw,48px)/1 var(--disp);font-stretch:118%}.plan .pr small{font:400 14px var(--body);color:var(--mute)}
+.plan ul{list-style:none;margin:24px 0 28px;flex:1}.plan li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}.plan.best li{border-color:#262626}
+.plan li:before{content:"+ ";font-weight:700}
+.plan.best .btn{background:#fff;color:var(--ink)}.plan .btn{justify-content:center}
+.vs{margin-top:22px;display:grid;grid-template-columns:1.3fr 1fr;border:1.5px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--paper)}
+.vs>div{padding:26px}.vs>div+div{border-left:1.5px solid var(--ink);background:var(--soft)}
+.vs h4{font:900 18px var(--disp);font-stretch:118%;text-transform:uppercase;margin-bottom:10px}
+.vs li{list-style:none;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #d4d4d4;font-size:15px}
+.vs .tot{display:flex;justify-content:space-between;font-weight:700;padding-top:12px;font-size:17px}
+.vs .big2{font:900 clamp(40px,4vw,64px)/1 var(--disp);font-stretch:125%;margin:8px 0}
+
+/* ---------- 07 why ---------- */
+.why{display:grid;grid-template-columns:repeat(2,1fr);border-top:1.5px solid var(--ink)}
+.why div{padding:30px 30px 30px 0;border-bottom:1px solid var(--line)}.why div:nth-child(even){padding-left:30px;border-left:1px solid var(--line)}
+.why b{display:block;font:900 clamp(24px,2.2vw,34px)/1 var(--disp);font-stretch:118%;text-transform:uppercase;margin-bottom:10px}
+.why p{color:var(--ink2)}
+
+/* ---------- 08 faq ---------- */
+.faq details{border-bottom:1px solid var(--line)}.faq details:first-of-type{border-top:1.5px solid var(--ink)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;gap:30px;font:700 clamp(18px,1.4vw,22px) var(--body)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font:400 26px/1 var(--body);transition:transform .2s}.faq details[open] summary:after{transform:rotate(45deg)}
+.faq details p{padding:0 0 24px;color:var(--ink2);max-width:760px}
+
+/* ---------- 09 contact ---------- */
+.contact .box{display:grid;grid-template-columns:1fr 1fr;gap:56px;background:var(--ink);color:#fff;border-radius:var(--r);padding:56px}
+.contact .sub{color:#d4d4d4}
+.ways{margin-top:30px;border-top:1px solid #333}.ways a{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #333;text-decoration:none;font-weight:600;transition:padding .2s}.ways a:hover{padding-left:8px}.ways a span{color:#a3a3a3;font-weight:400}
+form{background:#fff;color:var(--ink);border-radius:var(--r);padding:30px;display:grid;gap:16px}
+form label{display:grid;gap:7px;font-weight:600;font-size:14px}
+form input,form select{font:16px var(--body);padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);outline:none;transition:border-color .15s}
+form input:focus,form select:focus{border-color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips b{font-weight:500;font-size:14px;border:1.5px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer;user-select:none;transition:.15s}.chips b.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+form .btn{justify-content:center;width:100%}
+footer{position:relative;z-index:5;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;padding:70px 30vw 30px max(6vw,calc(var(--rail) + 48px));font-size:15px;color:var(--mute)}
+footer b{display:block;color:var(--ink);margin-bottom:10px}footer a{display:block;text-decoration:none;padding:3px 0}footer a:hover{color:var(--ink)}
+.giant{position:relative;z-index:5;display:flex;align-items:center;justify-content:center;gap:2vw;padding:10px 0 50px}
+.giant svg{width:14vw;height:11.5vw;color:var(--ink)}.giant span{font:700 10.5vw/1 Syncopate;color:transparent;-webkit-text-stroke:1.5px #c7c7c7}
+.chat{position:fixed;right:22px;bottom:22px;z-index:35;background:var(--ink);color:#fff;text-decoration:none;border-radius:999px;padding:13px 18px;font-weight:600;font-size:15px;display:flex;gap:8px;align-items:center;transition:transform .15s}.chat:hover{transform:translateY(-2px)}
+.chat i{width:8px;height:8px;border-radius:50%;background:#22c55e}
+
+@media(max-width:960px){
+ :root{--rail:0px}.rail{display:none}.dl{display:none!important}nav ul{display:none}
+ .sec,footer{padding:120px 6vw 80px}.pains,.duo,.res-row,.plans,.vs,.why,.contact .box,.detail{grid-template-columns:1fr}
+ .pains div+div,.why div:nth-child(even){padding-left:0;border-left:0}.plan+.plan{border-left:0;border-top:1.5px solid var(--ink)}
+ .strip{grid-template-columns:1fr}.post+.post{border-left:0;border-top:1.5px solid var(--ink)}.step{grid-template-columns:1fr}
+ .comb{--w:27vw}.comb .row{flex-wrap:wrap}.hero .corner{display:none}.sale .cd{display:none}.contact .box{padding:28px}
+}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js"}}</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <symbol id="zlogo" viewBox="-6 0 150 120"><g transform="skewX(-16) translate(30,0)">
+  <path d="M10 28 L96 12 L104 12 L40 92 L106 84 L98 104 L8 112 L0 112 L66 34 L4 40 Z" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35" transform="translate(6,4)"/>
+  <path d="M10 28 L96 12 L104 12 L40 92 L106 84 L98 104 L8 112 L0 112 L66 34 L4 40 Z" fill="currentColor"/>
+  <path d="M-8 76 L126 46" style="stroke:var(--bg)" stroke-width="6"/></g></symbol></defs></svg>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<div class="sale" role="region" aria-label="Offer"><span><b>Free growth audit + 30-day plan</b> &nbsp;<s>₹4,999</s> → ₹0 · 3 brand slots left</span><span class="cd" data-cd>—</span><a href="#contact" data-go="contact">Claim →</a></div>
+<aside class="rail" tabindex="0" aria-label="Offer">
+ <div class="v"><i></i>Free growth audit · <span data-cd>—</span></div>
+ <div class="open">
+  <span class="mono" style="color:#a3a3a3">This month only</span>
+  <h3 class="disp">Free growth audit</h3>
+  <p>Worth <s>₹4,999</s>. We review your page, competitors and audience, and send a 30-day plan you can use with or without us.</p>
+  <ul><li>Profile &amp; content teardown</li><li>3 quick wins for this week</li><li>30-day content + ads plan</li></ul>
+  <div><span class="mono" style="color:#a3a3a3">Ends in</span><div class="cdbig" data-cd>—</div></div>
+  <a class="btn" href="#contact" data-go="contact">Claim my slot <span class="ar">→</span></a>
+ </div>
+</aside>
+
+<nav>
+ <a class="brand" href="#top" data-go="top"><svg><use href="#zlogo"/></svg>ZANNID</a>
+ <ul><li data-go="services">Services</li><li data-go="work">Work</li><li data-go="results">Results</li><li data-go="pricing">Pricing</li><li data-go="faq">FAQ</li></ul>
+ <a class="btn" style="padding:10px 18px;font-size:14px" href="#contact" data-go="contact">Get a free audit</a>
+</nav>
+<div id="hash" aria-hidden="true">#</div>
+
+<main>
+<section class="sec hero" id="top" data-label="Start">
+ <div class="corner l">GROWTH</div><div class="corner r">SCALE</div>
+ <h1>ZANNID</h1><span class="co">&amp; CO.</span>
+ <p class="line">The growth team for brands that refuse to be ignored: <b>strategy, reels, ads, websites and AI automations</b>, all under one roof.</p>
+ <div class="row"><a class="btn" href="#contact" data-go="contact">Get my free growth audit <span class="ar">→</span></a><a class="link" href="#work" data-go="work">See the work</a></div>
+ <p class="small where">Working with brands across India and worldwide</p>
+ <span class="hint mono">Scroll. The ring shows the way</span>
+</section>
+
+<section class="sec talk" id="talk" data-label="Real talk">
+ <h2 class="big disp lines"><span><span class="nowrap">Your product is 🔥</span></span><span><span class="nowrap x">Your page is 😴</span></span></h2>
+ <p class="sub up" style="margin-top:34px">People are scrolling right now. If they can't find you, they can't choose you. And likes don't pay the bills; customers do.</p>
+ <div class="pains up">
+  <div><b>200 likes.<br>0 customers.</b><p>Content that looks busy but never turns into orders, calls or bookings.</p></div>
+  <div><b>Posting daily.<br>Growing never.</b><p>No hooks, no strategy, no idea what's working, so the same 300 people see every post.</p></div>
+  <div><b>5 vendors.<br>0 direction.</b><p>A designer here, an ads guy there, a shooter somewhere. Nobody owns the result.</p></div>
+ </div>
+ <div class="then up"><div class="zanny" id="zanny"><div class="e l"><i></i></div><div class="e r"><i></i></div><div class="m"></div></div>
+  <p><b>Zannid fixes all three.</b> One team that plans, shoots, posts, advertises and automates, and is measured on growth, not on posts.</p></div>
+</section>
+
+<section class="sec" id="services" data-label="Services">
+ <h2 class="h2 disp lines"><span><span>One team.</span></span><span><span>Nine ways to grow.</span></span></h2>
+ <p class="sub up" style="margin-bottom:34px">Hover a cell to see what's inside. Take one service, or let us run the whole hive.</p>
+ <div class="comb up" id="comb"></div>
+ <div class="detail" id="detail"></div>
+</section>
+
+<section class="sec" id="work" data-label="Our work">
+ <h2 class="h2 disp lines"><span><span>Work people</span></span><span><span>stop scrolling for.</span></span></h2>
+ <div class="strip up">
+  <a class="post" target="_blank" href="https://www.instagram.com/zannid.co/reel/DfUrl5zo91N/"><div class="im"><img data-ig="biryani" alt="Reel cover reading 'Biryani me masala daale… lekin dum nahi diye?'"></div><div class="tx"><h4>Biryani me dum nahi?</h4><p>A food metaphor that sells strategy: masala without dum is content without a plan. Hinglish hook, punchline in the first two seconds.</p><span class="mono">Reel · Food &amp; restaurants ↗</span></div></a>
+  <a class="post" target="_blank" href="https://www.instagram.com/zaidhussain1316/reel/DfWeENpMRGj/"><div class="im"><img data-ig="cafe" alt="Illustrated reel of three friends choosing a café"></div><div class="tx"><h4>Konsi café jaenge?</h4><p>An AI-animated story about how friends actually pick a café, and the one marketing lesson every café owner misses.</p><span class="mono">Reel · AI content · Cafés ↗</span></div></a>
+  <a class="post" target="_blank" href="https://www.instagram.com/zannid.co/reel/DfH0IH7stQP/"><div class="im"><img data-ig="hello" alt="Founder seated in a white studio with 'Hello' headline"></div><div class="tx"><h4>The launch film</h4><p>Our own brand launch: one clean frame, one bold line, and a clear offer at the end. Our most shared post so far.</p><span class="mono">Reel · Brand launch ↗</span></div></a>
+ </div>
+</section>
+
+<section class="sec res" id="results" data-label="Results">
+ <h2 class="h2 disp lines"><span><span>What 90 days</span></span><span><span>is built to do.</span></span></h2>
+ <div class="top up">
+  <div><div class="hero-num"><span data-count="3.4" data-dec="1">0</span>×</div><p class="sub" style="max-width:360px">monthly reach target for a full Growth plan by week 12</p></div>
+  <div class="side"><div><b><span data-count="7">0</span> days</b><span>to first content live</span></div><div><b><span data-count="48">0</span> hrs</b><span>first-draft turnaround</span></div><div><b>24/7</b><span>DM &amp; WhatsApp replies</span></div></div>
+ </div>
+ <div class="chart up" id="chart">
+  <div class="hd"><span class="mono">Weekly reach · typical Growth-plan trajectory</span><span class="key"><span><i></i>With Zannid</span><span><i class="d"></i>Posting alone</span></span></div>
+  <svg viewBox="0 0 1000 300" preserveAspectRatio="none" id="cs"></svg><div class="tip" id="tip"></div>
+ </div>
+ <div class="duo">
+  <div class="panel up"><span class="mono">Where 100,000 views go (example funnel)</span>
+   <div class="funnel" id="funnel">
+    <div><span>Views</span><div class="bar"><i data-w="100"></i></div><b>100,000</b></div>
+    <div><span>Profile visits</span><div class="bar"><i data-w="42"></i></div><b>6,000</b></div>
+    <div><span>DMs &amp; clicks</span><div class="bar"><i data-w="20"></i></div><b>1,200</b></div>
+    <div><span>Qualified leads</span><div class="bar"><i data-w="9"></i></div><b>320</b></div>
+    <div><span>Customers</span><div class="bar"><i data-w="4"></i></div><b>80</b></div>
+   </div><p class="small" style="margin-top:14px">Our job is to widen every step: better hooks, a sharper profile, faster replies.</p></div>
+  <div class="panel up calc"><span class="mono">Ad budget estimator</span>
+   <label for="bud">Monthly ad spend <span id="budv">₹50,000</span></label><input id="bud" type="range" min="10000" max="300000" step="5000" value="50000">
+   <div class="out"><div><span class="small">Est. people reached</span><b id="o1">—</b></div><div><span class="small">Est. leads</span><b id="o2">—</b></div></div>
+   <p class="small" style="margin-top:12px">Estimates only. Real numbers depend on your industry, offer and city.</p></div>
+ </div>
+ <div class="res-row">
+  <div class="phone up"><div class="scr"><div class="tp"><span>@yourbrand · DM automation</span><span>now</span></div>
+   <div class="msg u">GROW</div><div class="msg b">Hey! 👋 Want a free growth audit for your brand?</div><div class="msg u">Yes, we're a café in Bangalore</div><div class="msg b">Done. You're booked for tomorrow, 11 AM ✅</div><div class="msg b" style="background:#fff;color:#000">New lead sent to your WhatsApp</div></div></div>
+  <div class="panel up" style="margin-top:20px"><span class="mono">Why it works</span>
+   <p style="font-size:20px;margin:14px 0 18px;line-height:1.4">Short video earns the attention. Ads put it in front of the right people. Automation answers in seconds, while they're still interested.</p>
+   <div class="fact"><b>63%</b><span>of people would most like to watch a short video to learn about a product or service.<em>Wyzowl, State of Video Marketing 2026</em></span></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="how" data-label="How it works">
+ <h2 class="h2 disp lines"><span><span>From hello</span></span><span><span>to growth.</span></span></h2>
+ <div class="steps">
+  <div class="step up"><span class="t">Day 1</span><div><h3>Free call</h3><p>15 minutes. Your goals, your numbers, our honest take on what will move them.</p></div><div class="fact"><b>15</b><span>minutes, no pitch deck. You leave with at least one idea you can use today.</span></div></div>
+  <div class="step up"><span class="t">Day 2–3</span><div><h3>Growth audit</h3><p>We tear down your page, your competitors and your audience, then send a 30-day plan.</p></div><div class="fact"><b>48h</b><span>from call to plan in your inbox.</span></div></div>
+  <div class="step up"><span class="t">Week 1</span><div><h3>Create</h3><p>Hooks, scripts, shoots and edits. Content built for the first two seconds.</p></div><div class="fact"><b>89%</b><span>of consumers say video quality affects their trust in a brand.<em>Wyzowl 2026</em></span></div></div>
+  <div class="step up"><span class="t">Week 2</span><div><h3>Amplify</h3><p>Meta ads and creators push your best content to people ready to buy.</p></div><div class="fact"><b>84%</b><span>of people have been convinced to buy a product or service by watching a video.<em>Wyzowl 2026</em></span></div></div>
+  <div class="step up"><span class="t">Week 2+</span><div><h3>Automate</h3><p>DM, WhatsApp and call bots reply instantly, qualify leads and book them in.</p></div><div class="fact"><b>24/7</b><span>replies, so no lead waits until Monday.</span></div></div>
+  <div class="step up"><span class="t">Every month</span><div><h3>Scale</h3><p>A clear report, what worked, what didn't, and where the next rupee goes.</p></div><div class="fact"><b>49%</b><span>of marketers rank short-form video as their #1 ROI format.<em>HubSpot 2026</em></span></div></div>
+ </div>
+</section>
+
+<section class="sec" id="pricing" data-label="Pricing">
+ <h2 class="h2 disp lines"><span><span>One team.</span></span><span><span>One invoice.</span></span></h2>
+ <div><div class="cur" id="cur"><button class="on" data-c="inr">₹ INR</button><button data-c="usd">$ USD</button></div></div>
+ <div class="plans up">
+  <div class="plan"><div class="nm"><h3>Starter</h3></div><p class="for">For new brands getting consistent</p><div class="pr" data-inr="₹34,999" data-usd="$549">₹34,999<small> /month</small></div>
+   <ul><li>Social media management</li><li>8 reels, edited &amp; posted</li><li>12 posts &amp; stories</li><li>Monthly growth report</li></ul><a class="btn ghost" href="#contact" data-go="contact">Start with Starter</a></div>
+  <div class="plan best"><div class="nm"><h3>Growth</h3><span class="tag">Most chosen</span></div><p class="for">For brands ready to scale</p><div class="pr" data-inr="₹79,999" data-usd="$1,199">₹79,999<small> /month</small></div>
+   <ul><li>Everything in Starter</li><li>16 reels + 2 shoot days</li><li>Meta ads management</li><li>2 creator collabs / month</li><li>DM &amp; WhatsApp automation</li></ul><a class="btn" href="#contact" data-go="contact">Get the Growth plan</a></div>
+  <div class="plan"><div class="nm"><h3>Scale</h3></div><p class="for">Your full growth department</p><div class="pr" data-inr="₹1,49,999+" data-usd="$2,199+">₹1,49,999+<small> /month</small></div>
+   <ul><li>Everything in Growth</li><li>Brand strategy &amp; identity</li><li>Website design &amp; build</li><li>Full AI automation suite</li><li>Dedicated growth lead</li></ul><a class="btn ghost" href="#contact" data-go="contact">Talk to us</a></div>
+ </div>
+ <div class="vs up">
+  <div><h4>Hiring it all separately</h4><ul>
+   <li>Social media manager<span>₹15,000 – 50,000</span></li><li>Ads management fee<span>₹20,000 – 1,00,000</span></li><li>Content &amp; reels production<span>₹5,000 – 20,000</span></li><li>Automation tools + setup<span>₹5,000 – 15,000</span></li></ul>
+   <div class="tot"><span>4 vendors, 4 invoices, 0 owners</span><span>₹45k – 1.85L</span></div>
+   <p class="small" style="margin-top:10px">Monthly ranges from 2026 Indian agency pricing guides (upGrowth). Ad spend is billed separately everywhere, including with us.</p></div>
+  <div><h4>Zannid Growth</h4><div class="big2" data-inr="₹79,999" data-usd="$1,199">₹79,999</div><p>Strategy, reels, shoots, ads, creators and automation, run by one team that owns the result.</p></div>
+ </div>
+ <p class="small" style="margin-top:14px">No lock-in. Monthly plans, cancel anytime. Ad spend paid directly to Meta.</p>
+</section>
+
+<section class="sec" id="why" data-label="Why Zannid">
+ <h2 class="h2 disp lines"><span><span>Why brands</span></span><span><span>pick Zannid.</span></span></h2>
+ <div class="why up">
+  <div><b>Strategy first</b><p>Every reel has a job: reach, trust or sale. We start with the why, not the trend.</p></div>
+  <div><b>One owner</b><p>One team, one WhatsApp group, one invoice. No vendor ping-pong.</p></div>
+  <div><b>No lock-in</b><p>Monthly plans. We earn next month by delivering this one.</p></div>
+  <div><b>You own it all</b><p>Raw footage, edits, ad accounts and automations stay yours, forever.</p></div>
+  <div><b>Fast</b><p>First drafts in 48 hours. First content live in 7 days.</p></div>
+  <div><b>Anywhere</b><p>From local cafés to global D2C brands: same team, same standard.</p></div>
+ </div>
+</section>
+
+<section class="sec faq" id="faq" data-label="FAQ">
+ <h2 class="h2 disp lines"><span><span>Questions,</span></span><span><span>answered.</span></span></h2>
+ <details open><summary>How fast will I see results?</summary><p>Content goes live in week one. Engagement usually moves in the first month; paid campaigns can bring enquiries within days of launch. We review the numbers with you every month.</p></details>
+ <details><summary>Do you work with clients outside India?</summary><p>Yes. We work with brands across India and internationally, and we bill in INR or USD. Shoots outside our base are planned with local crews or remote-first formats.</p></details>
+ <details><summary>Is ad spend included in the price?</summary><p>No. Ad spend is paid directly to Meta from your account, so you keep full control and visibility. Our fee covers strategy, creatives and management.</p></details>
+ <details><summary>Can I take just one service?</summary><p>Yes, any service works on its own: only reels, only ads, only a website. Plans simply bundle them at a better price.</p></details>
+ <details><summary>Do I need a long contract?</summary><p>No. Plans are monthly, and you can cancel anytime. Everything we create for you stays yours.</p></details>
+ <details><summary>What happens on the free audit call?</summary><p>We look at your page, competitors and goals, and send a 30-day plan with three quick wins, whether or not you hire us.</p></details>
+</section>
+
+<section class="sec contact" id="contact" data-label="Let's talk">
+ <div class="box">
+  <div><h2 class="h2 disp" style="font-size:clamp(40px,4.4vw,76px)">Ready<br>to grow?</h2>
+   <p class="sub">Claim your free growth audit and 30-day plan. Three slots left this month.</p>
+   <div class="ways"><a href="#" class="wa">WhatsApp <span>replies in minutes →</span></a><a href="https://www.instagram.com/zannid.co/" target="_blank">DM "GROW" on Instagram <span>@zannid.co →</span></a><a href="mailto:hello@zannid.co">Email <span>hello@zannid.co →</span></a></div></div>
+  <form id="lead">
+   <label>Your name<input required name="name" autocomplete="name"></label>
+   <label>Brand / business<input required name="biz"></label>
+   <label>WhatsApp number<input required name="phone" type="tel" autocomplete="tel"></label>
+   <label>What do you need?<div class="chips" id="need"><b>Reels</b><b>Social media</b><b>Meta ads</b><b>Creators</b><b>Website</b><b>Automation</b><b>Branding</b></div></label>
+   <label>Monthly budget<select name="budget"><option>Under ₹35k</option><option>₹35k – ₹80k</option><option>₹80k – ₹1.5L</option><option>₹1.5L+</option><option>USD / international</option></select></label>
+   <button class="btn" type="submit">Claim my free audit <span class="ar">→</span></button>
+   <p class="small" style="text-align:center">We reply within 24 hours.</p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div><b>Zannid &amp; Co.</b>Strategy · Content · Growth.<br>A growth agency for brands in India and worldwide.</div>
+ <div><b>Services</b><a href="#services">Social media</a><a href="#services">Reels &amp; shoots</a><a href="#services">Meta ads</a><a href="#services">AI automation</a></div>
+ <div><b>Company</b><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+ <div><b>Connect</b><a href="https://www.instagram.com/zannid.co/" target="_blank">Instagram</a><a href="#" class="wa">WhatsApp</a><a href="mailto:hello@zannid.co">Email</a></div>
+</footer>
+<div class="giant" aria-hidden="true"><svg><use href="#zlogo"/></svg><span>ZANNID</span></div>
+<a class="chat wa" href="#"><i></i>Chat with us</a>
+
+<script>
+const WHATSAPP='91XXXXXXXXXX'; // TODO: your number
+const IG={
+ biryani:'https://instagram.fhyd1-3.fna.fbcdn.net/v/t51.82787-15/886842597_18129326863858206_8039799601257618459_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=106&_nc_map=urlgen_bucketless&ig_cache_key=NDAyMzAzMjA4NzgzODk3MzI2MTE4MTI5MzI2ODU3ODU4MjA2.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fdXNlcl9zZWxlY3RlZF90aHVtYm5haWwuQzMifQ%3D%3D&_nc_ohc=3bFoSS9YfdkQ7kNvwFVezk-&_nc_oc=AdoWI8aImFJ6bnHo3Dt6o3qc4Vz14d_6XLNNHmy4nthkKD_5r6LjswbVDZDSrJBAP1Y&_nc_zt=23&_nc_ht=instagram.fhyd1-3.fna&_nc_gid=AnWecM_KeDI1gMdww7yC9A&_nc_ss=7b6a8&_nc_ct=RQosPBUIFQ4lBAAAAA&oh=00_AQTXeqYR-K6cFkmBSm7O8UNnve0sGybgu25a_qX4BC-S8g&oe=6B01BE88',
+ cafe:'https://instagram.fhyd1-3.fna.fbcdn.net/v/t51.82787-15/892040878_18346477453249699_6991781277479083869_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=102&_nc_map=urlgen_bucketless&ig_cache_key=NDAyMzUzNTU0ODAyNTA4MjI3NTE4MzQ2NDc3NDUwMjQ5Njk5.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fdXNlcl9zZWxlY3RlZF90aHVtYm5haWwuQzMifQ%3D%3D&_nc_ohc=0FOhpbzIYegQ7kNvwEuoGOy&_nc_oc=Adoid9yu3oKitwz9hOpjgTvPKMyVAD5RZA7eeeL9AZwGlTWT8Hh-iOXZOyS7oPg-TRo&_nc_zt=23&_nc_ht=instagram.fhyd1-3.fna&_nc_gid=AnWecM_KeDI1gMdww7yC9A&_nc_ss=7b2a8&_nc_ct=RQosPBUIFQ4lBAAAAA&oh=00_AQQxy5KKTKxg3HYaN3QbrG8eFl9A6aAD160MSVWERAYa8g&oe=6B01D2AE',
+ hello:'https://instagram.fhyd1-5.fna.fbcdn.net/v/t51.82787-15/873549209_18128632336858206_4147412719045863611_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=105&_nc_map=urlgen_bucketless&ig_cache_key=NDAxOTQxMDQ0OTE0MzYxNjUyNzE4MTI4NjMyMzMwODU4MjA2.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fdXNlcl9zZWxlY3RlZF90aHVtYm5haWwuQzMifQ%3D%3D&_nc_ohc=pE4AMHKq6NQQ7kNvwGiJilq&_nc_oc=AdqI4ziAAa8B6rFNIll3pcZWutv2Nk9ZWu2LEWPT665KPW2euf8t5Zhl5BN0PpuciEw&_nc_zt=23&_nc_ht=instagram.fhyd1-5.fna&_nc_gid=AnWecM_KeDI1gMdww7yC9A&_nc_ss=7b6a8&_nc_ct=RQosPBUIFQ4lBAAAAA&oh=00_AQQ2hKkYXUKxO0sTs1_TAZSJn6bPTnwd7K5z9SyLs31XsQ&oe=6B01DADD'};
+document.querySelectorAll('img[data-ig]').forEach(i=>{i.referrerPolicy='no-referrer';i.src=`assets/ig-${i.dataset.ig}.jpg`;i.onerror=()=>{i.onerror=null;i.src=IG[i.dataset.ig]}});
+document.querySelectorAll('.wa').forEach(a=>a.href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi Zannid & Co., I want to GROW my brand!')}`);
+document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.getElementById(a.dataset.go).scrollIntoView({behavior:'smooth'})}));
+// sale bar → left rail
+const onS=()=>document.body.classList.toggle('scrolled',scrollY>120);addEventListener('scroll',onS,{passive:true});onS();
+// countdown to month end
+(()=>{const end=new Date();end.setMonth(end.getMonth()+1,1);end.setHours(0,0,0,0);const els=document.querySelectorAll('[data-cd]');
+ const t=()=>{let s=Math.max(0,(end-Date.now())/1e3|0);const d=s/86400|0,h=(s%86400)/3600|0,m=(s%3600)/60|0,ss=s%60,p=n=>String(n).padStart(2,'0');
+ els.forEach((e,i)=>e.textContent=e.classList.contains('cdbig')?`${d}d ${p(h)}h ${p(m)}m ${p(ss)}s`:`Ends in ${d}d ${p(h)}h ${p(m)}m`)};t();setInterval(t,1000)})();
+// services honeycomb
+const SV=[
+ ['Social media','https://images.unsplash.com/photo-1611162617474-5b21e879e113','We run your page end to end: strategy, calendar, captions, community and a monthly report that shows what moved.',[['Content strategy','monthly'],['Posts & stories','12–30 / month'],['Community replies','daily'],['Growth report','monthly']]],
+ ['Reel shoots','https://images.unsplash.com/photo-1516035069371-29a1b244cc32','Hooks and scripts written for the first two seconds, then shot on-site with a director who knows what the algorithm rewards.',[['Hook & script','per reel'],['Shoot day','half / full'],['Talent direction','included']]],
+ ['Product & food','https://images.unsplash.com/photo-1504674900247-0877df9cc836','Scroll-stopping stills of your product, menu or space, styled and lit for feeds, ads and your website.',[['Styled shoot','per session'],['Edited photos','20–60'],['Ad-ready crops','4:5 · 9:16 · 1:1']]],
+ ['Editing','https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d','Trend-ready edits with captions, motion and sound design, delivered in 48 hours.',[['Reel edits','48h first draft'],['Subtitles & motion','included'],['Revisions','2 rounds']]],
+ ['Design','https://images.unsplash.com/photo-1561070791-2526d30994b5','Carousels, menus, packaging and brand kits that make every touchpoint look like the same brand.',[['Brand kit','one-time'],['Carousels','per month'],['Print & menus','on request']]],
+ ['Meta ads','https://images.unsplash.com/photo-1460925895917-afdab827c52f','Campaigns that bring walk-ins, orders and leads: offer strategy, creative testing and weekly optimisation.',[['Campaign setup','week 1'],['Creative testing','weekly'],['Reporting','weekly']]],
+ ['Creators','https://images.unsplash.com/photo-1529156069898-49953e39b3ac','We match you with creators your customers already trust, handle the brief and make sure the collab converts.',[['Creator matching','per campaign'],['Briefs & contracts','included'],['Performance tracking','included']]],
+ ['Websites','https://images.unsplash.com/photo-1547658719-da2b51169166','Fast, beautiful websites built to convert visitors, like the one you are scrolling right now.',[['Design + build','2–4 weeks'],['SEO basics','included'],['Lead forms → WhatsApp','included']]],
+ ['AI automation','https://images.unsplash.com/photo-1677442136019-21780ecad995','DM, WhatsApp and call bots that reply in seconds, qualify leads and book them in while you sleep.',[['Instagram DM bot','keyword triggers'],['WhatsApp flows','lead capture'],['Follow-ups','automatic']]]];
+const comb=document.getElementById('comb'),det=document.getElementById('detail');
+const showSv=i=>{const[n,,d,l]=SV[i];comb.querySelectorAll('.hex').forEach((h,j)=>h.classList.toggle('on',j===i));
+ det.innerHTML=`<div class="fade"><h3 class="disp">${n}</h3><p>${d}</p><p style="margin-top:22px"><a class="btn" href="#contact" data-go2>Ask about ${n.toLowerCase()} <span class="ar">→</span></a></p></div><ul class="fade">${l.map(([a,b])=>`<li>${a}<em>${b}</em></li>`).join('')}</ul>`;
+ det.querySelector('[data-go2]').onclick=e=>{e.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})}};
+[[0,5],[5,9]].forEach(([a,b])=>{const r=document.createElement('div');r.className='row';SV.slice(a,b).forEach((s,k)=>{const i=a+k,h=document.createElement('div');h.className='hex';h.tabIndex=0;h.style.setProperty('--img',`url(${s[1]}?w=500&q=70&auto=format&fit=crop)`);h.innerHTML=`<span>${s[0]}</span>`;
+ h.onmouseenter=h.onfocus=()=>showSv(i);r.append(h)});comb.append(r)});showSv(0);
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('in');
+ t.querySelectorAll?.('[data-count]').forEach(c=>{const n=+c.dataset.count,dec=+(c.dataset.dec||0),t0=performance.now();(function f(now){const p=Math.min((now-t0)/1500,1),v=n*(1-Math.pow(1-p,3));c.textContent=v.toFixed(dec);if(p<1)requestAnimationFrame(f)})(t0)});
+ if(t.id==='funnel'||t.querySelector?.('#funnel'))document.querySelectorAll('#funnel i').forEach(i=>i.style.width=i.dataset.w+'%');io.unobserve(t)}),{threshold:.18});
+document.querySelectorAll('.up,.lines,.chart,.phone,.res .top').forEach(e=>io.observe(e));
+// zanny eyes + mood
+addEventListener('pointermove',e=>document.querySelectorAll('.zanny .e i').forEach(p=>{const r=p.parentElement.getBoundingClientRect(),dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy)||1;p.style.transform=`translate(${dx/d*4}px,${dy/d*4}px)`}));
+const z=document.getElementById('zanny');z.addEventListener('mouseenter',()=>z.classList.add('happy'));
+// chart
+(()=>{const svg=document.getElementById('cs'),tip=document.getElementById('tip'),W=1000,H=300,a=[8,9,9,10,9,10,11,10,11,11,12,12],b=[8,10,13,17,21,24,28,31,34,37,39,41],mx=44;
+ const X=i=>i/(a.length-1)*W,Y=v=>H-v/mx*H*.92,pts=d=>d.map((v,i)=>`${X(i)},${Y(v)}`).join(' ');
+ let g='';for(let k=0;k<=4;k++){const y=H*k/4;g+=`<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="#ececec"/>`}
+ a.forEach((_,i)=>g+=`<text x="${X(i)}" y="${H+22}" font-size="12" fill="#a3a3a3" text-anchor="middle" font-family="Martian Mono">W${i+1}</text>`);
+ svg.innerHTML=g+`<polygon class="area" points="0,${H} ${pts(b)} ${W},${H}" fill="#0a0a0a" opacity=".06"/><polyline points="${pts(a)}" fill="none" stroke="#a3a3a3" stroke-width="2.5" stroke-dasharray="7 7"/><polyline class="grow" points="${pts(b)}" fill="none" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round"/><line id="cx" y1="0" y2="${H}" stroke="#0a0a0a" stroke-width="1" opacity="0"/><circle id="cd" r="7" fill="#0a0a0a" stroke="#fff" stroke-width="3" opacity="0"/>`;
+ const cx=svg.querySelector('#cx'),cd=svg.querySelector('#cd');
+ svg.addEventListener('mousemove',e=>{const r=svg.getBoundingClientRect(),i=Math.round((e.clientX-r.left)/r.width*(a.length-1)),x=X(i);cx.setAttribute('x1',x);cx.setAttribute('x2',x);cx.setAttribute('opacity',1);cd.setAttribute('cx',x);cd.setAttribute('cy',Y(b[i]));cd.setAttribute('opacity',1);
+  tip.style.opacity=1;tip.style.left=(22+x/W*r.width)+'px';tip.style.top=(48+Y(b[i])/H*r.height)+'px';tip.innerHTML=`<b>Week ${i+1}</b> · ${b[i]}k reach vs ${a[i]}k alone (${(b[i]/a[i]).toFixed(1)}×)`});
+ svg.addEventListener('mouseleave',()=>{tip.style.opacity=0;cx.setAttribute('opacity',0);cd.setAttribute('opacity',0)})})();
+// estimator
+const bud=document.getElementById('bud'),fmt=n=>n>=1e5?(n/1e5).toFixed(1)+'L':n.toLocaleString('en-IN');
+const est=()=>{const v=+bud.value;document.getElementById('budv').textContent='₹'+v.toLocaleString('en-IN');document.getElementById('o1').textContent=fmt(Math.round(v/90*1000/1000)*1000);document.getElementById('o2').textContent=Math.round(v/90*1000*.0035)};bud.oninput=est;est();
+// currency
+document.querySelectorAll('#cur button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cur button').forEach(x=>x.classList.toggle('on',x===b));
+ document.querySelectorAll('[data-inr]').forEach(p=>{const sm=p.querySelector('small');p.firstChild.textContent=p.dataset[b.dataset.c]})});
+// form → WhatsApp
+document.querySelectorAll('#need b').forEach(b=>b.onclick=()=>b.classList.toggle('on'));
+document.getElementById('lead').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),need=[...document.querySelectorAll('#need b.on')].map(b=>b.textContent).join(', ')||'Not sure yet';
+ open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hi Zannid & Co.! I'd like my free growth audit.\nName: ${f.get('name')}\nBrand: ${f.get('biz')}\nWhatsApp: ${f.get('phone')}\nNeed: ${need}\nBudget: ${f.get('budget')}`)}`,'_blank')};
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+const NOISE=`
+vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
+float snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);
+ vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);
+ vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;i=mod289(i);
+ vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
+ float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);
+ vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);
+ vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+ vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);
+ vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;
+ vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}`;
+const canvas=document.getElementById('gl');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.ACESFilmicToneMapping;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xfafafa);
+const CZ=7.6,camera=new THREE.PerspectiveCamera(35,1,.1,100);camera.position.set(0,0,CZ);
+const env=new THREE.Scene();
+env.add(new THREE.Mesh(new THREE.SphereGeometry(10,64,32),new THREE.ShaderMaterial({side:THREE.BackSide,
+ vertexShader:`varying vec3 v;void main(){v=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+ fragmentShader:`varying vec3 v;void main(){float a=atan(v.z,v.x)/6.2831;vec3 c=.5+.5*cos(6.2831*(a*3.+v.y*1.2+vec3(0.,.33,.67)));c=pow(c,vec3(1.4));gl_FragColor=vec4(c*1.6,1.);}`})));
+[[0,6,3],[-5,1,4]].forEach(p=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(3,1.2),new THREE.MeshBasicMaterial({color:new THREE.Color().setScalar(2),toneMapped:false,side:THREE.DoubleSide}));m.position.set(...p);m.lookAt(0,0,0);env.add(m)});
+scene.environment=new THREE.PMREMGenerator(renderer).fromScene(env,.03).texture;
+const group=new THREE.Group();scene.add(group);
+const U={uTime:{value:0},uAmp:{value:1},uPull:{value:.1},uMouse:{value:new THREE.Vector3(0,0,1)}};
+const glass=new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:.14,transmission:1,thickness:2.2,ior:1.5,iridescence:1,iridescenceIOR:1.8,iridescenceThicknessRange:[250,1100],clearcoat:.6,clearcoatRoughness:.08,envMapIntensity:1.1,dispersion:6});
+glass.onBeforeCompile=s=>{Object.assign(s.uniforms,U);
+ s.vertexShader=s.vertexShader.replace('#include <common>',`#include <common>
+uniform float uTime,uAmp,uPull;uniform vec3 uMouse;${NOISE}
+float disp(vec3 p){vec3 n=normalize(p);float d=snoise(n*1.1+uTime*.32)*.26*uAmp+snoise(n*2.4-uTime*.55)*.07*uAmp;return d+pow(max(dot(n,uMouse),0.),3.)*uPull;}
+vec3 dsp(vec3 p){return p+normalize(p)*disp(p);}`)
+ .replace('#include <beginnormal_vertex>',`vec3 n0=normalize(normal);vec3 t1=normalize(abs(n0.y)>.99?cross(n0,vec3(1.,0.,0.)):cross(n0,vec3(0.,1.,0.)));vec3 t2=cross(n0,t1);
+ vec3 pA=dsp(position);vec3 pB=dsp(position+t1*.01);vec3 pC=dsp(position+t2*.01);vec3 objectNormal=normalize(cross(pB-pA,pC-pA));`)
+ .replace('#include <begin_vertex>','vec3 transformed=pA;');};
+const blob=new THREE.Mesh(new THREE.IcosahedronGeometry(1,64),glass);blob.scale.set(1,1.28,1);group.add(blob);
+blob.add(new THREE.Mesh(new THREE.IcosahedronGeometry(.82,24),new THREE.ShaderMaterial({uniforms:{uTime:U.uTime},
+ vertexShader:`varying vec3 vp;void main(){vp=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+ fragmentShader:`uniform float uTime;varying vec3 vp;${NOISE}
+ void main(){float n=snoise(vp*2.4+uTime*.3)+.5*snoise(vp*5.+uTime*.5);vec3 c=.5+.5*cos(6.2831*(n*.55+vp.y*.6+uTime*.06+vec3(0.,.33,.67)));c=mix(vec3(dot(c,vec3(.33))),c,1.6);gl_FragColor=vec4(clamp(c,0.,1.)*1.15,1.);}`})));
+const pivot=new THREE.Group();group.add(pivot);
+const R=2.55,ring=new THREE.Mesh(new THREE.TorusGeometry(R,.012,8,320),new THREE.MeshBasicMaterial({color:0x0a0a0a}));pivot.add(ring);
+const hashA=new THREE.Object3D();hashA.position.set(R*Math.cos(.55),R*Math.sin(.55),0);ring.add(hashA);
+// checkpoints (dots hidden in hero, appear while scrolling)
+const secs=[...document.querySelectorAll('[data-label]')],STEP=.46,anchors=[],dots=[],labels=[];
+secs.forEach((s,i)=>{const ang=Math.PI+i*STEP,a=new THREE.Object3D();a.position.set(R*Math.cos(ang),R*Math.sin(ang),0);ring.add(a);anchors.push(a);
+ const d=new THREE.Mesh(new THREE.SphereGeometry(.05,14,14),new THREE.MeshBasicMaterial({color:0x0a0a0a}));d.position.copy(a.position);d.scale.setScalar(0);ring.add(d);dots.push(d);
+ const l=document.createElement('div');l.className='dl';l.innerHTML=`<span>${String(i).padStart(2,'0')}</span>${s.dataset.label}`;l.onclick=()=>s.scrollIntoView({behavior:'smooth'});document.body.append(l);labels.push(l)});
+const HERO=[1.28,.18,-.42],DIAL=[.12,-.22,0];
+const lerp=(a,b,t)=>a+(b-a)*t,clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const m={x:0,y:0,sx:0,sy:0,vel:0,kick:0,px:-1e4,py:-1e4};
+addEventListener('pointermove',e=>{const nx=e.clientX/innerWidth*2-1,ny=-(e.clientY/innerHeight*2-1);m.vel+=Math.hypot(nx-m.x,ny-m.y);m.x=nx;m.y=ny;m.px=e.clientX;m.py=e.clientY});
+addEventListener('pointerdown',()=>m.kick=.6);
+function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}addEventListener('resize',resize);resize();
+const hash=document.getElementById('hash'),tq=new THREE.Quaternion(),tv=new THREE.Vector3(),wp=new THREE.Vector3();
+let pS=0,tS=0,hov=0;const clock=new THREE.Clock();
+const P=v=>{v.project(camera);return[(v.x*.5+.5)*innerWidth,(-v.y*.5+.5)*innerHeight]};
+renderer.setAnimationLoop(()=>{
+ const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime,k=1-Math.exp(-dt*6);U.uTime.value=t;
+ const line=scrollY+innerHeight*.45;let p=0;
+ for(let i=0;i<secs.length;i++){const top=secs[i].offsetTop,nx=i<secs.length-1?secs[i+1].offsetTop:document.documentElement.scrollHeight;if(line>=top)p=i+clamp((line-top)/(nx-top))}
+ pS=lerp(pS,Math.min(p,secs.length-1),k);tS=lerp(tS,ease(clamp(scrollY/(innerHeight*.8))),k);const T=tS;
+ const halfH=Math.tan(THREE.MathUtils.degToRad(17.5))*CZ,halfW=halfH*camera.aspect,mob=innerWidth<960;
+ // dial: ring radius ≈ screen height; leftmost point at ~76% of width → most of the screen belongs to content
+ const sD=mob?.55:halfH*1.12/R,cxD=mob?halfW*.95:halfW*.52+R*sD;
+ group.position.set(lerp(0,cxD,T),lerp(0,mob?-halfH*.7:0,T),0);group.scale.setScalar(lerp(1,sD,T));
+ pivot.rotation.set(lerp(HERO[0],DIAL[0],T),lerp(HERO[1],DIAL[1],T),lerp(HERO[2],DIAL[2],T));
+ ring.rotation.z=-pS*STEP; // always clockwise while scrolling down
+ // nucleus: follows the mouse, wobbles harder when hovered
+ m.sx=lerp(m.sx,m.x,1-Math.exp(-dt*3));m.sy=lerp(m.sy,m.y,1-Math.exp(-dt*3));
+ blob.position.lerp(tv.set(m.sx*.6*(1-T)+m.sx*.12*T,m.sy*.45*(1-T)+m.sy*.25*T,0),k);blob.rotation.y=t*.15+pS*.6;
+ const[bx,by]=P(blob.getWorldPosition(wp)),br=innerHeight*.17*group.scale.x;hov=lerp(hov,Math.hypot(m.px-bx,m.py-by)<br?1:0,k);
+ m.vel*=Math.exp(-dt*5);m.kick*=Math.exp(-dt*3);
+ U.uAmp.value=lerp(U.uAmp.value,1+Math.min(m.vel*3,1.6)+hov*.7,k);U.uPull.value=lerp(U.uPull.value,.1+Math.min(m.vel*2.5,.55)+m.kick+hov*.25,k);
+ blob.getWorldQuaternion(tq).invert();U.uMouse.value.set((m.px-bx)/innerWidth*4,-(m.py-by)/innerHeight*4,.7).normalize().applyQuaternion(tq);
+ const[hx,hy]=P(hashA.getWorldPosition(wp));hash.style.transform=`translate(${hx}px,${hy}px)`;hash.style.opacity=1-clamp(T*2.5);
+ const vis=clamp(T*2-1); // dots + labels only after leaving the hero
+ dots.forEach((d,i)=>d.scale.setScalar(vis*(Math.round(pS)===i?1.6:1)));
+ labels.forEach((l,i)=>{const[x,y]=P(anchors[i].getWorldPosition(wp)),dist=Math.abs(i-pS),on=Math.round(pS)===i;l.classList.toggle('on',on);
+  const inView=x>0&&x<innerWidth-40&&y>70&&y<innerHeight-30;l.style.opacity=inView?vis*clamp(1.15-dist*.45):0;l.style.pointerEvents=l.style.opacity>.3?'auto':'none';
+  l.style.transform=`translate(${x+16}px,${y}px) translateY(-50%)`});
+ renderer.render(scene,camera);
+});
+</script>
+</body>
+</html>
