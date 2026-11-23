@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import {
+  budgetOptions,
+  content,
+  regionOptions,
+  services,
+  siteConfig,
+  whatsappLink,
+} from '../lib/site';
+const page = content.auditPage;
+const wa = whatsappLink('Hi Zannid & Co., I want a free growth audit.');
+---
+<Base
+  title="Free growth audit | A 30-day plan in 48 hours · Zannid & Co."
+  description="Get a free growth audit from Zannid & Co.: profile and content teardown, three quick wins and a 30-day content and ads plan. No pitch deck, no obligation."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">{page.eyebrow}</p>
+      <h1 class="display">{page.title}</h1>
+      <p class="lede">{page.lede}</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="audit-grid">
+        <div data-reveal>
+          <h2 class="display" style="font-size:clamp(1.6rem,2.6vw,2.3rem)">{page.includesTitle}</h2>
+          <ul class="include-list">
+            {page.includes.map((item) => (
+              <li>
+                <span class="icon-wrap"><Icon name="check" size={14} /></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="lede" style="margin-top:30px;max-width:44ch">
+            We look at your page, your competitors and your goals, then send a plan with three quick wins. Whether or not you hire us.
+          </p>
+          <div class="audit-meta">
+            <span>48 hours to plan</span>
+            <span>No pitch deck</span>
+            <span>No obligation</span>
+          </div>
+        </div>
+
+        <div class="form-card glass" data-reveal data-delay="1">
+          <h2>{page.formTitle}</h2>
+          <p class="form-lede">{page.formNote}</p>
+
+          <form
+            data-lead-form
+            data-wa={siteConfig.whatsapp}
+            data-email={siteConfig.email}
+            novalidate
+          >
+            <div data-form-fields>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="audit-name">Your name</label>
+                  <input id="audit-name" name="name" autocomplete="name" maxlength="120" required data-error="Add your name." />
+                </div>
+                <div class="field">
+                  <label for="audit-brand">Brand or business</label>
+                  <input id="audit-brand" name="brand" autocomplete="organization" maxlength="160" required data-error="Add your brand name." />
+                </div>
+                <div class="field full">
+                  <label for="audit-phone">WhatsApp number, with country code</label>
+                  <input id="audit-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" required data-error="Add a WhatsApp number with country code." />
+                </div>
+                <div class="field full">
+                  <label for="audit-service">Service interest</label>
+                  <select id="audit-service" name="service" required data-error="Choose the service you are most curious about.">
+                    <option value="">Choose one</option>
+                    {services.map((service) => <option value={service.slug}>{service.title}</option>)}
+                    <option value="not-sure">Not sure yet</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="audit-budget">Monthly budget</label>
+                  <select id="audit-budget" name="budget" required data-error="Choose a budget range.">
+                    <option value="">Choose one</option>
+                    {budgetOptions.map((budget) => <option value={budget}>{budget}</option>)}
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="audit-region">Region</label>
+                  <select id="audit-region" name="region" required data-error="Choose your region.">
+                    <option value="">Choose one</option>
+                    {regionOptions.map((region) => <option value={region}>{region}</option>)}
+                  </select>
+                </div>
+                <div class="hp" aria-hidden="true">
+                  <label for="audit-website">Website</label>
+                  <input id="audit-website" name="website" tabindex="-1" autocomplete="off" />
+                </div>
+                <input type="hidden" name="source" value="audit" />
+              </div>
+
+              <div class="form-foot">
+                <button class="btn" type="submit" data-submit>{page.submit} <Icon name="arrow" /></button>
+                <span class="micro">{page.formNote}</span>
+              </div>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+              <p class="form-success-note">{page.privacy}</p>
+            </div>
+
+            <div class="form-done" data-form-done hidden>
+              <div class="done-mark"><Icon name="check" size={22} /></div>
+              <h2 tabindex="-1">You're in.</h2>
+              <p>We have your details and will message you on WhatsApp within 24 hours. Want to skip the wait?</p>
+              <div class="actions">
+                <a class="btn" data-done-link href={wa} target={wa.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                  <Icon name="whatsapp" size={16} /> Continue on WhatsApp
+                </a>
+                <a class="btn ghost" href="/work">See the work</a>
+              </div>
+            </div>
+          </form>
+
+          <noscript>
+            <p class="micro" style="margin-top:16px">
+              The form needs JavaScript. Email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or
+              <a href={wa}> message us on WhatsApp</a> instead.
+            </p>
+          </noscript>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import '../scripts/forms';
+  </script>
+</Base>

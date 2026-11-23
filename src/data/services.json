@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "branding-and-brand-strategy",
+    "title": "Branding and Brand Strategy",
+    "shortTitle": "Branding",
+    "icon": "compass",
+    "headline": "A brand people remember, not just recognise.",
+    "benefit": "We find the one idea your brand should own, then build the identity, voice and guidelines that make every post look like you. Strategy first, aesthetics second, so the work sells instead of decorating.",
+    "deliverables": [
+      "Positioning, audience and competitor map",
+      "Naming, logo and visual identity system",
+      "Brand voice, messaging and tagline",
+      "Guidelines your team can actually use"
+    ],
+    "cta": "Book a branding consult"
+  },
+  {
+    "slug": "social-media-management",
+    "title": "Social Media Management",
+    "shortTitle": "Social media",
+    "icon": "social",
+    "headline": "Your page, run like a business.",
+    "benefit": "Strategy, calendar, captions, community and a monthly report that shows what moved. We post with intent, not just to fill the grid.",
+    "deliverables": [
+      "Monthly content strategy and calendar",
+      "12–30 posts and stories, written and designed",
+      "Daily community and DM replies",
+      "Monthly growth report with next steps"
+    ],
+    "cta": "Talk about social media"
+  },
+  {
+    "slug": "professional-photography-and-videography",
+    "title": "Professional Photography and Videography",
+    "shortTitle": "Photo & video",
+    "icon": "camera",
+    "headline": "Shoot once. Feed every channel.",
+    "benefit": "Styled stills and footage for your menu, product or space, lit and framed for feeds, ads and your website. One shoot day gives you a month of assets.",
+    "deliverables": [
+      "Pre-production, styling and shot list",
+      "Half-day or full-day shoot on location",
+      "Edited stills in feed, ad and web crops",
+      "Vertical video clips ready to post"
+    ],
+    "cta": "Plan a shoot"
+  },
+  {
+    "slug": "short-form-video-production-and-editing",
+    "title": "Short-form Video Production and Editing",
+    "shortTitle": "Short-form video",
+    "icon": "film",
+    "headline": "Built for the first two seconds.",
+    "benefit": "Hooks, scripts, captions, motion and sound design that hold attention past the scroll. First draft in 48 hours, edits that feel native to the feed.",
+    "deliverables": [
+      "Hook and script writing for every reel",
+      "Editing, captions, motion and sound design",
+      "Thumbnail and cover frame",
+      "Two revision rounds per edit"
+    ],
+    "cta": "Start a reel pack"
+  },
+  {
+    "slug": "instagram-growth-strategy",
+    "title": "Instagram Growth Strategy",
+    "shortTitle": "Instagram growth",
+    "icon": "growth",
+    "headline": "Reach the people who would actually buy.",
+    "benefit": "Profile teardown, hook library, posting rhythm and community routines tuned to your niche. Growth you can trace to profile visits, DMs and bookings.",
+    "deliverables": [
+      "Profile, content and competitor teardown",
+      "Hook library and 90-day content pillars",
+      "Posting, story and DM routines",
+      "Monthly metrics review with next tests"
+    ],
+    "cta": "Grow my Instagram"
+  },
+  {
+    "slug": "meta-advertising",
+    "title": "Meta Advertising",
+    "shortTitle": "Meta ads",
+    "icon": "target",
+    "headline": "Put money behind what already works.",
+    "benefit": "Offer strategy, creative testing and weekly optimisation across Facebook and Instagram. You keep the ad account; we own the numbers.",
+    "deliverables": [
+      "Offer, audience and funnel strategy",
+      "Campaign build and pixel setup",
+      "Weekly creative testing and optimisation",
+      "Spend, lead and cost-per-result reporting"
+    ],
+    "cta": "Run my Meta ads"
+  },
+  {
+    "slug": "influencer-marketing",
+    "title": "Influencer Marketing",
+    "shortTitle": "Influencer marketing",
+    "icon": "users",
+    "headline": "Creators your customers already trust.",
+    "benefit": "Matching, briefing, contracts and performance tracking, so collabs look native and convert. No vanity reach, no unposted drafts.",
+    "deliverables": [
+      "Creator sourcing and audience fit check",
+      "Briefs, scripts and approval flow",
+      "Contracts, timelines and deliverables",
+      "Performance tracking across collabs"
+    ],
+    "cta": "Build a creator programme"
+  },
+  {
+    "slug": "website-development",
+    "title": "Website Development",
+    "shortTitle": "Website",
+    "icon": "code",
+    "headline": "A site that turns visits into enquiries.",
+    "benefit": "Fast, responsive design built around one action, with SEO basics and WhatsApp-ready forms. Launch in weeks, not quarters.",
+    "deliverables": [
+      "Content structure and page design",
+      "Responsive build with fast page loads",
+      "On-page SEO and metadata",
+      "Lead forms wired to WhatsApp and email"
+    ],
+    "cta": "Brief a website"
+  },
+  {
+    "slug": "ai-automations",
+    "title": "AI Automations",
+    "shortTitle": "AI automations",
+    "icon": "bolt",
+    "headline": "Answer in seconds, even at 2am.",
+    "benefit": "DM, WhatsApp and call flows that qualify leads, book calls and follow up while you sleep. Your team only sees the conversations worth having.",
+    "deliverables": [
+      "Lead capture and qualification flows",
+      "Instagram DM and WhatsApp automations",
+      "Booking and follow-up sequences",
+      "Human handoff plus monthly monitoring"
+    ],
+    "cta": "Automate my enquiries"
+  },
+  {
+    "slug": "digital-marketing-strategy",
+    "title": "Digital Marketing Strategy",
+    "shortTitle": "Marketing strategy",
+    "icon": "strategy",
+    "headline": "One plan that connects every channel.",
+    "benefit": "Audit, positioning, channel mix, budget and 90-day roadmap in one document. Know what to do next, and what to stop paying for.",
+    "deliverables": [
+      "Full audit of page, site and ad account",
+      "Positioning and offer architecture",
+      "Channel mix and budget allocation",
+      "90-day roadmap with owners and metrics"
+    ],
+    "cta": "Get a growth roadmap"
+  }
+]

@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import ProseSections from '../components/ProseSections.astro';
+import { content } from '../lib/site';
+const page = content.privacy;
+---
+<Base
+  title="Privacy policy | Zannid & Co."
+  description="How Zannid & Co. collects, uses and stores enquiry details, what cookies the site uses, and how to ask for your data to be corrected or deleted."
+>
+  <section class="page-hero">
+    <div class="wrap prose-wrap">
+      <p class="eyebrow">Legal</p>
+      <h1 class="display">{page.title}</h1>
+      <p class="lede">Plain English, no surprises. This page explains what happens to the details you share with us.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap prose-wrap">
+      <div class="prose glass" data-reveal>
+        <ProseSections updated={page.updated} sections={page.sections} />
+      </div>
+    </div>
+  </section>
+</Base>

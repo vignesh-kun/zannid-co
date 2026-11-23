@@ -2,10 +2,18 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 ---
-<Base title="Page not found · Zannid & Co.">
-  <main class="nf">
-    <p class="disp">Off orbit.</p>
-    <p class="sub">This page drifted out of the ring. Let's get you back on track.</p>
-    <p><a class="btn" href="/">Back to Zannid <Icon name="arrow" /></a></p>
-  </main>
+<Base
+  title="Page not found | Zannid & Co."
+  description="This page drifted out of the ring. Head back to Zannid & Co. or start with a free growth audit."
+  noindex
+>
+  <section class="notfound">
+    <p class="eyebrow" style="justify-content:center">404</p>
+    <h1 class="display">Off orbit.</h1>
+    <p>This page drifted out of the ring. Let's get you back on track.</p>
+    <div class="actions center" style="margin-top:8px">
+      <a class="btn" href="/">Back to Zannid <Icon name="arrow" /></a>
+      <a class="btn ghost" href="/audit">Free growth audit</a>
+    </div>
+  </section>
 </Base>

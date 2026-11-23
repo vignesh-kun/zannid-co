@@ -1,0 +1,69 @@
+---
+import Icon from './Icon.astro';
+import { navigation, siteConfig } from '../lib/site';
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const active = (href: string) => path === href || (href !== '/' && path.startsWith(`${href}/`));
+---
+{
+  siteConfig.showUrgencyBanner && (
+    <div class="offer-banner">
+      <span class="dot" aria-hidden="true" />
+      <span>
+        <strong>Free growth audit + 30-day plan</strong>
+        <span class="offer-long">. Three brand slots this month.</span>
+      </span>
+      <a href="/audit">Claim a slot <Icon name="arrow" size={14} /></a>
+    </div>
+  )
+}
+<header class="site-head" data-head>
+  <div class="head-inner wrap">
+    <a class="brand" href="/" aria-label="Zannid & Co. home">
+      <svg viewBox="-6 0 150 120" aria-hidden="true">
+        <g transform="skewX(-16) translate(30,0)">
+          <path d="M10 28 L96 12 L104 12 L40 92 L106 84 L98 104 L8 112 L0 112 L66 34 L4 40 Z" fill="currentColor" />
+          <path d="M-8 76 L126 46" class="brand-cut" stroke-width="6" />
+        </g>
+      </svg>
+      <span class="brand-word">ZANNID</span>
+      <span class="brand-co">&amp; CO.</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main">
+      <ul>
+        {navigation.map((item) => (
+          <li>
+            <a href={item.href} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="head-actions">
+      <a class="head-contact" href="/contact">Contact</a>
+      <a class="btn sm" href="/audit">Get a free audit <Icon name="arrow" size={15} /></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+        <span class="sr">Open menu</span>
+        <Icon name="menu" size={22} class="menu-open-icon" />
+        <Icon name="close" size={22} class="menu-close-icon" />
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" data-menu hidden>
+    <nav aria-label="Mobile">
+      <ul class="mobile-nav">
+        {navigation.map((item) => (
+          <li><a href={item.href} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+        <li><a href="/contact" aria-current={active('/contact') ? 'page' : undefined}>Contact</a></li>
+        <li><a href="/audit" aria-current={active('/audit') ? 'page' : undefined}>Free growth audit</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-foot">
+      <a href={`mailto:${siteConfig.email}`}><Icon name="mail" size={16} /> {siteConfig.email}</a>
+      <a href={siteConfig.instagram} target="_blank" rel="noopener"><Icon name="instagram" size={16} /> {siteConfig.instagramHandle}</a>
+    </div>
+  </div>
+</header>

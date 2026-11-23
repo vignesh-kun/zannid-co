@@ -1,0 +1,10 @@
+---
+import Icon from './Icon.astro';
+import { whatsappLink } from '../lib/site';
+---
+<div class="mobile-bar" role="navigation" aria-label="Quick actions">
+  <a class="btn sm audit" href="/audit">Get a Free Audit <Icon name="arrow" size={15} /></a>
+  <a class="btn sm ghost wa" href={whatsappLink()} target={whatsappLink().startsWith('http') ? '_blank' : undefined} rel="noopener">
+    <Icon name="whatsapp" size={17} /> WhatsApp
+  </a>
+</div>

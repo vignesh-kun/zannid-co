@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "starter",
+    "name": "Starter",
+    "tagline": "For new brands getting consistent",
+    "amountInr": 49999,
+    "plus": false,
+    "mostChosen": false,
+    "includes": [
+      "social-media-management",
+      "short-form-video-production-and-editing",
+      "instagram-growth-strategy"
+    ],
+    "note": "A consistent page, a content engine and a growth plan. Month to month, no lock-in."
+  },
+  {
+    "slug": "growth",
+    "name": "Growth",
+    "tagline": "For brands ready to scale",
+    "amountInr": 129999,
+    "plus": false,
+    "mostChosen": true,
+    "includes": [
+      "social-media-management",
+      "short-form-video-production-and-editing",
+      "instagram-growth-strategy",
+      "professional-photography-and-videography",
+      "meta-advertising",
+      "ai-automations"
+    ],
+    "note": "Content, shoots, paid media and automation, run by one team that owns the result."
+  },
+  {
+    "slug": "scale",
+    "name": "Scale",
+    "tagline": "Your full growth department",
+    "amountInr": 249999,
+    "plus": true,
+    "mostChosen": false,
+    "includes": [
+      "branding-and-brand-strategy",
+      "social-media-management",
+      "professional-photography-and-videography",
+      "short-form-video-production-and-editing",
+      "instagram-growth-strategy",
+      "meta-advertising",
+      "influencer-marketing",
+      "website-development",
+      "ai-automations",
+      "digital-marketing-strategy"
+    ],
+    "note": "Every capability, a dedicated growth lead and the full AI automation suite."
+  }
+]

@@ -1,0 +1,191 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import {
+  budgetOptions,
+  content,
+  regionOptions,
+  services,
+  siteConfig,
+  whatsappLink,
+} from '../lib/site';
+const page = content.contactPage;
+const wa = whatsappLink('Hi Zannid & Co., I want to talk about growing my brand.');
+---
+<Base
+  title="Contact | Tell us what you are trying to grow · Zannid & Co."
+  description="Book a free consultation with Zannid & Co. Share your brand, service interest and budget in a short three-step brief, or message us on WhatsApp."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">{page.eyebrow}</p>
+      <h1 class="display">{page.title}</h1>
+      <p class="lede">{page.lede}</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="form-card glass" data-reveal>
+          <form
+            data-lead-form
+            data-wa={siteConfig.whatsapp}
+            data-email={siteConfig.email}
+            novalidate
+          >
+            <div data-form-fields>
+              <div class="steps-nav" aria-hidden="true">
+                <span class="step-dot is-active" data-step-dot>01 {page.stepOne}</span>
+                <span class="step-dot" data-step-dot>02 {page.stepTwo}</span>
+                <span class="step-dot" data-step-dot>03 {page.stepThree}</span>
+              </div>
+
+              <fieldset class="form-step" data-step>
+                <legend>Step 1 of 3 · About you</legend>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="contact-name">Your name</label>
+                    <input id="contact-name" name="name" autocomplete="name" maxlength="120" required data-error="Add your name." />
+                  </div>
+                  <div class="field">
+                    <label for="contact-brand">Brand or business</label>
+                    <input id="contact-brand" name="brand" autocomplete="organization" maxlength="160" required data-error="Add your brand name." />
+                  </div>
+                  <div class="field">
+                    <label for="contact-phone">WhatsApp number, with country code</label>
+                    <input id="contact-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" required data-error="Add a WhatsApp number with country code." />
+                  </div>
+                  <div class="field">
+                    <label for="contact-email">Email <span class="micro">(optional)</span></label>
+                    <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="200" data-error="Check the email address." />
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-step" data-step hidden>
+                <legend>Step 2 of 3 · What you need</legend>
+                <div class="field full">
+                  <label for="contact-service">Service interest</label>
+                  <select id="contact-service" name="service" required data-error="Choose the service you are most interested in.">
+                    <option value="">Choose one</option>
+                    {services.map((service) => <option value={service.slug}>{service.title}</option>)}
+                    <option value="not-sure">Not sure yet</option>
+                  </select>
+                </div>
+                <fieldset class="field full" style="border:0">
+                  <legend>Anything else in play? <span class="micro">(optional)</span></legend>
+                  <div class="chips">
+                    {services.map((service) => (
+                      <label class="chip">
+                        <input type="checkbox" name="needs" value={service.shortTitle} />
+                        <span>{service.shortTitle}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              </fieldset>
+
+              <fieldset class="form-step" data-step hidden>
+                <legend>Step 3 of 3 · The brief</legend>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="contact-budget">Monthly budget</label>
+                    <select id="contact-budget" name="budget">
+                      <option value="">Prefer not to say</option>
+                      {budgetOptions.map((budget) => <option value={budget}>{budget}</option>)}
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="contact-region">Region</label>
+                    <select id="contact-region" name="region">
+                      <option value="">Prefer not to say</option>
+                      {regionOptions.map((region) => <option value={region}>{region}</option>)}
+                    </select>
+                  </div>
+                  <div class="field full">
+                    <label for="contact-message">What are you trying to grow? <span class="micro">(optional)</span></label>
+                    <textarea id="contact-message" name="message" rows="4" maxlength="2000" placeholder="A sentence on the goal, the timeline and what has not worked so far."></textarea>
+                  </div>
+                  <div class="hp" aria-hidden="true">
+                    <label for="contact-website">Website</label>
+                    <input id="contact-website" name="website" tabindex="-1" autocomplete="off" />
+                  </div>
+                  <input type="hidden" name="source" value="contact" />
+                </div>
+              </fieldset>
+
+              <div class="form-nav" data-form-nav>
+                <button class="btn ghost sm" type="button" data-back hidden>Back</button>
+                <span class="spacer"></span>
+                <button class="btn sm" type="button" data-next>Continue <Icon name="arrow" size={15} /></button>
+                <button class="btn sm" type="submit" data-submit hidden>{page.submit} <Icon name="arrow" size={15} /></button>
+              </div>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="form-done" data-form-done hidden>
+              <div class="done-mark"><Icon name="check" size={22} /></div>
+              <h2 tabindex="-1">{page.successTitle}</h2>
+              <p>{page.successBody}</p>
+              <div class="actions">
+                <a class="btn" data-done-link href={wa} target={wa.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                  <Icon name="whatsapp" size={16} /> Continue on WhatsApp
+                </a>
+                <a class="btn ghost" href="/work">See the work</a>
+              </div>
+            </div>
+          </form>
+
+          <noscript>
+            <p class="micro" style="margin-top:16px">
+              The form needs JavaScript. Email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or
+              <a href={wa}> message us on WhatsApp</a> instead.
+            </p>
+          </noscript>
+        </div>
+
+        <aside class="ways-card glass" data-reveal data-delay="1">
+          <h2>{page.waysTitle}</h2>
+          <div class="ways">
+            <a href={wa} target={wa.startsWith('http') ? '_blank' : undefined} rel="noopener">
+              <span class="way-label"><Icon name="whatsapp" size={18} /> WhatsApp</span>
+              <span class="way-meta">replies in minutes</span>
+            </a>
+            <a href={`mailto:${siteConfig.email}`}>
+              <span class="way-label"><Icon name="mail" size={18} /> Email</span>
+              <span class="way-meta">{siteConfig.email}</span>
+            </a>
+            <a href={siteConfig.instagram} target="_blank" rel="noopener">
+              <span class="way-label"><Icon name="instagram" size={18} /> Instagram</span>
+              <span class="way-meta">{siteConfig.instagramHandle}</span>
+            </a>
+            <a href="/audit">
+              <span class="way-label"><Icon name="spark" size={18} /> Free audit</span>
+              <span class="way-meta">start here</span>
+            </a>
+          </div>
+          <p class="micro">{page.waysNote}</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import '../scripts/forms';
+
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get('service');
+    const bundle = params.get('bundle');
+    const serviceSelect = document.querySelector<HTMLSelectElement>('#contact-service');
+    const message = document.querySelector<HTMLTextAreaElement>('#contact-message');
+    if (service && serviceSelect) {
+      const match = [...serviceSelect.options].find((option) => option.value === service);
+      if (match) serviceSelect.value = service;
+    }
+    if (bundle && message) {
+      const label = bundle.charAt(0).toUpperCase() + bundle.slice(1);
+      message.value = `I am interested in the ${label} bundle. `;
+    }
+  </script>
+</Base>

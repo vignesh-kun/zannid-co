@@ -1,6 +1,31 @@
 ---
 // One stroke icon set (1.75px, round caps). Add paths here; never use emoji/glyphs as icons.
-interface Props { name: 'arrow' | 'arrow-up-right' | 'plus' | 'whatsapp' | 'instagram' | 'mail' | 'play' | 'check'; size?: number; class?: string }
+interface Props {
+  name:
+    | 'arrow'
+    | 'arrow-up-right'
+    | 'plus'
+    | 'check'
+    | 'whatsapp'
+    | 'instagram'
+    | 'mail'
+    | 'play'
+    | 'menu'
+    | 'close'
+    | 'compass'
+    | 'social'
+    | 'camera'
+    | 'film'
+    | 'growth'
+    | 'target'
+    | 'users'
+    | 'code'
+    | 'bolt'
+    | 'strategy'
+    | 'spark';
+  size?: number;
+  class?: string;
+}
 const { name, size = 18, class: cls = '' } = Astro.props;
 const paths: Record<string, string> = {
   arrow: '<path d="M4 12h15M13 6l6 6-6 6"/>',
@@ -9,8 +34,35 @@ const paths: Record<string, string> = {
   check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
   play: '<path d="M8 5.5v13l11-6.5z"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/>',
-  instagram: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>',
-  whatsapp: '<path d="M4 20l1.3-4A8 8 0 1 1 8.5 19z"/><path d="M9.2 8.6c.3-.6.6-.6.9-.6h.6c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.1.1-.1.3 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5v.4c0 .5-.5 1.3-1.4 1.5-.9.2-2.6-.1-4.3-1.6-1.7-1.4-2.6-3.3-2.6-4.4 0-.9.3-1.5.6-1.9z" stroke-width="1.2"/>',
+  menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
+  close: '<path d="m6 6 12 12M18 6 6 18"/>',
+  compass: '<circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/>',
+  social: '<circle cx="12" cy="12" r="3.2"/><path d="M5 8.5A3.5 3.5 0 0 1 8.5 5h7A3.5 3.5 0 0 1 19 8.5v7a3.5 3.5 0 0 1-3.5 3.5h-7A3.5 3.5 0 0 1 5 15.5z"/><path d="M17.4 6.6h.01"/>',
+  camera: '<path d="M4 8.5h2.3l1.4-2h8.6l1.4 2H20v10H4z"/><circle cx="12" cy="13" r="3.4"/>',
+  film: '<rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M8 5v14M16 5v14M3.5 9.5h4.5M16 9.5h4.5M3.5 14.5h4.5M16 14.5h4.5"/>',
+  growth: '<path d="M4 18V6M4 18h16"/><path d="m7 14 4-4 3 2.5 4.5-6"/><path d="M16 6.5h3.5V10"/>',
+  target: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>',
+  users: '<circle cx="9" cy="9" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 6.4a3 3 0 0 1 0 5.6M17.5 14.2A4.5 4.5 0 0 1 21 18.6"/>',
+  code: '<path d="m8.5 8-4.5 4 4.5 4M15.5 8l4.5 4-4.5 4M13.5 5l-3 14"/>',
+  bolt: '<path d="M13 3 5 13.5h5L10 21l8-10.5h-5z"/>',
+  strategy: '<rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/><path d="M11 7.5h4.5V13M7.5 11v4.5H13"/>',
+  spark: '<path d="M12 3.5 13.8 9l5.5 1.8-5.5 1.8L12 18l-1.8-5.4L4.7 10.8 10.2 9z"/>',
+  whatsapp:
+    '<path d="M4 20l1.3-4A8 8 0 1 1 8.5 19z"/><path d="M9.2 8.6c.3-.6.6-.6.9-.6h.6c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.1.1-.1.3 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5v.4c0 .5-.5 1.3-1.4 1.5-.9.2-2.6-.1-4.3-1.6-1.7-1.4-2.6-3.3-2.6-4.4 0-.9.3-1.5.6-1.9z" stroke-width="1.2"/>',
+  instagram:
+    '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>',
 };
 ---
-<svg class={`icon ${cls}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={paths[name]} />
+<svg
+  class={`icon ${cls}`}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  set:html={paths[name] ?? paths.arrow}
+/>

@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { content, services } from '../../lib/site';
+const page = content.servicesPage;
+---
+<Base
+  title="Services | Strategy, content, ads, websites and AI · Zannid & Co."
+  description="Ten growth services under one roof: branding, social media, photo and video, short-form editing, Instagram growth, Meta ads, creators, websites, AI automation and strategy."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">{page.eyebrow}</p>
+      <h1 class="display">{page.title}</h1>
+      <p class="lede">{page.lede}</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="svc-grid">
+        {services.map((service, i) => (
+          <a class="svc-card card glass" href={`/services/${service.slug}`} data-reveal data-delay={String(i % 2)}>
+            <div class="svc-top">
+              <span class="icon-badge"><Icon name={service.icon as 'compass'} size={21} /></span>
+              <span class="num-tag">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <h2>{service.title}</h2>
+            <p class="svc-headline">{service.headline}</p>
+            <p class="svc-benefit">{service.benefit}</p>
+            <span class="text-link">Explore {service.shortTitle.toLowerCase()} <Icon name="arrow" size={15} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="cta-panel glass" data-reveal>
+        <p class="eyebrow" style="justify-content:center">Not sure what you need?</p>
+        <h2 class="display">Start with the free audit.</h2>
+        <p class="lede">We will review your page, competitors and audience, then tell you which one or two services would move the business first.</p>
+        <div class="actions">
+          <a class="btn" href="/audit">Get my free growth audit <Icon name="arrow" /></a>
+          <a class="btn ghost" href="/pricing">See pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

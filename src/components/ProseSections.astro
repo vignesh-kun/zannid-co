@@ -1,0 +1,14 @@
+---
+interface Props {
+  updated: string;
+  sections: { heading: string; body: string[] }[];
+}
+const { updated, sections } = Astro.props;
+---
+<p class="updated">{updated}</p>
+{sections.map((section) => (
+  <>
+    <h2>{section.heading}</h2>
+    {section.body.map((paragraph) => <p>{paragraph}</p>)}
+  </>
+))}

@@ -1,0 +1,350 @@
+{
+  "home": {
+    "hero": {
+      "eyebrow": "Strategy · Content · Growth",
+      "titleBefore": "The growth team for brands that",
+      "titleAccent": "refuse to be ignored.",
+      "lede": "Strategy, reels, ads, websites and AI automations, all under one roof. One team, one invoice, measured on growth, not on posts.",
+      "primary": "Book a Free Consultation",
+      "secondary": "Get my free growth audit",
+      "note": "Working with brands across India and worldwide"
+    },
+    "problems": {
+      "eyebrow": "The real problem",
+      "title": "Your product is 🔥. Your page is 😴.",
+      "intro": "People are scrolling right now. If they can't find you, they can't choose you. Likes don't pay the bills; customers do.",
+      "cards": [
+        {
+          "title": "200 likes. 0 customers.",
+          "body": "Content that looks busy but never turns into orders, calls or bookings."
+        },
+        {
+          "title": "Posting daily. Growing never.",
+          "body": "No hooks, no strategy, no idea what's working, so the same 300 people see every post."
+        },
+        {
+          "title": "5 vendors. 0 direction.",
+          "body": "A designer here, an ads guy there, a shooter somewhere. Nobody owns the result."
+        }
+      ],
+      "fix": "Zannid fixes all three. One team that plans, shoots, posts, advertises and automates, measured on growth, not on posts."
+    },
+    "results": {
+      "eyebrow": "Built for 90 days",
+      "title": "What 90 days is built to do.",
+      "multiple": "3.4×",
+      "multipleLabel": "monthly reach a full Growth plan targets by week 12, compared with posting alone.",
+      "metrics": [
+        { "value": "7 days", "label": "to first content live" },
+        { "value": "48 hrs", "label": "first-draft turnaround" },
+        { "value": "24/7", "label": "DM and WhatsApp replies" }
+      ],
+      "funnelTitle": "Where 100,000 views go",
+      "funnelBadge": "Example, not a client result",
+      "funnelSteps": [
+        { "label": "Views", "value": "100,000", "width": 100 },
+        { "label": "Profile visits", "value": "6,000", "width": 42 },
+        { "label": "DMs and clicks", "value": "1,200", "width": 20 },
+        { "label": "Qualified leads", "value": "320", "width": 9 },
+        { "label": "Customers", "value": "80", "width": 4 }
+      ],
+      "funnelNote": "An illustrative funnel, not a promise. Our job is to widen every step: better hooks, a sharper profile, faster replies."
+    },
+    "proof": {
+      "eyebrow": "Why it works",
+      "title": "Short video earns attention. Systems turn it into revenue.",
+      "intro": "The format people choose and the trust it builds are measured every year. We plan around those numbers instead of guessing.",
+      "points": [
+        {
+          "value": "63%",
+          "text": "of people would most like to watch a short video to learn about a product or service.",
+          "source": "Wyzowl, State of Video Marketing 2026"
+        },
+        {
+          "value": "89%",
+          "text": "of consumers say video quality affects their trust in a brand.",
+          "source": "Wyzowl, State of Video Marketing 2026"
+        },
+        {
+          "value": "84%",
+          "text": "of people have been convinced to buy a product or service by watching a video.",
+          "source": "Wyzowl, State of Video Marketing 2026"
+        }
+      ]
+    },
+    "clients": {
+      "eyebrow": "Selected clients",
+      "title": "Working with brands across India and worldwide.",
+      "intro": "Cafés, restaurants, real estate, education, events, retail and production houses. Different categories, the same standard."
+    },
+    "process": {
+      "eyebrow": "How it works",
+      "title": "From hello to growth.",
+      "intro": "Six steps, one team, no mystery about what happens next.",
+      "steps": [
+        {
+          "when": "Day 1",
+          "title": "Free call",
+          "body": "Fifteen minutes. Your goals, your numbers, our honest take on what will move them.",
+          "fact": "15 minutes, no pitch deck. You leave with at least one idea you can use today."
+        },
+        {
+          "when": "Day 2–3",
+          "title": "Growth audit",
+          "body": "We tear down your page, your competitors and your audience, then send a 30-day plan.",
+          "fact": "48h from call to plan in your inbox."
+        },
+        {
+          "when": "Week 1",
+          "title": "Create",
+          "body": "Hooks, scripts, shoots and edits. Content built for the first two seconds.",
+          "fact": "89% of consumers say video quality affects their trust in a brand. Wyzowl 2026"
+        },
+        {
+          "when": "Week 2",
+          "title": "Amplify",
+          "body": "Meta ads and creators push your best content to people ready to buy.",
+          "fact": "84% of people have been convinced to buy by watching a video. Wyzowl 2026"
+        },
+        {
+          "when": "Week 2+",
+          "title": "Automate",
+          "body": "DM, WhatsApp and call bots reply instantly, qualify leads and book them in.",
+          "fact": "24/7 replies, so no lead waits until Monday."
+        },
+        {
+          "when": "Monthly",
+          "title": "Scale",
+          "body": "A clear report: what worked, what didn't, and where the next rupee goes.",
+          "fact": "A monthly review with one decision: double down, adjust or stop."
+        }
+      ]
+    },
+    "final": {
+      "eyebrow": "One team. One invoice.",
+      "title": "Ready to grow?",
+      "body": "Claim your free growth audit and 30-day plan. We will review your page, competitors and audience, then send three quick wins you can use with or without us.",
+      "primary": "Get my free growth audit",
+      "secondary": "Book a Free Consultation",
+      "note": "We reply within 24 hours. No lock-in, no pitch deck."
+    }
+  },
+  "servicesPage": {
+    "eyebrow": "What we do",
+    "title": "One team. Ten ways to grow.",
+    "lede": "Take one service or let us run the whole engine. Every engagement starts with the same question: what actually moves the business?"
+  },
+  "pricingPage": {
+    "eyebrow": "Pricing",
+    "title": "One team. One invoice.",
+    "lede": "Pick a bundle for the fastest start, or build exactly what you need from the à la carte table. All prices are indicative starting points.",
+    "separatelyTitle": "The honest comparison",
+    "separatelyLede": "Most brands end up stitching four vendors together. It costs more than they expect and nobody owns the outcome.",
+    "oursTitle": "The Zannid bundle",
+    "oursBody": "Strategy, content, shoots, ads, creators and automation, run by one team that owns the result. One point of contact, one invoice, one standard.",
+    "oursNote": "No lock-in. Monthly plans, cancel before the next cycle. Ad spend is paid directly to Meta.",
+    "faqTitle": "Pricing questions"
+  },
+  "workPage": {
+    "eyebrow": "Work",
+    "title": "Work people stop scrolling for.",
+    "lede": "Content built for the first two seconds, then measured on what happened next. These are reels from our own feed and the brands we work with.",
+    "reelsTitle": "Case-study reels",
+    "reelsNote": "Public engagement at the time of publishing. Client results are shared on request.",
+    "clientsTitle": "The client wall",
+    "clientsLede": "Twenty-five brands across food, retail, real estate, education, events and production."
+  },
+  "auditPage": {
+    "eyebrow": "Free growth audit",
+    "title": "Get a free growth audit and a 30-day plan.",
+    "lede": "We review your page, competitors and audience, then send a plan you can use with or without us. No pitch deck, no obligation.",
+    "includesTitle": "What you get",
+    "includes": [
+      "Profile and content teardown",
+      "Three quick wins for this week",
+      "30-day content and ads plan",
+      "A clear answer on what we would do first"
+    ],
+    "formTitle": "Tell us where you are",
+    "formNote": "We reply within 24 hours, usually much sooner.",
+    "submit": "Claim my free audit",
+    "privacy": "Your details are used only to prepare your audit. No newsletter, no spam."
+  },
+  "contactPage": {
+    "eyebrow": "Let's talk",
+    "title": "Tell us what you are trying to grow.",
+    "lede": "A short brief is enough. We will come back with questions, a point of view and the next useful step.",
+    "waysTitle": "Prefer to talk now?",
+    "waysNote": "WhatsApp replies in minutes during working hours. Email is best for briefs and documents.",
+    "stepOne": "About you",
+    "stepTwo": "What you need",
+    "stepThree": "The brief",
+    "submit": "Send my brief",
+    "successTitle": "You're in.",
+    "successBody": "We have your details and will message you on WhatsApp within 24 hours."
+  },
+  "aboutPage": {
+    "eyebrow": "About Zannid & Co.",
+    "title": "A growth team, not a content vendor.",
+    "lede": "Zannid & Co. exists for brands that are doing good work and being ignored for it. We bring strategy, production, paid media and automation into one team so the work has a job beyond looking good.",
+    "storyTitle": "Why we started",
+    "story": [
+      "Most small brands do not have a marketing problem. They have an ownership problem. A designer here, an ads freelancer there, a cousin who edits reels. Each piece can be fine; together they never become a system.",
+      "We built Zannid to be that system: one team that plans the month, shoots the content, runs the ads, answers the DMs and reports on what moved. The same people who promise the result are the ones doing the work.",
+      "We work with cafés and restaurants, real estate, education, retail, events and production houses across India and internationally. Different categories, same standard: strategy first, craft second, measurement always."
+    ],
+    "principlesTitle": "What we believe",
+    "principles": [
+      {
+        "title": "Strategy first",
+        "body": "Every reel has a job: reach, trust or sale. We start with the why, not the trend."
+      },
+      {
+        "title": "One owner",
+        "body": "One team, one WhatsApp group, one invoice. No vendor ping-pong."
+      },
+      {
+        "title": "No lock-in",
+        "body": "Monthly plans. We earn next month by delivering this one."
+      },
+      {
+        "title": "You own it all",
+        "body": "Raw footage, edits, ad accounts and automations stay yours, forever."
+      },
+      {
+        "title": "Fast, then right",
+        "body": "First drafts in 48 hours. First content live in 7 days. Speed is a feature, not an excuse."
+      },
+      {
+        "title": "Anywhere",
+        "body": "From neighbourhood cafés to global D2C brands: same team, same standard."
+      }
+    ],
+    "numbers": [
+      { "value": "10", "label": "services under one roof" },
+      { "value": "25", "label": "brands in the client wall" },
+      { "value": "48h", "label": "first-draft turnaround" },
+      { "value": "7 days", "label": "to first content live" }
+    ]
+  },
+  "faqPage": {
+    "eyebrow": "FAQ",
+    "title": "Questions, answered.",
+    "lede": "The things founders ask us before the first call. If yours is not here, ask it directly."
+  },
+  "forms": {
+    "budgets": [
+      "Under ₹35,000",
+      "₹35,000 – ₹80,000",
+      "₹80,000 – ₹1,50,000",
+      "₹1,50,000 – ₹3,00,000",
+      "₹3,00,000+",
+      "USD / international"
+    ],
+    "regions": [
+      "India",
+      "Middle East",
+      "Europe",
+      "North America",
+      "Asia Pacific",
+      "Other / worldwide"
+    ],
+    "servicesLabel": "Service interest",
+    "budgetLabel": "Monthly budget",
+    "regionLabel": "Region"
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: 23 November 2026",
+    "sections": [
+      {
+        "heading": "What we collect",
+        "body": [
+          "When you submit an audit, contact or brief form we collect the name, brand, WhatsApp number, email address, service interest, budget range, region and message you choose to give us.",
+          "We also receive basic technical information such as your browser user agent and the time of submission, used to keep the form working and to stop spam."
+        ]
+      },
+      {
+        "heading": "Why we collect it",
+        "body": [
+          "We use your details only to respond to your enquiry, prepare an audit or proposal, and manage a working relationship if you become a client.",
+          "We do not sell your data, add you to a newsletter you did not ask for, or share your details with advertisers."
+        ]
+      },
+      {
+        "heading": "Where it is stored",
+        "body": [
+          "Form submissions are stored in a managed Postgres database (Supabase) with access restricted to Zannid & Co. The site itself is hosted on Vercel.",
+          "We keep enquiry records only as long as needed to respond and to meet our accounting and legal obligations."
+        ]
+      },
+      {
+        "heading": "Cookies and analytics",
+        "body": [
+          "The site does not set advertising cookies. Currency preference and interface state may be stored locally in your browser so the site remembers your choice.",
+          "If we add privacy-respecting analytics later, this page will say what is measured before it goes live."
+        ]
+      },
+      {
+        "heading": "Your choices",
+        "body": [
+          "You can ask us to access, correct or delete the enquiry data we hold about you by emailing hello@zannid.co. We will respond within a reasonable period.",
+          "If you are in the EU or UK, you may also have the right to object to processing or lodge a complaint with your local data protection authority."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "For any privacy question, email hello@zannid.co with the subject line “Privacy”."
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of service",
+    "updated": "Last updated: 23 November 2026",
+    "sections": [
+      {
+        "heading": "Using this site",
+        "body": [
+          "This website is operated by Zannid & Co. By using it you agree to these terms. The content is provided for information; it is not a binding offer, and prices shown are indicative starting points."
+        ]
+      },
+      {
+        "heading": "Services and quotes",
+        "body": [
+          "Every engagement is confirmed by a written scope and quote. Deliverables, timelines, revision rounds and payment terms are set out there. A published range does not guarantee a price or availability.",
+          "Ad spend, domain, hosting, third-party subscriptions, payment gateway charges and travel are billed separately unless a scope says otherwise."
+        ]
+      },
+      {
+        "heading": "Payments and cancellation",
+        "body": [
+          "Monthly plans are billed in advance and can be cancelled with notice before the next billing cycle. Project work usually requires a deposit before production starts.",
+          "Late payments may pause delivery. Work already produced or media already spent remains payable."
+        ]
+      },
+      {
+        "heading": "Intellectual property",
+        "body": [
+          "On full payment, you own the final deliverables produced for you, including raw footage and edits. We retain the right to show the work in our portfolio unless you ask us not to in writing.",
+          "Our own tools, templates, processes and pre-existing materials remain ours."
+        ]
+      },
+      {
+        "heading": "Results",
+        "body": [
+          "Marketing outcomes depend on your offer, market, budget and response times. We commit to the scope and the standard of work, not to a specific revenue outcome.",
+          "Statistics on this site are sourced from third-party research and are labelled with their source."
+        ]
+      },
+      {
+        "heading": "Liability and law",
+        "body": [
+          "To the extent permitted by law, our liability is limited to the fees paid for the affected engagement. These terms are governed by the laws of India, with courts in Hyderabad having jurisdiction.",
+          "Questions about these terms: hello@zannid.co."
+        ]
+      }
+    ]
+  }
+}

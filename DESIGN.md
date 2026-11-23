@@ -1,36 +1,35 @@
 # Design
 
-World: "The orbit". Achromatic paper and ink; colour lives only inside the iridescent glass nucleus, the Zanny mascot and photography. The ring around the nucleus is the page's navigation: it turns clockwise with scroll and each section is a checkpoint.
+World: **daylight glass**. Warm paper floor, soft colour only in the atmosphere behind the glass, achromatic type and one black action per section. The iridescent nucleus and its ring remain the brand object on the desktop home page.
 
-## Colour (Restrained, achromatic)
+## Colour
 | Token | Value | Use |
 |---|---|---|
-| --bg | #fafafa | page ground |
-| --paper | #ffffff | tables, panels, form |
-| --ink | #0a0a0a | text, primary buttons, rules, rail, best plan |
-| --ink2 | #2b2b2b | secondary reading text |
-| --mute | #6b6b6b | captions, metadata (≥4.5:1 on --bg) |
-| --faint | #9a9a9a | on-ink secondary, dashed series |
-| --line | #e4e4e4 | hairlines |
-| --soft | #f1f1f1 | bar tracks, estimator cells |
-No gradients in UI chrome. No accent colour.
+| --bg | #f7f4f0 | page ground |
+| --ink | #0d0d12 | text, primary buttons, mark |
+| --ink-2 | #383842 | reading text |
+| --mute | #55555f | captions and metadata (AA on glass) |
+| --line | rgba(13,13,18,.11) | hairlines |
+| --glass | rgba(255,255,255,.58) | surfaces |
+| --glass-strong | rgba(255,255,255,.78) | nav, forms |
+| --glass-line | rgba(255,255,255,.74) | glass edge |
+
+The fixed `.aurora` layer carries peach, lilac, mint and rose radial washes. It is atmosphere, never a text background on its own.
 
 ## Type
-- Display: Archivo Variable, width 125%, weight 900, uppercase, tracking -0.02em, max 6rem.
-- Reading: Familjen Grotesk Variable, 17px / 1.55, measure ≤ 70ch.
-- Data: Martian Mono Variable, tabular numerals: prices, counts, countdown, axes only.
-- Brand: Syncopate 700: the ZANNID wordmark, GROWTH / SCALE corners and the # mark.
+- Display: Archivo Variable, 700–800, tracking −0.038em. Large, quiet, sentence case.
+- Reading: Familjen Grotesk Variable, 17px / 1.6, measure ≤ 62ch.
+- Data: Martian Mono Variable for eyebrows, prices, counts and labels.
+- Brand: Syncopate 700 for the ZANNID wordmark.
 
-## Shape & space
-- One radius: 14px (--r); pills (999px) only for actions and toggles.
-- Structure is hairline tables and full-bleed rows (1.5px ink outer, 1px --line inner), never card grids.
-- Section rhythm: 140px top, 110px bottom, content column from --gut to 30vw from the right (ring zone).
+## Surfaces
+Glass: gradient white fill, 1px white edge, blur + saturation, one soft shadow, inner top highlight. Used on nav, cards, pricing tables, forms and the mobile menu. One radius family (26px / 16px); pills only for actions and filters.
 
-## Components
-Buttons (ink pill, ghost pill), text link (1.5px underline), offer bar → vertical rail, honeycomb service selector + detail table, work strip, reach chart, funnel bars, estimator, DM phone, step table, plan table + comparison, FAQ disclosure, lead form with sending / sent / error states.
+## Layout
+Generous vertical rhythm (68–124px), 1240px content rail, left-aligned copy. On desktop home the content is capped at 760px with a reserved right column for the orbit. Below 1024px everything stacks and the orbit is removed.
 
 ## Motion
-One authored moment: the ring turning clockwise with scroll, nucleus following the pointer. Data animates once on entry (chart draw, funnel, chat). Easing cubic-bezier(.16,1,.3,1). Reduced motion freezes nucleus wobble and entrances.
+One authored moment: the ring turns clockwise with scroll; the nucleus follows the pointer. Everything else is a short fade-up on entry. Reduced motion freezes the ring and removes reveals. No pinned or scroll-hijacked sections anywhere.
 
 ## Icons
-One stroke set (src/components/Icon.astro), 1.75px, round caps. No emoji as icons (emoji only inside copy).
+One 1.75px stroke set in `src/components/Icon.astro`. No emoji as icons (emoji only in copy).

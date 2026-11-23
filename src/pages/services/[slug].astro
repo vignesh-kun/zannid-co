@@ -1,0 +1,173 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import {
+  canonicalUrl,
+  content,
+  publicRowsFor,
+  services,
+  siteConfig,
+  startingPrice,
+  type Service,
+} from '../../lib/site';
+import { priceLabel } from '../../lib/site';
+
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+const index = services.findIndex((item) => item.slug === service.slug);
+const rows = publicRowsFor(service.slug);
+const related = [...services.filter((item) => item.slug !== service.slug).slice(index, index + 3)];
+const relatedFinal = related.length === 3 ? related : [...related, ...services.filter((item) => item.slug !== service.slug && !related.includes(item))].slice(0, 3);
+const pageTitle = `${service.title} | ${service.headline.replace(/\.$/, '')} · Zannid & Co.`;
+const description = `${service.headline} ${service.benefit}`.slice(0, 158);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  serviceType: service.title,
+  description: service.benefit,
+  url: canonicalUrl(`/services/${service.slug}`),
+  provider: { '@type': 'ProfessionalService', name: 'Zannid & Co.', url: siteConfig.canonical },
+  areaServed: ['India', 'Worldwide'],
+  offers: rows.map((row) => ({
+    '@type': 'Offer',
+    name: row.tier,
+    priceCurrency: 'INR',
+    price: row.inr.min,
+    description: priceLabel(row, 'INR'),
+  })),
+};
+const crumbs = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: canonicalUrl('/') },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: canonicalUrl('/services') },
+    { '@type': 'ListItem', position: 3, name: service.title, item: canonicalUrl(`/services/${service.slug}`) },
+  ],
+};
+---
+<Base title={pageTitle} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span>
+        <a href="/services">Services</a><span aria-hidden="true">/</span>
+        <span aria-current="page">{service.shortTitle}</span>
+      </nav>
+
+      <div class="svc-detail-grid">
+        <div class="svc-detail-head">
+          <p class="eyebrow">{String(index + 1).padStart(2, '0')} — {service.title}</p>
+          <h1 class="display">{service.headline}</h1>
+          <p class="lede">{service.benefit}</p>
+          <div class="actions">
+            <a class="btn" href={`/contact?service=${service.slug}`}>{service.cta} <Icon name="arrow" /></a>
+            <a class="btn ghost" href="/audit">Free growth audit</a>
+          </div>
+        </div>
+
+        <aside class="svc-aside glass" aria-labelledby="price-heading">
+          <h2 id="price-heading">Indicative pricing</h2>
+          <ul class="price-lines">
+            {rows.map((row) => (
+              <li>
+                <span class="tier">{row.tier}</span>
+                <span class="price" data-money data-inr={priceLabel(row, 'INR')} data-usd={priceLabel(row, 'USD')}>{priceLabel(row, 'INR')}</span>
+              </li>
+            ))}
+          </ul>
+          <a class="btn wide" href={`/contact?service=${service.slug}`}>Start a conversation</a>
+          <p class="micro"><span data-money data-inr={startingPrice(service.slug, 'INR')} data-usd={startingPrice(service.slug, 'USD')}>{startingPrice(service.slug, 'INR')}</span>. Final quotes depend on scope, integrations and timelines.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="eyebrow">What you get</p>
+          <h2 class="display">The work, specifically.</h2>
+          <p class="lede">{content.servicesPage.lede}</p>
+        </div>
+      </div>
+      <div class="deliverables">
+        {service.deliverables.map((item) => (
+          <div class="deliverable glass" data-reveal>
+            <Icon name="check" size={18} />
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="eyebrow">How it runs</p>
+          <h2 class="display">From first call to measured result.</h2>
+        </div>
+      </div>
+      <div class="process-grid">
+        {content.home.process.steps.slice(0, 4).map((step, i) => (
+          <article class="step-card card glass" data-reveal data-delay={String(i % 2)}>
+            <span class="step-when">{step.when}</span>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+              <p class="step-fact">{step.fact}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="eyebrow">Keep going</p>
+          <h2 class="display">Often paired with.</h2>
+        </div>
+      </div>
+      <div class="related-grid">
+        {relatedFinal.map((item) => (
+          <a class="related-card glass" href={`/services/${item.slug}`} data-reveal>
+            <span class="num-tag">{item.shortTitle}</span>
+            <strong>{item.headline}</strong>
+            <span>{item.title}</span>
+            <Icon name="arrow" size={17} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="cta-panel glass" data-reveal>
+        <p class="eyebrow" style="justify-content:center">One team. One invoice.</p>
+        <h2 class="display">Want this scoped for your brand?</h2>
+        <p class="lede">Book a free consultation or start with the audit. Either way you leave with a clearer next step.</p>
+        <div class="actions">
+          <a class="btn" href="/contact">Book a Free Consultation <Icon name="arrow" /></a>
+          <a class="btn ghost" href="/audit">Get my free growth audit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
