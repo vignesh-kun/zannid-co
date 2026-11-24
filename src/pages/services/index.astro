@@ -1,35 +1,109 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
-import { content, services } from '../../lib/site';
+import {
+  content,
+  serviceGroups,
+  services,
+  servicesInGroup,
+  totalOptions,
+} from '../../lib/site';
 const page = content.servicesPage;
+const groups = serviceGroups.map((group) => ({
+  ...group,
+  count: servicesInGroup(group.slug).length,
+}));
 ---
+
 <Base
-  title="Services | Strategy, content, ads, websites and AI · Zannid & Co."
-  description="Ten growth services under one roof: branding, social media, photo and video, short-form editing, Instagram growth, Meta ads, creators, websites, AI automation and strategy."
+  title="Services | 19 services, 5 departments · Zannid & Co."
+  description="Brand, content, growth, websites, AI, SaaS and mobile engineering. Nineteen services with named options, scoped and quoted per engagement."
 >
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="eyebrow">{page.eyebrow}</p>
-      <h1 class="display">{page.title}</h1>
-      <p class="lede">{page.lede}</p>
+  <section class="svc-hero">
+    <div class="wrap svc-hero-grid">
+      <div>
+        <h1 class="display">
+          Nineteen services.<br />
+          <span class="svc-quiet">Five departments.</span><br />
+          One team.
+        </h1>
+      </div>
+      <div class="svc-hero-side">
+        <p class="lede">{page.lede}</p>
+        <dl class="svc-counts">
+          <div>
+            <dt>Services</dt>
+            <dd class="mono">{services.length}</dd>
+          </div>
+          <div>
+            <dt>Named options</dt>
+            <dd class="mono">{totalOptions}</dd>
+          </div>
+        </dl>
+      </div>
     </div>
   </section>
 
-  <section class="section-tight">
-    <div class="wrap">
-      <div class="svc-grid">
-        {services.map((service, i) => (
-          <a class="svc-card card glass" href={`/services/${service.slug}`} data-reveal data-delay={String(i % 2)}>
-            <div class="svc-top">
-              <span class="icon-badge"><Icon name={service.icon as 'compass'} size={21} /></span>
-              <span class="num-tag">{String(i + 1).padStart(2, '0')}</span>
+  <section class="svc-index-section" aria-labelledby="index-title">
+    <div class="wrap svc-layout">
+      <aside class="svc-rail" aria-label="Departments">
+        <p class="rail-label">{page.railTitle}</p>
+        <nav>
+          {groups.map((group) => (
+            <a href={`#${group.slug}`}>
+              <span>{group.title}</span>
+              <span class="mono">{group.count}</span>
+            </a>
+          ))}
+        </nav>
+        <a class="rail-cta" href="/contact">
+          Not sure? Start with the goal <Icon name="arrow" size={14} />
+        </a>
+        <p class="rail-note">{page.indexNote}</p>
+      </aside>
+
+      <div class="svc-groups">
+        <h2 class="sr" id="index-title">Service index</h2>
+        {groups.map((group) => (
+          <section class="svc-group" id={group.slug} aria-labelledby={`${group.slug}-title`}>
+            <header class="svc-group-head">
+              <div>
+                <h3 class="display" id={`${group.slug}-title`}>{group.title}</h3>
+                <p>{group.blurb}</p>
+              </div>
+              <span class="svc-count mono">{group.count} services</span>
+            </header>
+
+            <div class="svc-rows">
+              {servicesInGroup(group.slug).map((service) => (
+                <a class="svc-row" href={`/services/${service.slug}`} data-reveal>
+                  <div class="svc-row-head">
+                    <span class="svc-row-icon" aria-hidden="true">
+                      <Icon name={service.icon as 'compass'} size={18} />
+                    </span>
+                    <div>
+                      <h4>{service.title}</h4>
+                      <p>{service.summary}</p>
+                    </div>
+                  </div>
+
+                  <div class="svc-opts">
+                    <span class="svc-opts-label">{service.options.length} options</span>
+                    {service.options.map((option) => (
+                      <span class="opt-line">
+                        <b>{option.name}</b>
+                        <span>{option.timeline}</span>
+                      </span>
+                    ))}
+                  </div>
+
+                  <span class="svc-row-go" aria-hidden="true">
+                    <Icon name="arrow" size={16} />
+                  </span>
+                </a>
+              ))}
             </div>
-            <h2>{service.title}</h2>
-            <p class="svc-headline">{service.headline}</p>
-            <p class="svc-benefit">{service.benefit}</p>
-            <span class="text-link">Explore {service.shortTitle.toLowerCase()} <Icon name="arrow" size={15} /></span>
-          </a>
+          </section>
         ))}
       </div>
     </div>
@@ -37,13 +111,17 @@ const page = content.servicesPage;
 
   <section class="section-tight">
     <div class="wrap">
-      <div class="cta-panel glass" data-reveal>
-        <p class="eyebrow" style="justify-content:center">Not sure what you need?</p>
-        <h2 class="display">Start with the free audit.</h2>
-        <p class="lede">We will review your page, competitors and audience, then tell you which one or two services would move the business first.</p>
+      <div class="quote-panel glass" data-reveal>
+        <div>
+          <h2 class="display">Every price starts with a scope.</h2>
+          <p class="lede">
+            Tell us the goal and the deadline. We come back with a written scope, a price and a
+            start date within two working days. No rate card, no surprise line items.
+          </p>
+        </div>
         <div class="actions">
-          <a class="btn" href="/audit">Get my free growth audit <Icon name="arrow" /></a>
-          <a class="btn ghost" href="/pricing">See pricing</a>
+          <a class="btn" href="/contact">Get a quote <Icon name="arrow" /></a>
+          <a class="btn ghost" href="/audit">Free growth audit</a>
         </div>
       </div>
     </div>

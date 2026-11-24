@@ -1,0 +1,27 @@
+[
+  {
+    "slug": "brand",
+    "title": "Brand & content",
+    "blurb": "The identity, the assets and the channels that carry them."
+  },
+  {
+    "slug": "growth",
+    "title": "Growth & advertising",
+    "blurb": "Paid reach, creators and the plan that connects them."
+  },
+  {
+    "slug": "digital",
+    "title": "Websites & AI",
+    "blurb": "Sites and automations that turn attention into a working pipeline."
+  },
+  {
+    "slug": "product",
+    "title": "Product engineering",
+    "blurb": "SaaS and mobile products, from first scope to store launch."
+  },
+  {
+    "slug": "care",
+    "title": "Care & maintenance",
+    "blurb": "The unglamorous work that keeps everything running after launch."
+  }
+]

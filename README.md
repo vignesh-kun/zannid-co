@@ -6,10 +6,10 @@ Multi-page, data-driven site for Zannid & Co. Astro + Three.js on Vercel. Every 
 
 | File | What it controls |
 | --- | --- |
-| `src/data/site.config.json` | WhatsApp number, email, Instagram, canonical domain, default currency (`INR`), `usdRate` (88), `showUrgencyBanner` |
-| `src/data/services.json` | The ten services, copy, deliverables and CTA labels. Order here is the order on the site |
-| `src/data/pricing.json` | À la carte rows, the footer note and the “hiring separately” comparison |
-| `src/data/bundles.json` | Starter / Growth / Scale amounts, included service slugs and the “Most chosen” flag |
+| `src/data/site.config.json` | WhatsApp number, email, Instagram, canonical domain, `showUrgencyBanner` |
+| `src/data/services.json` | The 19 services in order, each with its named options, timelines and inclusions |
+| `src/data/service-groups.json` | The five departments used by the services index, rail and footer |
+| `src/data/bundles.json` | Starter / Growth / Scale engagement shapes and included service slugs |
 | `src/data/clients.json` | The 25 client-wall entries |
 | `src/data/work.json` | Case-study reels, links and public engagement |
 | `src/data/faqs.json` | General, pricing and process FAQs |
@@ -25,26 +25,37 @@ Set the real number in `src/data/site.config.json`:
 
 Digits only, with country code. Leave it empty and WhatsApp buttons point to `/contact` instead of inventing a number. Email and Instagram are read from the same file.
 
-### Pricing rows
+### Services and options
+
+Every service is rendered as a set of named options rather than a prose description:
 
 ```json
 {
-  "service": "social-media-management",
-  "tier": "Growth",
-  "unit": "month",
-  "inr": { "min": 75000, "max": 125000 },
-  "usd": { "min": 850, "max": 1420 },
-  "public": true
+  "slug": "saas-launchpad-mvp",
+  "title": "SaaS Launchpad MVP",
+  "shortTitle": "SaaS MVP",
+  "group": "product",
+  "icon": "rocket",
+  "summary": "From idea to a working product in weeks, not quarters.",
+  "options": [
+    {
+      "name": "Validation sprint",
+      "bestFor": "Test the demand before building the whole thing.",
+      "timeline": "1–2 weeks",
+      "includes": ["Problem and user interviews", "Clickable prototype", "Scope and pricing model"]
+    }
+  ]
 }
 ```
 
-- `service` must match a `slug` in `services.json`.
-- `unit` is `one-time`, `month` or `shoot day`.
-- A retainer (`month`) is prefixed with “from”.
-- `max: null` renders **Quote on request**.
-- `public: false` keeps a row out of the table without deleting it.
-- INR uses Indian grouping; USD uses `$1,500` style. Both values come from this file, so nothing is converted at build time for the table. Bundle USD is derived from `amountInr` and `usdRate`.
-- Bundle amounts are in `bundles.json` (Starter ₹49,999; Growth ₹1,29,999; Scale ₹2,49,999+). Only INR is stored; USD is calculated.
+- `group` must match a `slug` in `service-groups.json`.
+- `icon` must exist in `src/components/Icon.astro`.
+- Order in `services.json` is the order inside each department; department order comes from `service-groups.json`.
+- The services index, service page, contact dropdown and footer all read from these files.
+
+### Pricing
+
+There is no rate card and no price data. `/pricing` explains the quote process, the three engagement shapes and what sets the number. Every CTA sends people to `/contact` or `/audit`, where the enquiry is scoped and quoted. To reintroduce published prices later, add a price field to the service options and render it in `src/pages/services/[slug].astro`.
 
 ### Client logos
 
@@ -85,8 +96,9 @@ The static pages are prerendered. `/api/lead` is the only serverless function, c
 
 - **Desktop home:** a WebGL glass nucleus with a scroll-linked ring on the right. Loaded only at ≥1024px, after idle, and reduced to a static frame for `prefers-reduced-motion`.
 - **Below 1024px:** no canvas, no pinned sections, normal vertical scroll with fade-in reveals.
-- **Glass:** nav, cards, pricing tables, forms and the mobile menu sit on a soft fixed gradient so text keeps AA contrast.
-- **Currency:** `/pricing` defaults from the browser locale/time zone (India → INR, elsewhere → USD), remembers the user’s switch in `localStorage`, and updates every price from `data-inr` / `data-usd`.
+- **Services:** a sticky department rail beside an option-led index. Each row shows the service summary and its named options with timelines; each service page turns those options into full cards.
+- **Pricing:** quote-led. No figures, currency switch or rate table; the page explains scope, production, build and pace, then routes to a scoping call.
+- **Glass:** nav, cards, the service rail, forms and the mobile menu sit on a soft fixed gradient so text keeps AA contrast.
 - **Mobile bar:** “Get a Free Audit” and WhatsApp on every page.
 - **Accessibility:** skip link, keyboard focus states, labelled inputs, inline errors, `aria-live` status, reduced-motion support, no horizontal scroll.
 

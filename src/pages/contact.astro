@@ -5,7 +5,9 @@ import {
   budgetOptions,
   content,
   regionOptions,
+  serviceGroups,
   services,
+  servicesInGroup,
   siteConfig,
   whatsappLink,
 } from '../lib/site';
@@ -69,7 +71,13 @@ const wa = whatsappLink('Hi Zannid & Co., I want to talk about growing my brand.
                   <label for="contact-service">Service interest</label>
                   <select id="contact-service" name="service" required data-error="Choose the service you are most interested in.">
                     <option value="">Choose one</option>
-                    {services.map((service) => <option value={service.slug}>{service.title}</option>)}
+                    {serviceGroups.map((group) => (
+                      <optgroup label={group.title}>
+                        {servicesInGroup(group.slug).map((service) => (
+                          <option value={service.slug}>{service.title}</option>
+                        ))}
+                      </optgroup>
+                    ))}
                     <option value="not-sure">Not sure yet</option>
                   </select>
                 </div>
@@ -177,15 +185,20 @@ const wa = whatsappLink('Hi Zannid & Co., I want to talk about growing my brand.
     const params = new URLSearchParams(window.location.search);
     const service = params.get('service');
     const bundle = params.get('bundle');
+    const option = params.get('option');
     const serviceSelect = document.querySelector<HTMLSelectElement>('#contact-service');
     const message = document.querySelector<HTMLTextAreaElement>('#contact-message');
     if (service && serviceSelect) {
-      const match = [...serviceSelect.options].find((option) => option.value === service);
+      const match = [...serviceSelect.options].find((entry) => entry.value === service);
       if (match) serviceSelect.value = service;
     }
     if (bundle && message) {
       const label = bundle.charAt(0).toUpperCase() + bundle.slice(1);
-      message.value = `I am interested in the ${label} bundle. `;
+      message.value = `I am interested in the ${label} plan. `;
+    }
+    if (service && option && message) {
+      const label = serviceSelect?.selectedOptions[0]?.textContent ?? 'this service';
+      message.value = `I am interested in the ${option} option for ${label}. `;
     }
   </script>
 </Base>

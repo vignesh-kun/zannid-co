@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
-import { canonicalUrl, defaultCurrency, siteConfig } from '../lib/site';
+import { canonicalUrl, siteConfig } from '../lib/site';
 
 interface Props {
   title: string;
@@ -33,11 +33,18 @@ const schema = {
     'Website development',
     'AI automation',
     'Digital marketing strategy',
+    'Custom SaaS engineering',
+    'SaaS MVP development',
+    'Cloud and AI platforms',
+    'Mobile app development',
+    'Application maintenance',
+    'Website care and security',
+    'Full-stack maintenance',
   ],
 };
 ---
 <!doctype html>
-<html lang="en" data-currency={defaultCurrency}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

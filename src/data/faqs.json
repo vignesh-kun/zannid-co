@@ -12,7 +12,7 @@
   {
     "group": "General",
     "q": "Can I take just one service?",
-    "a": "Yes. Any service works on its own: only reels, only ads, only a website. Bundles bring the cost down when you want more than one."
+    "a": "Yes. Any service or option works on its own: only reels, only ads, only an app. We quote the combination if you want more than one."
   },
   {
     "group": "General",
@@ -36,13 +36,18 @@
   },
   {
     "group": "Pricing",
-    "q": "Why do prices say “from”?",
-    "a": "Every engagement starts with scope. The published ranges are indicative starting points; the final quote depends on deliverables, integrations, shoot locations and timelines."
+    "q": "How does pricing work?",
+    "a": "Every engagement is scoped on a short call, then quoted in writing. You get one price for the agreed scope, not an hourly meter. Quotes usually go out within two working days."
+  },
+  {
+    "group": "Pricing",
+    "q": "Do you publish starting prices?",
+    "a": "No. A public starting number is either wrong for most clients or padded for the rest. We would rather spend ten minutes understanding the work and quote the real thing."
   },
   {
     "group": "Pricing",
     "q": "Can I pay in USD?",
-    "a": "Yes. The pricing table toggles between INR and USD, and international clients can be invoiced in USD. Bank and payment gateway charges are billed separately."
+    "a": "Yes. We invoice in INR or USD, and international clients can pay by transfer or card. Bank and payment gateway charges are billed separately."
   },
   {
     "group": "Pricing",
@@ -52,7 +57,7 @@
   {
     "group": "Pricing",
     "q": "Can I upgrade a bundle later?",
-    "a": "Yes. You can move between Starter, Growth and Scale at the start of any billing cycle. We credit the unused portion of your current plan."
+    "a": "Yes. Starter, Growth and Scale are starting shapes. We re-scope and re-quote at the start of any cycle as your channels or product needs change."
   },
   {
     "group": "Process",

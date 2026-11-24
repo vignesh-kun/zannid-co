@@ -1,8 +1,7 @@
 ---
 import Icon from './Icon.astro';
-import { services, siteConfig, whatsappLink } from '../lib/site';
+import { serviceGroups, siteConfig, whatsappLink } from '../lib/site';
 const year = new Date().getFullYear();
-const featured = services.slice(0, 5);
 ---
 <footer class="site-foot">
   <div class="wrap foot-grid">
@@ -23,8 +22,8 @@ const featured = services.slice(0, 5);
 
     <div class="foot-col">
       <h2>Services</h2>
-      {featured.map((service) => <a href={`/services/${service.slug}`}>{service.shortTitle}</a>)}
-      <a class="foot-more" href="/services">All ten services <Icon name="arrow" size={14} /></a>
+      {serviceGroups.map((group) => <a href={`/services#${group.slug}`}>{group.title}</a>)}
+      <a class="foot-more" href="/services">All nineteen services <Icon name="arrow" size={14} /></a>
     </div>
 
     <div class="foot-col">

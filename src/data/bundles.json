@@ -2,9 +2,8 @@
   {
     "slug": "starter",
     "name": "Starter",
-    "tagline": "For new brands getting consistent",
-    "amountInr": 49999,
-    "plus": false,
+    "tagline": "For brands getting consistent",
+    "bestFor": "One channel, a steady content rhythm and someone accountable for both.",
     "mostChosen": false,
     "includes": [
       "social-media-management",
@@ -17,8 +16,7 @@
     "slug": "growth",
     "name": "Growth",
     "tagline": "For brands ready to scale",
-    "amountInr": 129999,
-    "plus": false,
+    "bestFor": "Content, shoots, paid media and automation run by one team that owns the result.",
     "mostChosen": true,
     "includes": [
       "social-media-management",
@@ -28,14 +26,13 @@
       "meta-advertising",
       "ai-automations"
     ],
-    "note": "Content, shoots, paid media and automation, run by one team that owns the result."
+    "note": "The full marketing engine, with the numbers reviewed every month."
   },
   {
     "slug": "scale",
     "name": "Scale",
     "tagline": "Your full growth department",
-    "amountInr": 249999,
-    "plus": true,
+    "bestFor": "The full marketing department, with product and care added as the roadmap needs them.",
     "mostChosen": false,
     "includes": [
       "branding-and-brand-strategy",
@@ -49,6 +46,6 @@
       "ai-automations",
       "digital-marketing-strategy"
     ],
-    "note": "Every capability, a dedicated growth lead and the full AI automation suite."
+    "note": "A dedicated growth lead, the full content engine and the automation suite."
   }
 ]

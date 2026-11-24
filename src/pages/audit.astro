@@ -5,7 +5,9 @@ import {
   budgetOptions,
   content,
   regionOptions,
+  serviceGroups,
   services,
+  servicesInGroup,
   siteConfig,
   whatsappLink,
 } from '../lib/site';
@@ -75,7 +77,13 @@ const wa = whatsappLink('Hi Zannid & Co., I want a free growth audit.');
                   <label for="audit-service">Service interest</label>
                   <select id="audit-service" name="service" required data-error="Choose the service you are most curious about.">
                     <option value="">Choose one</option>
-                    {services.map((service) => <option value={service.slug}>{service.title}</option>)}
+                    {serviceGroups.map((group) => (
+                      <optgroup label={group.title}>
+                        {servicesInGroup(group.slug).map((service) => (
+                          <option value={service.slug}>{service.title}</option>
+                        ))}
+                      </optgroup>
+                    ))}
                     <option value="not-sure">Not sure yet</option>
                   </select>
                 </div>

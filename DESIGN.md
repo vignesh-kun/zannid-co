@@ -19,14 +19,16 @@ The fixed `.aurora` layer carries peach, lilac, mint and rose radial washes. It 
 ## Type
 - Display: Archivo Variable, 700–800, tracking −0.038em. Large, quiet, sentence case.
 - Reading: Familjen Grotesk Variable, 17px / 1.6, measure ≤ 62ch.
-- Data: Martian Mono Variable for eyebrows, prices, counts and labels.
+- Data: Martian Mono Variable for timelines, counts, chips and labels.
 - Brand: Syncopate 700 for the ZANNID wordmark.
 
 ## Surfaces
-Glass: gradient white fill, 1px white edge, blur + saturation, one soft shadow, inner top highlight. Used on nav, cards, pricing tables, forms and the mobile menu. One radius family (26px / 16px); pills only for actions and filters.
+Glass: gradient white fill, 1px white edge, blur + saturation, one soft shadow, inner top highlight. Used on nav, option cards, the department rail, forms and the mobile menu. One radius family (26px / 16px); pills only for actions and filters.
 
 ## Layout
 Generous vertical rhythm (68–124px), 1240px content rail, left-aligned copy. On desktop home the content is capped at 760px with a reserved right column for the orbit. Below 1024px everything stacks and the orbit is removed.
+
+The services index uses a 218px sticky department rail beside hairline service rows: summary and icon on the left, the named options and their timelines on the right, one arrow. Service pages pair a large title and scope card with a three-column option deck. No price tables; pricing is an explanatory page of engagement shapes and scope factors.
 
 ## Motion
 One authored moment: the ring turns clockwise with scroll; the nucleus follows the pointer. Everything else is a short fade-up on entry. Reduced motion freezes the ring and removes reveals. No pinned or scroll-hijacked sections anywhere.

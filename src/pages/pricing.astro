@@ -1,72 +1,53 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import {
-  bundlePrice,
-  bundles,
-  comparison,
-  content,
-  faqGroup,
-  moneyRange,
-  priceLabel,
-  pricingNote,
-  pricingRows,
-  serviceTitle,
-  services,
-} from '../lib/site';
+import { bundles, content, faqGroup, serviceTitle } from '../lib/site';
 
 const page = content.pricingPage;
-const groups = services
-  .map((service) => ({
-    service,
-    rows: pricingRows.filter((row) => row.service === service.slug && row.public),
-  }))
-  .filter((group) => group.rows.length);
-const growth = bundles.find((bundle) => bundle.mostChosen) ?? bundles[1];
 const faqs = faqGroup('Pricing');
 ---
+
 <Base
-  title="Pricing | Bundles and à la carte services · Zannid & Co."
-  description="Starter, Growth and Scale bundles plus à la carte pricing for branding, social media, content, ads, websites and AI automation. INR and USD."
+  title="Pricing | Scoped, then quoted · Zannid & Co."
+  description="No rate card. Every Zannid & Co. engagement is scoped on a short call, then quoted in writing within two working days. Starter, Growth and Scale shapes."
 >
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="eyebrow">{page.eyebrow}</p>
+  <section class="page-hero pricing-hero">
+    <div class="wrap pricing-hero-grid">
       <h1 class="display">{page.title}</h1>
-      <p class="lede">{page.lede}</p>
+      <div class="pricing-hero-side">
+        <p class="lede">{page.lede}</p>
+        <ul class="pricing-promise">
+          {page.promise.map((item) => <li><Icon name="check" size={15} />{item}</li>)}
+        </ul>
+      </div>
     </div>
   </section>
 
   <section class="section-tight" aria-labelledby="bundles-title">
     <div class="wrap">
-      <div class="currency-row">
+      <div class="section-head" data-reveal>
         <div>
-          <h2 class="display" id="bundles-title" style="font-size:clamp(1.6rem,2.6vw,2.2rem)">Bundles</h2>
-          <p class="micro" style="margin-top:6px">Monthly plans. No lock-in.</p>
-        </div>
-        <div>
-          <div class="currency-toggle" role="group" aria-label="Currency">
-            <button type="button" data-currency="INR" aria-pressed="true">₹ INR</button>
-            <button type="button" data-currency="USD" aria-pressed="false">$ USD</button>
-          </div>
-          <p class="currency-note" id="currency-status" aria-live="polite">Prices shown in Indian rupees.</p>
+          <h2 class="display" id="bundles-title">{page.bundlesTitle}</h2>
+          <p class="lede">{page.bundlesLede}</p>
         </div>
       </div>
 
-      <div class="bundle-grid">
+      <div class="engage-grid">
         {bundles.map((bundle, i) => (
-          <article class:list={['bundle', 'glass', { featured: bundle.mostChosen }]} data-reveal data-delay={String(i)}>
-            <div class="bundle-top">
-              <h3 class="display" style="font-size:1.45rem">{bundle.name}</h3>
+          <article
+            class:list={['engage', 'glass', { featured: bundle.mostChosen }]}
+            data-reveal
+            data-delay={String(i)}
+          >
+            <div class="engage-top">
+              <h3 class="display">{bundle.name}</h3>
               {bundle.mostChosen && <span class="tag">Most chosen</span>}
             </div>
             <p class="tagline">{bundle.tagline}</p>
-            <p class="amount">
-              <span
-                data-money
-                data-inr={bundlePrice(bundle, 'INR')}
-                data-usd={bundlePrice(bundle, 'USD')}
-              >{bundlePrice(bundle, 'INR')}</span><small> /month</small>
+            <p class="engage-best">{bundle.bestFor}</p>
+            <p class="quote-line">
+              <span class="mono">Quoted monthly</span>
+              <span>after a scoping call</span>
             </p>
             <ul>
               {bundle.includes.map((slug) => (
@@ -74,112 +55,50 @@ const faqs = faqGroup('Pricing');
               ))}
             </ul>
             <a class:list={['btn', 'wide', { ghost: !bundle.mostChosen }]} href={`/contact?bundle=${bundle.slug}`}>
-              {bundle.mostChosen ? 'Get the Growth plan' : bundle.slug === 'scale' ? 'Talk to us' : `Start with ${bundle.name}`}
+              Ask for the {bundle.name} quote
               {bundle.mostChosen && <Icon name="arrow" size={16} />}
             </a>
             <p class="note">{bundle.note}</p>
           </article>
         ))}
       </div>
-
     </div>
   </section>
 
-  <section class="section-tight" aria-labelledby="table-title">
+  <section class="section-tight" aria-labelledby="factors-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <div>
-          <p class="eyebrow">À la carte</p>
-          <h2 class="display" id="table-title">Take exactly what you need.</h2>
-          <p class="lede">Every row is a real starting point. Retainers say “from” because the final scope sets the number.</p>
+          <h2 class="display" id="factors-title">{page.factorsTitle}</h2>
+          <p class="lede">{page.factorsLede}</p>
         </div>
       </div>
-
-      <div class="table-wrap glass" data-reveal>
-        <table class="price-table">
-          <caption>Indicative pricing in INR and USD. Switch currency above; the table follows.</caption>
-          <thead>
-            <tr>
-              <th scope="col">Service and tier</th>
-              <th scope="col" style="text-align:right">Indicative price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {groups.map((group) => (
-              <>
-                <tr class="is-group">
-                  <th colspan="2"><span class="svc-name">{group.service.title}</span></th>
-                </tr>
-                {group.rows.map((row) => (
-                  <tr>
-                    <th scope="row">
-                      <span class="svc-name" aria-hidden="true">{group.service.shortTitle}</span>
-                      {row.tier}
-                    </th>
-                    <td class="price">
-                      <span data-money data-inr={priceLabel(row, 'INR')} data-usd={priceLabel(row, 'USD')}>{priceLabel(row, 'INR')}</span>
-                    </td>
-                  </tr>
-                ))}
-              </>
-            ))}
-          </tbody>
-        </table>
+      <div class="factor-grid" data-reveal>
+        {page.factors.map((factor) => (
+          <article class="factor">
+            <h3>{factor.title}</h3>
+            <p>{factor.body}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="section-tight" aria-labelledby="compare-title">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <div>
-          <p class="eyebrow">The honest comparison</p>
-          <h2 class="display" id="compare-title">{page.separatelyTitle}</h2>
-          <p class="lede">{page.separatelyLede}</p>
-        </div>
+  <section class="section-tight" aria-labelledby="flow-title">
+    <div class="wrap quote-flow">
+      <div class="quote-flow-head" data-reveal>
+        <h2 class="display" id="flow-title">{page.quoteTitle}</h2>
+        <p class="lede">{page.quoteLede}</p>
       </div>
-
-      <div class="compare-grid">
-        <div class="compare-panel glass" data-reveal>
-          <h3>{comparison.title}</h3>
-          <ul class="compare-list">
-            {comparison.items.map((item) => (
-              <li>
-                <span>{item.label}</span>
-                <span
-                  data-money
-                  data-inr={moneyRange(item.inr, 'INR')}
-                  data-usd={moneyRange(item.usd, 'USD')}
-                >{moneyRange(item.inr, 'INR')}</span>
-              </li>
-            ))}
-          </ul>
-          <div class="compare-total">
-            <span>{comparison.total.label}</span>
-            <span
-              data-money
-              data-inr={moneyRange(comparison.total.inr, 'INR')}
-              data-usd={moneyRange(comparison.total.usd, 'USD')}
-            >{moneyRange(comparison.total.inr, 'INR')}</span>
-          </div>
-          <p class="source">{comparison.source}</p>
-        </div>
-
-        <div class="compare-panel glass" data-reveal data-delay="1">
-          <h3>{page.oursTitle}</h3>
-          <p class="ours-price">
-            <span
-              data-money
-              data-inr={bundlePrice(growth, 'INR')}
-              data-usd={bundlePrice(growth, 'USD')}
-            >{bundlePrice(growth, 'INR')}</span><small> /month</small>
-          </p>
-          <p style="color:var(--ink-2);font-size:14.5px">{page.oursBody}</p>
-          <a class="btn wide" style="margin-top:22px" href="/contact">Talk about the Growth plan <Icon name="arrow" size={16} /></a>
-          <p class="source">{page.oursNote}</p>
-        </div>
-      </div>
-      <p class="pricing-note">{pricingNote}</p>
+      <ol class="quote-steps">
+        {page.quoteSteps.map((step, i) => (
+          <li data-reveal data-delay={String(i)}>
+            <span class="mono">0{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -187,7 +106,6 @@ const faqs = faqGroup('Pricing');
     <div class="wrap">
       <div class="section-head" data-reveal>
         <div>
-          <p class="eyebrow">Before you ask</p>
           <h2 class="display" id="pricing-faq-title">{page.faqTitle}</h2>
         </div>
       </div>
@@ -200,8 +118,8 @@ const faqs = faqGroup('Pricing');
         ))}
       </div>
       <div class="actions" style="margin-top:28px">
-        <a class="btn" href="/audit">Get a free audit first <Icon name="arrow" /></a>
-        <a class="btn ghost" href="/contact">Ask a pricing question</a>
+        <a class="btn" href="/contact">Ask a pricing question <Icon name="arrow" /></a>
+        <a class="btn ghost" href="/audit">Get a free audit first</a>
       </div>
     </div>
   </section>

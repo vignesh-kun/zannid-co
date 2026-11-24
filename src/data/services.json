@@ -3,150 +3,760 @@
     "slug": "branding-and-brand-strategy",
     "title": "Branding and Brand Strategy",
     "shortTitle": "Branding",
+    "group": "brand",
     "icon": "compass",
-    "headline": "A brand people remember, not just recognise.",
-    "benefit": "We find the one idea your brand should own, then build the identity, voice and guidelines that make every post look like you. Strategy first, aesthetics second, so the work sells instead of decorating.",
-    "deliverables": [
-      "Positioning, audience and competitor map",
-      "Naming, logo and visual identity system",
-      "Brand voice, messaging and tagline",
-      "Guidelines your team can actually use"
-    ],
-    "cta": "Book a branding consult"
+    "summary": "The idea your brand owns, and the system that makes every touchpoint look like it.",
+    "options": [
+      {
+        "name": "Positioning sprint",
+        "bestFor": "Founders who know the work but not the words.",
+        "timeline": "2 weeks",
+        "includes": [
+          "Audience and competitor map",
+          "Positioning and offer architecture",
+          "Messaging hierarchy and tagline"
+        ]
+      },
+      {
+        "name": "Identity system",
+        "bestFor": "A brand moving from scrappy to unmistakable.",
+        "timeline": "3–4 weeks",
+        "includes": [
+          "Logo, wordmark and visual language",
+          "Type, colour and art direction",
+          "Social, deck and packaging templates"
+        ]
+      },
+      {
+        "name": "Brand book and rollout",
+        "bestFor": "Teams that need everyone telling the same story.",
+        "timeline": "5–6 weeks",
+        "includes": [
+          "Full guidelines and asset library",
+          "Launch campaign toolkit",
+          "Team workshop and handover"
+        ]
+      }
+    ]
   },
   {
     "slug": "social-media-management",
     "title": "Social Media Management",
     "shortTitle": "Social media",
+    "group": "brand",
     "icon": "social",
-    "headline": "Your page, run like a business.",
-    "benefit": "Strategy, calendar, captions, community and a monthly report that shows what moved. We post with intent, not just to fill the grid.",
-    "deliverables": [
-      "Monthly content strategy and calendar",
-      "12–30 posts and stories, written and designed",
-      "Daily community and DM replies",
-      "Monthly growth report with next steps"
-    ],
-    "cta": "Talk about social media"
+    "summary": "Strategy, calendar, community and reporting, run as one operation.",
+    "options": [
+      {
+        "name": "Essential",
+        "bestFor": "One channel that needs to show up consistently.",
+        "timeline": "Monthly",
+        "includes": [
+          "12 posts and stories a month",
+          "Caption and design system",
+          "Monthly performance note"
+        ]
+      },
+      {
+        "name": "Growth",
+        "bestFor": "Two channels with a real content engine.",
+        "timeline": "Monthly",
+        "includes": [
+          "20 posts and stories a month",
+          "Community and DM management",
+          "Monthly strategy call"
+        ]
+      },
+      {
+        "name": "Full department",
+        "bestFor": "Multi-channel brands that need a team, not a freelancer.",
+        "timeline": "Monthly",
+        "includes": [
+          "30+ posts across platforms",
+          "Daily community and reputation management",
+          "Weekly reporting and content shoots"
+        ]
+      }
+    ]
   },
   {
     "slug": "professional-photography-and-videography",
     "title": "Professional Photography and Videography",
     "shortTitle": "Photo & video",
+    "group": "brand",
     "icon": "camera",
-    "headline": "Shoot once. Feed every channel.",
-    "benefit": "Styled stills and footage for your menu, product or space, lit and framed for feeds, ads and your website. One shoot day gives you a month of assets.",
-    "deliverables": [
-      "Pre-production, styling and shot list",
-      "Half-day or full-day shoot on location",
-      "Edited stills in feed, ad and web crops",
-      "Vertical video clips ready to post"
-    ],
-    "cta": "Plan a shoot"
+    "summary": "Stills and footage built for feeds, ads and the site in one shoot.",
+    "options": [
+      {
+        "name": "Half-day shoot",
+        "bestFor": "A tight batch for one product, menu or space.",
+        "timeline": "1 day",
+        "includes": [
+          "Up to 6 hours on location",
+          "25 edited stills",
+          "4 vertical clips for social"
+        ]
+      },
+      {
+        "name": "Full-day shoot",
+        "bestFor": "A full content bank across locations or looks.",
+        "timeline": "1 day",
+        "includes": [
+          "Up to 10 hours on location",
+          "60 edited stills",
+          "8 vertical clips and b-roll"
+        ]
+      },
+      {
+        "name": "Campaign production",
+        "bestFor": "A launch that needs art direction, cast and crew.",
+        "timeline": "1–2 weeks",
+        "includes": [
+          "Concept, styling and shot list",
+          "Full crew and location production",
+          "Stills, video and ad cutdowns"
+        ]
+      }
+    ]
   },
   {
     "slug": "short-form-video-production-and-editing",
     "title": "Short-form Video Production and Editing",
     "shortTitle": "Short-form video",
+    "group": "brand",
     "icon": "film",
-    "headline": "Built for the first two seconds.",
-    "benefit": "Hooks, scripts, captions, motion and sound design that hold attention past the scroll. First draft in 48 hours, edits that feel native to the feed.",
-    "deliverables": [
-      "Hook and script writing for every reel",
-      "Editing, captions, motion and sound design",
-      "Thumbnail and cover frame",
-      "Two revision rounds per edit"
-    ],
-    "cta": "Start a reel pack"
+    "summary": "Hooks, edits and sound that survive the first two seconds.",
+    "options": [
+      {
+        "name": "Edit-only pack",
+        "bestFor": "You shoot it; we make it land.",
+        "timeline": "5–7 days",
+        "includes": [
+          "8 reels edited from your footage",
+          "Hooks, captions and sound design",
+          "Two revision rounds per reel"
+        ]
+      },
+      {
+        "name": "Managed reel pack",
+        "bestFor": "A monthly rhythm without hiring an editor.",
+        "timeline": "Monthly",
+        "includes": [
+          "12 reels written and edited",
+          "Cover frames and captions",
+          "Monthly hook and retention review"
+        ]
+      },
+      {
+        "name": "Always-on content",
+        "bestFor": "Daily posting with a production pipeline behind it.",
+        "timeline": "Monthly",
+        "includes": [
+          "20+ reels a month",
+          "Shoot day and scripting included",
+          "Weekly performance iteration"
+        ]
+      }
+    ]
   },
   {
     "slug": "instagram-growth-strategy",
     "title": "Instagram Growth Strategy",
     "shortTitle": "Instagram growth",
+    "group": "brand",
     "icon": "growth",
-    "headline": "Reach the people who would actually buy.",
-    "benefit": "Profile teardown, hook library, posting rhythm and community routines tuned to your niche. Growth you can trace to profile visits, DMs and bookings.",
-    "deliverables": [
-      "Profile, content and competitor teardown",
-      "Hook library and 90-day content pillars",
-      "Posting, story and DM routines",
-      "Monthly metrics review with next tests"
-    ],
-    "cta": "Grow my Instagram"
+    "summary": "Reach, profile visits and DMs that turn into enquiries.",
+    "options": [
+      {
+        "name": "Profile teardown",
+        "bestFor": "A clear diagnosis before another month of posting.",
+        "timeline": "1 week",
+        "includes": [
+          "Profile and grid audit",
+          "Competitor and hook review",
+          "30-day action list"
+        ]
+      },
+      {
+        "name": "90-day sprint",
+        "bestFor": "A focused push to reset reach and enquiry quality.",
+        "timeline": "3 months",
+        "includes": [
+          "Content pillars and hook library",
+          "Posting and DM routines",
+          "Weekly tests and monthly review"
+        ]
+      },
+      {
+        "name": "Growth retainer",
+        "bestFor": "An ongoing owner for the account and the numbers.",
+        "timeline": "Monthly",
+        "includes": [
+          "Full content and community operation",
+          "Monthly experiments and reporting",
+          "Quarterly strategy reset"
+        ]
+      }
+    ]
   },
   {
     "slug": "meta-advertising",
     "title": "Meta Advertising",
     "shortTitle": "Meta ads",
+    "group": "growth",
     "icon": "target",
-    "headline": "Put money behind what already works.",
-    "benefit": "Offer strategy, creative testing and weekly optimisation across Facebook and Instagram. You keep the ad account; we own the numbers.",
-    "deliverables": [
-      "Offer, audience and funnel strategy",
-      "Campaign build and pixel setup",
-      "Weekly creative testing and optimisation",
-      "Spend, lead and cost-per-result reporting"
-    ],
-    "cta": "Run my Meta ads"
+    "summary": "Paid social built around offers and creative that already work.",
+    "options": [
+      {
+        "name": "Account setup",
+        "bestFor": "A clean foundation before you scale spend.",
+        "timeline": "1 week",
+        "includes": [
+          "Pixel, events and catalogue setup",
+          "Campaign and audience structure",
+          "Tracking and naming conventions"
+        ]
+      },
+      {
+        "name": "Ads management",
+        "bestFor": "A monthly operator for spend, creative and reporting.",
+        "timeline": "Monthly",
+        "includes": [
+          "Campaign build and optimisation",
+          "Creative testing pipeline",
+          "Weekly performance notes"
+        ]
+      },
+      {
+        "name": "Performance partnership",
+        "bestFor": "A senior team on the numbers every week.",
+        "timeline": "Monthly",
+        "includes": [
+          "Full-funnel media strategy",
+          "Weekly test and scale cycles",
+          "Monthly business review"
+        ]
+      }
+    ]
   },
   {
     "slug": "influencer-marketing",
     "title": "Influencer Marketing",
     "shortTitle": "Influencer marketing",
+    "group": "growth",
     "icon": "users",
-    "headline": "Creators your customers already trust.",
-    "benefit": "Matching, briefing, contracts and performance tracking, so collabs look native and convert. No vanity reach, no unposted drafts.",
-    "deliverables": [
-      "Creator sourcing and audience fit check",
-      "Briefs, scripts and approval flow",
-      "Contracts, timelines and deliverables",
-      "Performance tracking across collabs"
-    ],
-    "cta": "Build a creator programme"
+    "summary": "Creators chosen for audience fit, briefed for the feed, tracked to the sale.",
+    "options": [
+      {
+        "name": "Single creator",
+        "bestFor": "One collaboration that has to land, not just post.",
+        "timeline": "2–3 weeks",
+        "includes": [
+          "Creator sourcing and fit check",
+          "Brief, script and approval flow",
+          "Performance recap"
+        ]
+      },
+      {
+        "name": "Creator programme",
+        "bestFor": "A repeatable roster instead of one-off favours.",
+        "timeline": "Monthly",
+        "includes": [
+          "Roster building and contracts",
+          "Monthly briefs and content calendar",
+          "Tracking and creator reporting"
+        ]
+      },
+      {
+        "name": "Always-on roster",
+        "bestFor": "A creator engine across categories and markets.",
+        "timeline": "Monthly",
+        "includes": [
+          "Continuous creator pipeline",
+          "Negotiation and usage rights",
+          "Monthly performance and spend review"
+        ]
+      }
+    ]
   },
   {
     "slug": "website-development",
     "title": "Website Development",
     "shortTitle": "Website",
+    "group": "digital",
     "icon": "code",
-    "headline": "A site that turns visits into enquiries.",
-    "benefit": "Fast, responsive design built around one action, with SEO basics and WhatsApp-ready forms. Launch in weeks, not quarters.",
-    "deliverables": [
-      "Content structure and page design",
-      "Responsive build with fast page loads",
-      "On-page SEO and metadata",
-      "Lead forms wired to WhatsApp and email"
-    ],
-    "cta": "Brief a website"
+    "summary": "Fast, focused sites built around one action: the enquiry.",
+    "options": [
+      {
+        "name": "Landing page",
+        "bestFor": "One offer, one page, one obvious next step.",
+        "timeline": "2–3 weeks",
+        "includes": [
+          "Message and section structure",
+          "Responsive design and build",
+          "Analytics and lead capture"
+        ]
+      },
+      {
+        "name": "Business website",
+        "bestFor": "The full story across pages, without the bloat.",
+        "timeline": "4–6 weeks",
+        "includes": [
+          "Up to 8 designed pages",
+          "CMS and on-page SEO",
+          "Forms, WhatsApp and CRM handoff"
+        ]
+      },
+      {
+        "name": "Commerce build",
+        "bestFor": "A store that carries catalogue, payments and growth.",
+        "timeline": "6–10 weeks",
+        "includes": [
+          "Catalogue and checkout build",
+          "Payment and shipping integrations",
+          "Merchandising and launch support"
+        ]
+      }
+    ]
   },
   {
     "slug": "ai-automations",
     "title": "AI Automations",
     "shortTitle": "AI automations",
+    "group": "digital",
     "icon": "bolt",
-    "headline": "Answer in seconds, even at 2am.",
-    "benefit": "DM, WhatsApp and call flows that qualify leads, book calls and follow up while you sleep. Your team only sees the conversations worth having.",
-    "deliverables": [
-      "Lead capture and qualification flows",
-      "Instagram DM and WhatsApp automations",
-      "Booking and follow-up sequences",
-      "Human handoff plus monthly monitoring"
-    ],
-    "cta": "Automate my enquiries"
+    "summary": "Enquiry handling that replies, qualifies and books while you work.",
+    "options": [
+      {
+        "name": "Starter automation",
+        "bestFor": "Stop losing the leads that arrive after hours.",
+        "timeline": "1–2 weeks",
+        "includes": [
+          "WhatsApp or DM auto-reply",
+          "Lead capture and routing",
+          "Handoff to a human"
+        ]
+      },
+      {
+        "name": "AI lead engine",
+        "bestFor": "A full qualification and booking flow.",
+        "timeline": "3–5 weeks",
+        "includes": [
+          "Conversational qualification",
+          "Calendar booking and reminders",
+          "CRM sync and reporting"
+        ]
+      },
+      {
+        "name": "Automation care",
+        "bestFor": "Keep every flow working as channels change.",
+        "timeline": "Monthly",
+        "includes": [
+          "Monitoring and fixes",
+          "Monthly flow improvements",
+          "Prompt and script updates"
+        ]
+      }
+    ]
   },
   {
     "slug": "digital-marketing-strategy",
     "title": "Digital Marketing Strategy",
     "shortTitle": "Marketing strategy",
+    "group": "growth",
     "icon": "strategy",
-    "headline": "One plan that connects every channel.",
-    "benefit": "Audit, positioning, channel mix, budget and 90-day roadmap in one document. Know what to do next, and what to stop paying for.",
-    "deliverables": [
-      "Full audit of page, site and ad account",
-      "Positioning and offer architecture",
-      "Channel mix and budget allocation",
-      "90-day roadmap with owners and metrics"
-    ],
-    "cta": "Get a growth roadmap"
+    "summary": "One plan that says what to do, in what order, and what to stop.",
+    "options": [
+      {
+        "name": "Deep growth audit",
+        "bestFor": "An outside read on where growth is leaking.",
+        "timeline": "1 week",
+        "includes": [
+          "Channel and funnel audit",
+          "Offer and message review",
+          "Prioritised fix list"
+        ]
+      },
+      {
+        "name": "Strategy sprint",
+        "bestFor": "A 90-day plan your team can actually run.",
+        "timeline": "3–4 weeks",
+        "includes": [
+          "Positioning and channel mix",
+          "Budget and resourcing plan",
+          "90-day roadmap with owners"
+        ]
+      },
+      {
+        "name": "Fractional growth lead",
+        "bestFor": "Senior direction without a senior hire.",
+        "timeline": "Monthly",
+        "includes": [
+          "Monthly planning and reviews",
+          "Team and agency coordination",
+          "Board-ready reporting"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "custom-saas-engineering",
+    "title": "Custom SaaS Engineering",
+    "shortTitle": "Custom SaaS",
+    "group": "product",
+    "icon": "layers",
+    "summary": "Software shaped around how your business actually runs.",
+    "options": [
+      {
+        "name": "Core platform build",
+        "bestFor": "A product only your business would build.",
+        "timeline": "8–12 weeks",
+        "includes": [
+          "Product and data model",
+          "Core workflows and admin",
+          "QA, deployment and handover"
+        ]
+      },
+      {
+        "name": "Workflow and integrations",
+        "bestFor": "Connect the tools already running the business.",
+        "timeline": "3–6 weeks",
+        "includes": [
+          "API and data integrations",
+          "Automations and permissions",
+          "Migration and monitoring"
+        ]
+      },
+      {
+        "name": "Dedicated squad",
+        "bestFor": "A product team on your roadmap.",
+        "timeline": "Monthly",
+        "includes": [
+          "Product, design and engineering",
+          "Two-week delivery cycles",
+          "Roadmap and release ownership"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "saas-launchpad-mvp",
+    "title": "SaaS Launchpad MVP",
+    "shortTitle": "SaaS MVP",
+    "group": "product",
+    "icon": "rocket",
+    "summary": "From idea to a working product in weeks, not quarters.",
+    "options": [
+      {
+        "name": "Validation sprint",
+        "bestFor": "Test the demand before building the whole thing.",
+        "timeline": "1–2 weeks",
+        "includes": [
+          "Problem and user interviews",
+          "Clickable prototype",
+          "Scope and pricing model"
+        ]
+      },
+      {
+        "name": "MVP build",
+        "bestFor": "The smallest product that proves the business.",
+        "timeline": "4–8 weeks",
+        "includes": [
+          "Core user journey",
+          "Auth, billing and admin",
+          "Analytics and onboarding"
+        ]
+      },
+      {
+        "name": "Launch and first customers",
+        "bestFor": "Ship it, then learn from real usage.",
+        "timeline": "4 weeks",
+        "includes": [
+          "Launch and store setup",
+          "Onboarding and support flows",
+          "Iteration on first-user feedback"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "full-scale-cloud-and-ai-saas-platform",
+    "title": "Full-Scale Cloud & AI SaaS Platform",
+    "shortTitle": "Cloud & AI platform",
+    "group": "product",
+    "icon": "cloud",
+    "summary": "A production platform built for real load, real data and real teams.",
+    "options": [
+      {
+        "name": "Platform architecture",
+        "bestFor": "Get the foundation right before the rewrite hurts.",
+        "timeline": "3–4 weeks",
+        "includes": [
+          "Architecture and data design",
+          "Cloud and security review",
+          "Migration and scaling plan"
+        ]
+      },
+      {
+        "name": "AI feature layer",
+        "bestFor": "Add AI where it earns its place in the product.",
+        "timeline": "6–10 weeks",
+        "includes": [
+          "Model selection and evaluation",
+          "Retrieval and workflow design",
+          "Guardrails and cost controls"
+        ]
+      },
+      {
+        "name": "Scale and reliability",
+        "bestFor": "Make the platform boring under pressure.",
+        "timeline": "Monthly",
+        "includes": [
+          "Observability and alerting",
+          "Performance and cost tuning",
+          "Incident and release support"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "mobile-app-development",
+    "title": "Mobile App Development",
+    "shortTitle": "Mobile apps",
+    "group": "product",
+    "icon": "phone",
+    "summary": "Apps that earn the space they take on someone's phone.",
+    "options": [
+      {
+        "name": "Product definition",
+        "bestFor": "Decide what the app is for before writing code.",
+        "timeline": "2 weeks",
+        "includes": [
+          "User journeys and feature map",
+          "Prototype and usability test",
+          "Technical scope and estimate"
+        ]
+      },
+      {
+        "name": "iOS and Android build",
+        "bestFor": "One codebase, two stores, no compromises.",
+        "timeline": "8–12 weeks",
+        "includes": [
+          "Cross-platform build",
+          "Push, auth and payments",
+          "Store submission and QA"
+        ]
+      },
+      {
+        "name": "Launch and store operations",
+        "bestFor": "A launch that gets found and keeps updating.",
+        "timeline": "Monthly",
+        "includes": [
+          "Store listing and ASO",
+          "Release management",
+          "Crash and review monitoring"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "starter-mobile-app",
+    "title": "Starter Mobile App",
+    "shortTitle": "Starter app",
+    "group": "product",
+    "icon": "phone",
+    "summary": "A focused first app that does one job properly.",
+    "options": [
+      {
+        "name": "Single-flow app",
+        "bestFor": "A first release without the enterprise baggage.",
+        "timeline": "4–6 weeks",
+        "includes": [
+          "One core journey",
+          "Brand-led UI",
+          "Store-ready build"
+        ]
+      },
+      {
+        "name": "MVP plus analytics",
+        "bestFor": "Learn what users do, not just that they installed.",
+        "timeline": "6–8 weeks",
+        "includes": [
+          "Event tracking and dashboards",
+          "Onboarding and notifications",
+          "Two iteration cycles"
+        ]
+      },
+      {
+        "name": "Launch kit",
+        "bestFor": "Everything around the build: listings, assets, handover.",
+        "timeline": "2 weeks",
+        "includes": [
+          "Store listings and screenshots",
+          "Privacy and release docs",
+          "Team handover"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "pro-on-demand-business-mobile-app",
+    "title": "Pro On-Demand / Business Mobile App",
+    "shortTitle": "On-demand app",
+    "group": "product",
+    "icon": "package",
+    "summary": "Booking, dispatch and payments in one operational app.",
+    "options": [
+      {
+        "name": "Marketplace build",
+        "bestFor": "Customers, providers and jobs in one system.",
+        "timeline": "10–14 weeks",
+        "includes": [
+          "Customer and provider apps",
+          "Matching and scheduling",
+          "Ratings and support"
+        ]
+      },
+      {
+        "name": "Operations app",
+        "bestFor": "The internal app your team actually needs.",
+        "timeline": "6–10 weeks",
+        "includes": [
+          "Job and status management",
+          "Routes and notifications",
+          "Admin dashboards"
+        ]
+      },
+      {
+        "name": "Payments and subscriptions",
+        "bestFor": "Recurring revenue built into the product.",
+        "timeline": "3–5 weeks",
+        "includes": [
+          "Subscriptions and invoices",
+          "Payment and refund flows",
+          "Revenue reporting"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "application-maintenance-amc",
+    "title": "Application Maintenance (AMC)",
+    "shortTitle": "App maintenance",
+    "group": "care",
+    "icon": "wrench",
+    "summary": "Your app, kept patched, monitored and fast.",
+    "options": [
+      {
+        "name": "Essential care",
+        "bestFor": "The basics covered without a full team.",
+        "timeline": "Monthly",
+        "includes": [
+          "Monitoring and uptime alerts",
+          "Security patches",
+          "Monthly health report"
+        ]
+      },
+      {
+        "name": "Growth care",
+        "bestFor": "Ongoing fixes plus room for improvements.",
+        "timeline": "Monthly",
+        "includes": [
+          "Everything in Essential",
+          "Bug fixes and small features",
+          "Quarterly performance review"
+        ]
+      },
+      {
+        "name": "24/7 cover",
+        "bestFor": "Apps where downtime costs revenue.",
+        "timeline": "Monthly",
+        "includes": [
+          "Round-the-clock incident cover",
+          "Priority fixes and rollback",
+          "On-call escalation"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "website-care-and-security-amc",
+    "title": "Website Care & Security AMC",
+    "shortTitle": "Website care",
+    "group": "care",
+    "icon": "shield",
+    "summary": "A site that stays fast, backed up and safe after launch.",
+    "options": [
+      {
+        "name": "Core care",
+        "bestFor": "Keep any site healthy month to month.",
+        "timeline": "Monthly",
+        "includes": [
+          "Updates, backups and uptime checks",
+          "Security and plugin monitoring",
+          "Monthly report"
+        ]
+      },
+      {
+        "name": "Security and compliance",
+        "bestFor": "Sites holding customer or payment data.",
+        "timeline": "Monthly",
+        "includes": [
+          "Hardening and access review",
+          "Privacy and consent checks",
+          "Incident response plan"
+        ]
+      },
+      {
+        "name": "Performance retainer",
+        "bestFor": "Speed and Core Web Vitals as an ongoing job.",
+        "timeline": "Monthly",
+        "includes": [
+          "Performance budgets and audits",
+          "Image and asset optimisation",
+          "Quarterly UX review"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "full-stack-app-and-saas-maintenance",
+    "title": "Full-Stack App & SaaS Maintenance",
+    "shortTitle": "Full-stack care",
+    "group": "care",
+    "icon": "refresh",
+    "summary": "One team for the frontend, backend, cloud and AI after launch.",
+    "options": [
+      {
+        "name": "Full-stack care",
+        "bestFor": "A single owner for the whole stack.",
+        "timeline": "Monthly",
+        "includes": [
+          "Frontend and API maintenance",
+          "Database and backup care",
+          "Dependency and security updates"
+        ]
+      },
+      {
+        "name": "Cloud and cost review",
+        "bestFor": "Stop overpaying and under-monitoring.",
+        "timeline": "One-off + monthly",
+        "includes": [
+          "Cloud architecture review",
+          "Cost and usage tuning",
+          "Monitoring and alerts"
+        ]
+      },
+      {
+        "name": "Feature velocity",
+        "bestFor": "Keep shipping after the launch team leaves.",
+        "timeline": "Monthly",
+        "includes": [
+          "Prioritised feature backlog",
+          "Two-week release cycles",
+          "QA and deployment"
+        ]
+      }
+    ]
   }
 ]

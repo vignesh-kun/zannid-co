@@ -4,13 +4,12 @@ import Icon from '../../components/Icon.astro';
 import {
   canonicalUrl,
   content,
-  publicRowsFor,
+  groupFor,
+  relatedServices,
   services,
   siteConfig,
-  startingPrice,
   type Service,
 } from '../../lib/site';
-import { priceLabel } from '../../lib/site';
 
 export function getStaticPaths() {
   return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
@@ -20,28 +19,19 @@ interface Props {
   service: Service;
 }
 const { service } = Astro.props;
-const index = services.findIndex((item) => item.slug === service.slug);
-const rows = publicRowsFor(service.slug);
-const related = [...services.filter((item) => item.slug !== service.slug).slice(index, index + 3)];
-const relatedFinal = related.length === 3 ? related : [...related, ...services.filter((item) => item.slug !== service.slug && !related.includes(item))].slice(0, 3);
-const pageTitle = `${service.title} | ${service.headline.replace(/\.$/, '')} · Zannid & Co.`;
-const description = `${service.headline} ${service.benefit}`.slice(0, 158);
+const group = groupFor(service);
+const related = relatedServices(service);
+const pageTitle = `${service.title} | ${service.summary.replace(/\.$/, '')} · Zannid & Co.`;
+const description = `${service.summary} ${service.options.length} ways to scope it. Quoted per engagement.`.slice(0, 158);
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: service.title,
   serviceType: service.title,
-  description: service.benefit,
+  description: service.summary,
   url: canonicalUrl(`/services/${service.slug}`),
   provider: { '@type': 'ProfessionalService', name: 'Zannid & Co.', url: siteConfig.canonical },
   areaServed: ['India', 'Worldwide'],
-  offers: rows.map((row) => ({
-    '@type': 'Offer',
-    name: row.tier,
-    priceCurrency: 'INR',
-    price: row.inr.min,
-    description: priceLabel(row, 'INR'),
-  })),
 };
 const crumbs = {
   '@context': 'https://schema.org',
@@ -53,11 +43,12 @@ const crumbs = {
   ],
 };
 ---
+
 <Base title={pageTitle} description={description}>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
 
-  <section class="page-hero">
+  <section class="svc-detail">
     <div class="wrap">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
         <a href="/">Home</a><span aria-hidden="true">/</span>
@@ -67,58 +58,86 @@ const crumbs = {
 
       <div class="svc-detail-grid">
         <div class="svc-detail-head">
-          <p class="eyebrow">{String(index + 1).padStart(2, '0')} — {service.title}</p>
-          <h1 class="display">{service.headline}</h1>
-          <p class="lede">{service.benefit}</p>
+          <h1 class="display">{service.title}</h1>
+          <p class="lede">{service.summary}</p>
+          <div class="svc-meta">
+            {group && <span class="svc-chip">{group.title}</span>}
+            <span class="svc-chip">{service.options.length} options</span>
+            <span class="svc-chip">Pricing quoted per scope</span>
+          </div>
           <div class="actions">
-            <a class="btn" href={`/contact?service=${service.slug}`}>{service.cta} <Icon name="arrow" /></a>
+            <a class="btn" href={`/contact?service=${service.slug}`}>
+              Get a quote <Icon name="arrow" />
+            </a>
             <a class="btn ghost" href="/audit">Free growth audit</a>
           </div>
         </div>
 
-        <aside class="svc-aside glass" aria-labelledby="price-heading">
-          <h2 id="price-heading">Indicative pricing</h2>
-          <ul class="price-lines">
-            {rows.map((row) => (
-              <li>
-                <span class="tier">{row.tier}</span>
-                <span class="price" data-money data-inr={priceLabel(row, 'INR')} data-usd={priceLabel(row, 'USD')}>{priceLabel(row, 'INR')}</span>
-              </li>
-            ))}
+        <aside class="scope-card glass" aria-labelledby="scope-heading">
+          <p class="scope-label">Pricing</p>
+          <h2 class="display" id="scope-heading">Quoted, not guessed.</h2>
+          <p>
+            Tell us the goal and the deadline. We send a written scope, a price and a start date
+            within two working days.
+          </p>
+          <ul class="scope-list">
+            <li><Icon name="check" size={15} /><span>20-minute scoping call</span></li>
+            <li><Icon name="check" size={15} /><span>Written scope before any number</span></li>
+            <li><Icon name="check" size={15} /><span>Fixed project price or monthly rate</span></li>
           </ul>
-          <a class="btn wide" href={`/contact?service=${service.slug}`}>Start a conversation</a>
-          <p class="micro"><span data-money data-inr={startingPrice(service.slug, 'INR')} data-usd={startingPrice(service.slug, 'USD')}>{startingPrice(service.slug, 'INR')}</span>. Final quotes depend on scope, integrations and timelines.</p>
+          <a class="btn wide" href={`/contact?service=${service.slug}`}>
+            Ask for a quote <Icon name="arrow" size={16} />
+          </a>
+          <p class="micro">No rate card. No surprise line items.</p>
         </aside>
       </div>
     </div>
   </section>
 
-  <section class="section-tight">
+  <section class="section-tight" aria-labelledby="options-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <div>
-          <p class="eyebrow">What you get</p>
-          <h2 class="display">The work, specifically.</h2>
-          <p class="lede">{content.servicesPage.lede}</p>
+          <h2 class="display" id="options-title">Pick the option that fits.</h2>
+          <p class="lede">
+            Same team, same standard. The scope changes, not the quality. Each option is quoted
+            after a short call.
+          </p>
         </div>
       </div>
-      <div class="deliverables">
-        {service.deliverables.map((item) => (
-          <div class="deliverable glass" data-reveal>
-            <Icon name="check" size={18} />
-            <span>{item}</span>
-          </div>
+
+      <div class="opt-grid">
+        {service.options.map((option, i) => (
+          <article class="opt-card glass" data-reveal data-delay={String(i)}>
+            <div class="opt-card-top">
+              <span class="opt-time mono">{option.timeline}</span>
+              <Icon name={service.icon as 'compass'} size={19} />
+            </div>
+            <h3>{option.name}</h3>
+            <p class="opt-best">{option.bestFor}</p>
+            <ul>
+              {option.includes.map((item) => (
+                <li><Icon name="check" size={15} /><span>{item}</span></li>
+              ))}
+            </ul>
+            <a
+              class="text-link"
+              href={`/contact?service=${service.slug}&option=${encodeURIComponent(option.name)}`}
+            >
+              Ask about this option <Icon name="arrow" size={15} />
+            </a>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section-tight">
+  <section class="section-tight" aria-labelledby="run-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <div>
-          <p class="eyebrow">How it runs</p>
-          <h2 class="display">From first call to measured result.</h2>
+          <h2 class="display" id="run-title">From first call to measured result.</h2>
+          <p class="lede">{content.home.process.intro}</p>
         </div>
       </div>
       <div class="process-grid">
@@ -136,20 +155,19 @@ const crumbs = {
     </div>
   </section>
 
-  <section class="section-tight">
+  <section class="section-tight" aria-labelledby="related-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <div>
-          <p class="eyebrow">Keep going</p>
-          <h2 class="display">Often paired with.</h2>
+          <h2 class="display" id="related-title">Often paired with.</h2>
         </div>
       </div>
       <div class="related-grid">
-        {relatedFinal.map((item) => (
+        {related.map((item) => (
           <a class="related-card glass" href={`/services/${item.slug}`} data-reveal>
-            <span class="num-tag">{item.shortTitle}</span>
-            <strong>{item.headline}</strong>
-            <span>{item.title}</span>
+            <span class="num-tag">{groupFor(item)?.title}</span>
+            <strong>{item.title}</strong>
+            <span>{item.options.length} options</span>
             <Icon name="arrow" size={17} />
           </a>
         ))}
@@ -159,12 +177,16 @@ const crumbs = {
 
   <section class="section-tight">
     <div class="wrap">
-      <div class="cta-panel glass" data-reveal>
-        <p class="eyebrow" style="justify-content:center">One team. One invoice.</p>
-        <h2 class="display">Want this scoped for your brand?</h2>
-        <p class="lede">Book a free consultation or start with the audit. Either way you leave with a clearer next step.</p>
+      <div class="quote-panel glass" data-reveal>
+        <div>
+          <h2 class="display">Want this scoped for your brand?</h2>
+          <p class="lede">
+            Book a free consultation or start with the audit. Either way you leave with a clearer
+            next step and a real number, not a range.
+          </p>
+        </div>
         <div class="actions">
-          <a class="btn" href="/contact">Book a Free Consultation <Icon name="arrow" /></a>
+          <a class="btn" href="/contact">Book a free consultation <Icon name="arrow" /></a>
           <a class="btn ghost" href="/audit">Get my free growth audit</a>
         </div>
       </div>

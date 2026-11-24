@@ -4,7 +4,7 @@
       "eyebrow": "Strategy · Content · Growth",
       "titleBefore": "The growth team for brands that",
       "titleAccent": "refuse to be ignored.",
-      "lede": "Strategy, reels, ads, websites and AI automations, all under one roof. One team, one invoice, measured on growth, not on posts.",
+      "lede": "Strategy, content, ads, websites, AI automation and custom software, all under one roof. One team, one invoice, measured on growth, not on posts.",
       "primary": "Book a Free Consultation",
       "secondary": "Get my free growth audit",
       "note": "Working with brands across India and worldwide"
@@ -130,19 +130,36 @@
     }
   },
   "servicesPage": {
-    "eyebrow": "What we do",
-    "title": "One team. Ten ways to grow.",
-    "lede": "Take one service or let us run the whole engine. Every engagement starts with the same question: what actually moves the business?"
+    "title": "Nineteen services. Five departments. One team.",
+    "lede": "Every service is a set of named options, not a vague retainer. Pick the shape that fits the stage you are in; we scope it, quote it in writing, and put the same people on it who sold it.",
+    "railTitle": "Departments",
+    "indexNote": "Pricing is quoted per scope. No rate card, no surprise line items."
   },
   "pricingPage": {
-    "eyebrow": "Pricing",
-    "title": "One team. One invoice.",
-    "lede": "Pick a bundle for the fastest start, or build exactly what you need from the à la carte table. All prices are indicative starting points.",
-    "separatelyTitle": "The honest comparison",
-    "separatelyLede": "Most brands end up stitching four vendors together. It costs more than they expect and nobody owns the outcome.",
-    "oursTitle": "The Zannid bundle",
-    "oursBody": "Strategy, content, shoots, ads, creators and automation, run by one team that owns the result. One point of contact, one invoice, one standard.",
-    "oursNote": "No lock-in. Monthly plans, cancel before the next cycle. Ad spend is paid directly to Meta.",
+    "title": "No rate card. A real quote.",
+    "lede": "Every brand needs a different mix of strategy, production, media and build. Tell us the goal and the deadline, and we will send a written scope, a price and a start date within two working days.",
+    "promise": [
+      "20-minute scoping call",
+      "Written scope before any number",
+      "Quote in two working days"
+    ],
+    "bundlesTitle": "Three ways to start",
+    "bundlesLede": "Start from a shape, then tune it. Each plan is quoted after the call, so you pay for the scope you actually need.",
+    "factorsTitle": "What sets the number",
+    "factorsLede": "Not a menu with multipliers. Four things decide most of the price, and all four go in writing before work starts.",
+    "factors": [
+      { "title": "Scope", "body": "How many services, channels and deliverables are in play." },
+      { "title": "Production", "body": "Shoot days, editing volume and original assets." },
+      { "title": "Build", "body": "Integrations, platforms, data and compliance." },
+      { "title": "Pace", "body": "Launch date, timeline and how much runs at once." }
+    ],
+    "quoteTitle": "How the quote works",
+    "quoteLede": "Three steps, no discovery theatre. You leave the call knowing what happens next.",
+    "quoteSteps": [
+      { "title": "Call", "body": "Twenty minutes on the goal, the offer and the deadline." },
+      { "title": "Scope", "body": "We write down what is included, what is not, and who owns what." },
+      { "title": "Quote", "body": "A fixed project price or monthly rate, sent within two working days." }
+    ],
     "faqTitle": "Pricing questions"
   },
   "workPage": {
@@ -186,7 +203,7 @@
   "aboutPage": {
     "eyebrow": "About Zannid & Co.",
     "title": "A growth team, not a content vendor.",
-    "lede": "Zannid & Co. exists for brands that are doing good work and being ignored for it. We bring strategy, production, paid media and automation into one team so the work has a job beyond looking good.",
+    "lede": "Zannid & Co. exists for brands that are doing good work and being ignored for it. We bring strategy, production, paid media, automation and engineering into one team so the work has a job beyond looking good.",
     "storyTitle": "Why we started",
     "story": [
       "Most small brands do not have a marketing problem. They have an ownership problem. A designer here, an ads freelancer there, a cousin who edits reels. Each piece can be fine; together they never become a system.",
@@ -221,7 +238,7 @@
       }
     ],
     "numbers": [
-      { "value": "10", "label": "services under one roof" },
+      { "value": "19", "label": "services under one roof" },
       { "value": "25", "label": "brands in the client wall" },
       { "value": "48h", "label": "first-draft turnaround" },
       { "value": "7 days", "label": "to first content live" }
@@ -281,7 +298,7 @@
       {
         "heading": "Cookies and analytics",
         "body": [
-          "The site does not set advertising cookies. Currency preference and interface state may be stored locally in your browser so the site remembers your choice.",
+          "The site does not set advertising cookies or use analytics.",
           "If we add privacy-respecting analytics later, this page will say what is measured before it goes live."
         ]
       },
@@ -307,13 +324,13 @@
       {
         "heading": "Using this site",
         "body": [
-          "This website is operated by Zannid & Co. By using it you agree to these terms. The content is provided for information; it is not a binding offer, and prices shown are indicative starting points."
+          "This website is operated by Zannid & Co. By using it you agree to these terms. The content is provided for information and nothing on it is a binding offer or quote."
         ]
       },
       {
         "heading": "Services and quotes",
         "body": [
-          "Every engagement is confirmed by a written scope and quote. Deliverables, timelines, revision rounds and payment terms are set out there. A published range does not guarantee a price or availability.",
+          "Every engagement is confirmed by a written scope and quote. Deliverables, timelines, revision rounds and payment terms are set out there. Only that document confirms a price or availability.",
           "Ad spend, domain, hosting, third-party subscriptions, payment gateway charges and travel are billed separately unless a scope says otherwise."
         ]
       },
