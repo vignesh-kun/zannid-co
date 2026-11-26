@@ -1,0 +1,65 @@
+{
+  "eyebrow": "About Zannid & Co.",
+  "title": "A growth team, not a content vendor.",
+  "lede": "Zannid & Co. exists for brands that are doing good work and being ignored for it. We bring strategy, production, paid media, automation and engineering into one team so the work has a job beyond looking good.",
+  "storyTitle": "Why we started",
+  "story": [
+    "Most small brands do not have a marketing problem. They have an ownership problem. A designer here, an ads freelancer there, a cousin who edits reels. Each piece can be fine; together they never become a system.",
+    "We built Zannid to be that system: one team that plans the month, shoots the content, runs the ads, answers the DMs and reports on what moved. The same people who promise the result are the ones doing the work.",
+    "We work with cafés and restaurants, real estate, education, retail, events and production houses across India and internationally. Different categories, same standard: strategy first, craft second, measurement always."
+  ],
+  "valuesTitle": "What we believe",
+  "values": [
+    {
+      "title": "Strategy first",
+      "body": "Every reel has a job: reach, trust or sale. We start with the why, not the trend."
+    },
+    {
+      "title": "One owner",
+      "body": "One team, one WhatsApp group, one invoice. No vendor ping-pong."
+    },
+    {
+      "title": "No lock-in",
+      "body": "Monthly plans. We earn next month by delivering this one."
+    },
+    {
+      "title": "You own it all",
+      "body": "Raw footage, edits, ad accounts and automations stay yours, forever."
+    },
+    {
+      "title": "Fast, then right",
+      "body": "First drafts in 48 hours. First content live in 7 days. Speed is a feature, not an excuse."
+    },
+    {
+      "title": "Anywhere",
+      "body": "From neighbourhood cafés to global D2C brands: same team, same standard."
+    }
+  ],
+  "numbers": [
+    { "value": "19", "label": "services under one roof" },
+    { "value": "25", "label": "brands in the client wall" },
+    { "value": "48h", "label": "first-draft turnaround" },
+    { "value": "7 days", "label": "to first content live" }
+  ],
+  "team": [
+    {
+      "name": "Zaid Hussain",
+      "role": "Founder & Growth Lead",
+      "bio": "Runs strategy, paid media and the numbers behind every account.",
+      "image": ""
+    },
+    {
+      "name": "Zannid Studio",
+      "role": "Producers, editors & engineers",
+      "bio": "The bench that shoots, edits, ships and maintains the work.",
+      "image": ""
+    }
+  ],
+  "location": {
+    "city": "Hyderabad",
+    "region": "Telangana, India",
+    "address": "",
+    "note": "Shoots across India, remote-first everywhere else.",
+    "mapUrl": ""
+  }
+}

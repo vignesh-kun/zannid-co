@@ -1,9 +1,14 @@
 {
   "name": "Zannid & Co.",
-  "whatsapp": "",
   "email": "hello@zannid.co",
+  "phone": "",
+  "whatsapp": "",
   "canonical": "https://zannid.co",
   "showUrgencyBanner": false,
   "instagram": "https://www.instagram.com/zannid.co/",
-  "instagramHandle": "@zannid.co"
+  "instagramHandle": "@zannid.co",
+  "city": "Hyderabad",
+  "address": "",
+  "hours": "Mon–Sat, 10:00–19:00 IST",
+  "mapUrl": ""
 }

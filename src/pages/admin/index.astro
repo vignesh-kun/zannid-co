@@ -1,0 +1,30 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource-variable/familjen-grotesk';
+import '@fontsource-variable/martian-mono';
+import '../../styles/admin.css';
+
+export const prerender = false;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Dashboard · Zannid &amp; Co.</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="ad-body">
+    <div id="admin" class="ad-root">
+      <div class="ad-boot">
+        <span class="ad-spinner" aria-hidden="true"></span>
+        <p>Loading dashboard…</p>
+      </div>
+    </div>
+    <script>
+      import '../../scripts/admin';
+    </script>
+  </body>
+</html>

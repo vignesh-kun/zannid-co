@@ -1,10 +1,5 @@
-import configJson from '../data/site.config.json';
-import servicesJson from '../data/services.json';
 import groupsJson from '../data/service-groups.json';
 import bundlesJson from '../data/bundles.json';
-import clientsJson from '../data/clients.json';
-import workJson from '../data/work.json';
-import faqsJson from '../data/faqs.json';
 import contentJson from '../data/content.json';
 
 export type ServiceOption = {
@@ -12,45 +7,123 @@ export type ServiceOption = {
   bestFor: string;
   timeline: string;
   includes: string[];
+  price?: string;
+  showPrice?: boolean;
 };
-export type Service = (typeof servicesJson)[number];
-export type ServiceGroup = (typeof groupsJson)[number];
+export type Service = {
+  slug: string;
+  title: string;
+  shortTitle: string;
+  group: string;
+  icon: string;
+  summary: string;
+  showPrice?: boolean;
+  options: ServiceOption[];
+};
+export type ServiceGroup = { slug: string; title: string; blurb: string };
 export type Bundle = (typeof bundlesJson)[number];
+export type WorkItem = {
+  key: string;
+  title: string;
+  client?: string;
+  text: string;
+  tag: string;
+  stat: string;
+  href: string;
+  image?: string;
+  from: string;
+  to: string;
+};
+export type Client = {
+  name: string;
+  logo?: string;
+  description: string;
+  website?: string;
+  industry?: string;
+};
+export type Faq = { group: string; q: string; a: string };
+export type TeamMember = { name: string; role: string; bio: string; image: string };
+export type About = {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  storyTitle: string;
+  story: string[];
+  valuesTitle: string;
+  values: { title: string; body: string }[];
+  numbers: { value: string; label: string }[];
+  team: TeamMember[];
+  location: { city: string; region: string; address: string; note: string; mapUrl: string };
+};
+export type JourneySide = 'left' | 'right';
+export type JourneyIllustration = {
+  src: string;
+  side: JourneySide;
+  alt: string;
+  order: number;
+};
+export type JourneyMilestone = {
+  id: string;
+  title: string;
+  date: string;
+  subtitle: string;
+  description: string;
+  category: string;
+  order: number;
+  published: boolean;
+  illustrations: JourneyIllustration[];
+  createdAt: string;
+  updatedAt: string;
+};
+export type LegalSection = { heading: string; body: string[] };
+export type LegalDoc = { title: string; updated: string; intro: string; sections: LegalSection[] };
+export type Legal = { privacy: LegalDoc; terms: LegalDoc };
+export type SiteConfig = {
+  name: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  canonical: string;
+  showUrgencyBanner: boolean;
+  instagram: string;
+  instagramHandle: string;
+  city: string;
+  address: string;
+  hours: string;
+  mapUrl: string;
+};
 
-export const siteConfig = configJson;
-export const services = servicesJson;
-export const serviceGroups = groupsJson;
-export const work = workJson;
-export const clients = clientsJson;
+export const serviceGroups = groupsJson as ServiceGroup[];
 export const bundles = bundlesJson as Bundle[];
-export const faqs = faqsJson;
 export const content = contentJson;
 
-export const whatsappNumber = (siteConfig.whatsapp || '').replace(/\D/g, '');
-export const hasWhatsApp = whatsappNumber.length >= 8;
+/** The price to show for an option, or an empty string when pricing is not public. */
+export function optionPrice(service: Service, option: ServiceOption): string {
+  if (!service.showPrice || option.showPrice === false) return '';
+  return (option.price || '').trim();
+}
 
-export function servicesInGroup(groupSlug: string): Service[] {
+export function servicesInGroup(services: Service[], groupSlug: string): Service[] {
   return services.filter((service) => service.group === groupSlug);
 }
 
-export function groupFor(service: Service): ServiceGroup | undefined {
-  return serviceGroups.find((group) => group.slug === service.group);
+export function groupFor(groups: ServiceGroup[], service: Service): ServiceGroup | undefined {
+  return groups.find((group) => group.slug === service.group);
 }
 
-export const totalOptions = services.reduce(
-  (total, service) => total + service.options.length,
-  0,
-);
+export function totalOptions(services: Service[]): number {
+  return services.reduce((total, service) => total + service.options.length, 0);
+}
 
-export function serviceBySlug(slug: string): Service | undefined {
+export function serviceBySlug(services: Service[], slug: string): Service | undefined {
   return services.find((service) => service.slug === slug);
 }
 
-export function serviceTitle(slug: string): string {
-  return serviceBySlug(slug)?.title ?? slug;
+export function serviceTitle(services: Service[], slug: string): string {
+  return serviceBySlug(services, slug)?.title ?? slug;
 }
 
-export function relatedServices(service: Service, count = 3): Service[] {
+export function relatedServices(services: Service[], service: Service, count = 3): Service[] {
   const sameGroup = services.filter(
     (item) => item.slug !== service.slug && item.group === service.group,
   );
@@ -58,6 +131,42 @@ export function relatedServices(service: Service, count = 3): Service[] {
     (item) => item.slug !== service.slug && item.group !== service.group,
   );
   return [...sameGroup, ...others].slice(0, count);
+}
+
+export function faqGroup(faqs: Faq[], group: string): Faq[] {
+  return faqs.filter((faq) => faq.group === group);
+}
+
+export const JOURNEY_MEDIA_PREFIX = '/api/journey/media/';
+
+export const JOURNEY_CATEGORIES = [
+  'Beginning',
+  'Vision',
+  'Execution',
+  'Growth',
+  'Lessons',
+  "What's next",
+] as const;
+
+/** Published chapters, in the order the admin put them in. */
+export function journeyChapters(journey: JourneyMilestone[], includeDrafts = false): JourneyMilestone[] {
+  return [...journey]
+    .filter((milestone) => includeDrafts || milestone.published)
+    .sort((a, b) => a.order - b.order);
+}
+
+/** Illustrations for one side, in display order. */
+export function illustrationsFor(
+  milestone: JourneyMilestone,
+  side: JourneySide,
+): JourneyIllustration[] {
+  return [...milestone.illustrations]
+    .filter((illustration) => illustration.side === side && illustration.src)
+    .sort((a, b) => a.order - b.order);
+}
+
+export function chapterNumber(index: number): string {
+  return String(index + 1).padStart(2, '0');
 }
 
 export function initials(name: string): string {
@@ -72,27 +181,39 @@ export function initials(name: string): string {
     .join('');
 }
 
-export function whatsappLink(message = 'Hi Zannid & Co., I want to grow my brand.'): string {
-  if (!hasWhatsApp) return '/contact';
-  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+export function whatsappNumber(site: SiteConfig): string {
+  return (site.whatsapp || '').replace(/\D/g, '');
 }
 
-export function mailtoLink(subject = 'Project enquiry', body = ''): string {
-  const query = body ? `?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}` : `?subject=${encodeURIComponent(subject)}`;
-  return `mailto:${siteConfig.email}${query}`;
+export function hasWhatsApp(site: SiteConfig): boolean {
+  return whatsappNumber(site).length >= 8;
 }
 
-export function canonicalUrl(path = '/'): string {
-  return new URL(path, siteConfig.canonical).toString();
+export function whatsappLink(site: SiteConfig, message = 'Hi Zannid & Co., I want to grow my brand.'): string {
+  if (!hasWhatsApp(site)) return '/contact';
+  return `https://wa.me/${whatsappNumber(site)}?text=${encodeURIComponent(message)}`;
 }
 
-export function faqGroup(group: string) {
-  return faqs.filter((faq) => faq.group === group);
+export function mailtoLink(
+  site: SiteConfig,
+  subject = 'Project enquiry',
+  body = '',
+): string {
+  const query = body
+    ? `?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    : `?subject=${encodeURIComponent(subject)}`;
+  return `mailto:${site.email}${query}`;
+}
+
+export function canonicalUrl(site: SiteConfig, path = '/'): string {
+  return new URL(path, site.canonical).toString();
 }
 
 export const navigation = [
   { href: '/services', label: 'Services' },
   { href: '/work', label: 'Work' },
+  { href: '/clients', label: 'Clients' },
+  { href: '/journey', label: 'Journey' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/about', label: 'About' },
   { href: '/faq', label: 'FAQ' },

@@ -1,0 +1,591 @@
+/* ── Journey: a picture book you scroll through ─────────────────────── */
+.jr {
+  position: relative;
+  overflow-x: clip;
+  padding-top: clamp(10px, 2vw, 26px);
+}
+
+/* Title page -------------------------------------------------------- */
+.jr-hero {
+  display: grid;
+  align-content: center;
+  min-height: calc(100svh - 118px);
+  padding: clamp(20px, 4svh, 48px) 0 clamp(26px, 5svh, 56px);
+}
+.jr-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+}
+.jr-hero h1 {
+  max-width: 12ch;
+  font-size: clamp(2.5rem, 5.4vw, 4.9rem);
+  letter-spacing: -0.038em;
+}
+.jr-hero-side .lede {
+  max-width: 42ch;
+  font-size: clamp(1rem, 1.24vw, 1.12rem);
+}
+.jr-cue {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(26px, 4svh, 46px);
+  font: 500 11px/1.5 var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.jr-cue::after {
+  content: '';
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(currentColor, rgba(13, 13, 18, 0));
+  opacity: 0.6;
+}
+.jr-folio {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(26px, 4svh, 44px);
+  font: 500 11px/1.5 var(--font-mono);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.jr-folio i {
+  width: 42px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+.jr-draft-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 6px 12px;
+  border: 1px dashed rgba(150, 86, 44, 0.45);
+  border-radius: 999px;
+  font: 500 11px/1.4 var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7d4623;
+}
+
+/* Stage ------------------------------------------------------------- */
+.jr-flow {
+  position: relative;
+  --jr-shift: 0;
+}
+
+.jr-stage {
+  position: relative;
+  display: grid;
+  align-content: center;
+  padding: clamp(26px, 3.6vw, 48px) 0 clamp(30px, 4vw, 54px);
+  overflow: clip;
+}
+
+/* A pool of page light, not a card. */
+.jr-stage::before {
+  content: '';
+  position: absolute;
+  inset: -2svh calc(var(--pad) * -1.6) -3svh;
+  background: radial-gradient(
+    58% 50% at 50% 46%,
+    rgba(255, 255, 255, 0.92),
+    rgba(255, 253, 250, 0.42) 58%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.jr-spread {
+  position: relative;
+  display: grid;
+  gap: clamp(46px, 7vw, 96px);
+}
+
+.jr-scene {
+  display: grid;
+  /* Proportional columns: the copy stays readable and the art keeps its
+     presence instead of collapsing on 1024–1200px screens. */
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 2fr) minmax(0, 0.92fr);
+  align-items: center;
+  gap: clamp(18px, 3vw, 48px);
+  width: min(var(--wrap), calc(100% - 2 * var(--pad)));
+  margin-inline: auto;
+  scroll-margin-top: 92px;
+}
+
+/* Illustrations: cut paper floating above the page ----------------- */
+.jr-art {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-width: 0;
+}
+
+.jr-art:empty {
+  min-height: 1px;
+}
+
+/* Keep this layer 2D: a filter inside a preserve-3d context drops the
+   image in Chromium, and each 3D child becomes a layer of its own. */
+.jr-piece {
+  --w: 100%;
+  --rot: -3deg;
+  --depth: 16;
+  display: block;
+  width: var(--w);
+  max-width: 296px;
+  transform: translateY(calc(var(--jr-shift) * var(--depth) * 1px)) rotate(var(--rot));
+  transition: transform 0.9s var(--ease), opacity 0.7s var(--ease);
+  filter: drop-shadow(0 28px 34px rgba(72, 53, 38, 0.2))
+    drop-shadow(0 3px 7px rgba(72, 53, 38, 0.1));
+}
+
+.jr-piece img {
+  width: 100%;
+  height: auto;
+}
+
+.jr-art-left .jr-piece:nth-child(odd) {
+  --rot: -4deg;
+  --depth: 24;
+}
+.jr-art-left .jr-piece:nth-child(even) {
+  --w: 62%;
+  --rot: 5deg;
+  --depth: -18;
+  margin-top: -9%;
+}
+.jr-art-right .jr-piece:nth-child(odd) {
+  --rot: 4deg;
+  --depth: 24;
+}
+.jr-art-right .jr-piece:nth-child(even) {
+  --w: 56%;
+  --rot: -6deg;
+  --depth: -18;
+  margin-top: -7%;
+}
+.jr-art-left .jr-piece:nth-child(n + 3) {
+  --w: 44%;
+  margin-top: -6%;
+}
+.jr-art-right .jr-piece:nth-child(n + 3) {
+  --w: 40%;
+  margin-top: -5%;
+}
+
+/* Copy ------------------------------------------------------------- */
+.jr-copy {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  max-width: 620px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.jr-marker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  font: 500 11px/1.6 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.jr-marker::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  flex: none;
+  background: currentColor;
+  opacity: 0.5;
+}
+.jr-cat {
+  margin-left: auto;
+  padding-left: 14px;
+  color: var(--ink-2);
+  opacity: 0.8;
+  text-align: right;
+}
+
+.jr-title {
+  margin-top: clamp(14px, 2.2vw, 22px);
+  max-width: 16ch;
+  font-size: clamp(1.95rem, 3.9vw, 3.45rem);
+  letter-spacing: -0.036em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.jr-sub {
+  margin-top: 14px;
+  max-width: 30ch;
+  font-size: clamp(1rem, 1.3vw, 1.14rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+
+.jr-desc {
+  margin-top: 13px;
+  max-width: 46ch;
+  font-size: 15px;
+  line-height: 1.63;
+  color: var(--mute);
+}
+
+.jr-draft {
+  margin-top: 18px;
+  padding: 5px 11px;
+  border: 1px dashed rgba(150, 86, 44, 0.45);
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7d4623;
+}
+
+/* Meter ------------------------------------------------------------ */
+.jr-meter {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(12px, 2.6svh, 28px);
+  z-index: 3;
+  display: none;
+  align-items: center;
+  gap: 16px;
+  transform: translateX(-50%);
+}
+
+.jr-flow.is-live .jr-meter {
+  display: flex;
+}
+
+.jr-tabs {
+  display: flex;
+  gap: 2px;
+}
+.jr-tab {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 26px;
+  text-decoration: none;
+}
+.jr-tab span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(13, 13, 18, 0.16);
+  transition: width 0.45s var(--ease), background 0.45s var(--ease);
+}
+.jr-tab:hover span {
+  background: rgba(13, 13, 18, 0.42);
+}
+.jr-tab[aria-current='true'] span {
+  width: 34px;
+  background: var(--ink);
+}
+
+.jr-count {
+  display: flex;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+.jr-count b {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.jr-triggers {
+  display: none;
+}
+.jr-trigger {
+  height: 100svh;
+}
+
+/* ── Live: the pinned spread ───────────────────────────────────────── */
+.jr-flow.is-live .jr-stage {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: 100svh;
+  padding: clamp(20px, 4svh, 54px) 0 clamp(58px, 9svh, 96px);
+  perspective: 2200px;
+}
+
+.jr-flow.is-live .jr-spread,
+.jr-flow.is-live .jr-scene {
+  transform-style: preserve-3d;
+}
+
+.jr-flow.is-live .jr-spread {
+  gap: 0;
+}
+
+.jr-flow.is-live .jr-triggers {
+  display: block;
+}
+
+.jr-flow.is-live .jr-scene {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translate3d(0, 0, -150px) rotateY(7deg) scale(0.985);
+  transition: opacity 0.7s var(--ease), transform 1s var(--ease);
+  pointer-events: none;
+}
+
+.jr-flow.is-live .jr-scene.is-before {
+  transform: translate3d(-3%, 0, -170px) rotateY(-9deg) scale(0.975);
+}
+
+.jr-flow.is-live .jr-scene.is-active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.jr-flow.is-live .jr-scene:not(.is-active) .jr-piece {
+  opacity: 0.4;
+}
+.jr-flow.is-live .jr-scene.is-active .jr-art-left .jr-piece:nth-child(2) {
+  transition-delay: 0.07s;
+}
+.jr-flow.is-live .jr-scene.is-active .jr-art-right .jr-piece:nth-child(2) {
+  transition-delay: 0.12s;
+}
+
+.jr-flow.is-live .jr-copy > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s var(--ease), transform 0.75s var(--ease);
+}
+.jr-flow.is-live .jr-scene.is-active .jr-copy > * {
+  opacity: 1;
+  transform: none;
+}
+.jr-flow.is-live .jr-scene.is-active .jr-copy > *:nth-child(2) {
+  transition-delay: 0.05s;
+}
+.jr-flow.is-live .jr-scene.is-active .jr-copy > *:nth-child(3) {
+  transition-delay: 0.11s;
+}
+.jr-flow.is-live .jr-scene.is-active .jr-copy > *:nth-child(4) {
+  transition-delay: 0.17s;
+}
+.jr-flow.is-live .jr-scene.is-active .jr-copy > *:nth-child(5) {
+  transition-delay: 0.23s;
+}
+
+/* ── Empty state ───────────────────────────────────────────────────── */
+.jr-empty {
+  padding: clamp(40px, 7vw, 90px) 0 clamp(30px, 5vw, 60px);
+}
+.jr-empty-plate {
+  position: relative;
+  max-width: 660px;
+  padding: clamp(30px, 5vw, 60px);
+  border-radius: 4px;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.9), rgba(255, 252, 246, 0.6));
+  box-shadow: 0 30px 70px -50px rgba(72, 53, 38, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+.jr-empty-plate::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px dashed rgba(13, 13, 18, 0.12);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.jr-empty-num {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.jr-empty-plate h2 {
+  margin-top: 16px;
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  letter-spacing: -0.035em;
+}
+.jr-empty-plate .lede {
+  margin-top: 16px;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+}
+.jr-empty-plate .actions {
+  margin-top: 26px;
+}
+
+/* ── Tablet ────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .jr-scene {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr) minmax(0, 0.8fr);
+    gap: 14px;
+  }
+  .jr-piece {
+    max-width: 210px;
+  }
+  .jr-title {
+    font-size: clamp(1.75rem, 4.2vw, 2.6rem);
+  }
+  .jr-desc {
+    font-size: 14.5px;
+  }
+  .jr-marker {
+    letter-spacing: 0.16em;
+  }
+}
+
+/* ── Mobile: a stacked picture book, no pinning ────────────────────── */
+@media (max-width: 767px) {
+  .jr-hero {
+    min-height: 0;
+    padding: 18px 0 34px;
+  }
+  .jr-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    align-items: start;
+  }
+  .jr-hero-side .lede {
+    max-width: 46ch;
+    font-size: 16.5px;
+  }
+  .jr-cue::after {
+    height: 26px;
+  }
+  .jr-flow.is-live .jr-stage {
+    position: static;
+    min-height: 0;
+    padding: 8px 0 30px;
+  }
+  .jr-flow.is-live .jr-spread {
+    gap: clamp(40px, 9vw, 64px);
+  }
+  .jr-flow.is-live .jr-scene,
+  .jr-scene {
+    grid-area: auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 10px;
+    row-gap: 20px;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .jr-flow.is-live .jr-scene.is-before,
+  .jr-flow.is-live .jr-scene {
+    opacity: 1;
+    transform: none;
+  }
+  .jr-flow.is-live .jr-copy > * {
+    opacity: 1;
+    transform: none;
+  }
+  .jr-flow.is-live .jr-meter,
+  .jr-flow.is-live .jr-triggers {
+    display: none;
+  }
+  .jr-art-left {
+    grid-area: 1 / 1;
+  }
+  .jr-art-right {
+    grid-area: 1 / 2;
+  }
+  .jr-copy {
+    grid-area: 2 / 1 / 3 / 3;
+    max-width: 46ch;
+  }
+  .jr-art-left .jr-piece,
+  .jr-art-right .jr-piece,
+  .jr-art-left .jr-piece:nth-child(even),
+  .jr-art-right .jr-piece:nth-child(even) {
+    --w: 100%;
+    --depth: 8;
+    margin-top: 0;
+    max-width: 150px;
+  }
+  .jr-art-left .jr-piece:nth-child(n + 2),
+  .jr-art-right .jr-piece:nth-child(n + 2) {
+    --w: 66%;
+    max-width: 96px;
+    margin-top: 6px;
+  }
+  .jr-title {
+    font-size: clamp(1.72rem, 7.6vw, 2.4rem);
+  }
+  .jr-sub {
+    max-width: 34ch;
+  }
+  .jr-desc {
+    font-size: 14.5px;
+    max-width: 42ch;
+  }
+  .jr-hero h1 {
+    font-size: clamp(2.25rem, 8.8vw, 3.1rem);
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .jr-hero {
+    min-height: calc(100svh - 132px);
+  }
+  .jr-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .jr-hero h1 {
+    max-width: 14ch;
+  }
+  .jr-hero-side .lede {
+    max-width: 48ch;
+  }
+  .jr-cue {
+    margin-top: 20px;
+  }
+}
+
+/* ── Reduced motion: the story laid out flat ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .jr-flow.is-live .jr-stage {
+    position: static;
+    min-height: 0;
+    padding: 16px 0 30px;
+  }
+  .jr-flow.is-live .jr-spread {
+    gap: clamp(40px, 7vw, 76px);
+  }
+  .jr-flow.is-live .jr-scene,
+  .jr-flow.is-live .jr-scene.is-before {
+    grid-area: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .jr-flow.is-live .jr-copy > * {
+    opacity: 1;
+    transform: none;
+  }
+  .jr-flow.is-live .jr-triggers,
+  .jr-flow.is-live .jr-meter {
+    display: none;
+  }
+  .jr-piece {
+    transform: rotate(var(--rot));
+    transition: none;
+  }
+}

@@ -1,9 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { content, faqs } from '../lib/site';
+import { getData } from '../lib/data';
+const { faqs, content } = await getData();
 const page = content.faqPage;
-const groups = ['General', 'Pricing', 'Process'].map((group) => ({
+const names = [...new Set(faqs.map((faq) => faq.group))];
+const groups = names.map((group) => ({
   group,
   items: faqs.filter((faq) => faq.group === group),
 }));
@@ -27,7 +29,7 @@ const groups = ['General', 'Pricing', 'Process'].map((group) => ({
           <h2>{group}</h2>
           <div class="faq-list glass">
             {items.map((faq, i) => (
-              <details class="faq-item" open={group === 'General' && i === 0}>
+              <details class="faq-item" open={i === 0}>
                 <summary>{faq.q}<Icon name="plus" size={20} /></summary>
                 <p>{faq.a}</p>
               </details>

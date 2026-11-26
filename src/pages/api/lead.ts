@@ -8,7 +8,7 @@ const clean = (value: unknown, max: number) => (typeof value === 'string' ? valu
 const json = (status: number, body: object) =>
   new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } });
 
-const SOURCES = new Set(['website', 'audit', 'contact']);
+const SOURCES = new Set(['website', 'audit', 'contact', 'clients']);
 
 export const POST: APIRoute = async ({ request }) => {
   let data: Record<string, unknown>;

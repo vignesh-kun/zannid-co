@@ -1,10 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { bundles, content, faqGroup, serviceTitle } from '../lib/site';
+import { faqGroup, serviceTitle } from '../lib/site';
+import { getData } from '../lib/data';
 
+const data = await getData();
+const { bundles, services, content } = data;
 const page = content.pricingPage;
-const faqs = faqGroup('Pricing');
+const pricingFaqs = faqGroup(data.faqs, 'Pricing');
 ---
 
 <Base
@@ -51,7 +54,7 @@ const faqs = faqGroup('Pricing');
             </p>
             <ul>
               {bundle.includes.map((slug) => (
-                <li><Icon name="check" size={15} />{serviceTitle(slug)}</li>
+                <li><Icon name="check" size={15} />{serviceTitle(services, slug)}</li>
               ))}
             </ul>
             <a class:list={['btn', 'wide', { ghost: !bundle.mostChosen }]} href={`/contact?bundle=${bundle.slug}`}>
@@ -110,7 +113,7 @@ const faqs = faqGroup('Pricing');
         </div>
       </div>
       <div class="faq-list glass" data-reveal>
-        {faqs.map((faq, i) => (
+        {pricingFaqs.map((faq, i) => (
           <details class="faq-item" open={i === 0}>
             <summary>{faq.q}<Icon name="plus" size={20} /></summary>
             <p>{faq.a}</p>

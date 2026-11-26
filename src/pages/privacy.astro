@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProseSections from '../components/ProseSections.astro';
-import { content } from '../lib/site';
-const page = content.privacy;
+import { getData } from '../lib/data';
+const { legal } = await getData();
+const page = legal.privacy;
 ---
 <Base
   title="Privacy policy | Zannid & Co."
@@ -12,7 +13,7 @@ const page = content.privacy;
     <div class="wrap prose-wrap">
       <p class="eyebrow">Legal</p>
       <h1 class="display">{page.title}</h1>
-      <p class="lede">Plain English, no surprises. This page explains what happens to the details you share with us.</p>
+      {page.intro && <p class="lede">{page.intro}</p>}
     </div>
   </section>
 

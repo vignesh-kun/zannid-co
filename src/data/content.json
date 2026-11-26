@@ -35,18 +35,47 @@
       "multiple": "3.4×",
       "multipleLabel": "monthly reach a full Growth plan targets by week 12, compared with posting alone.",
       "metrics": [
-        { "value": "7 days", "label": "to first content live" },
-        { "value": "48 hrs", "label": "first-draft turnaround" },
-        { "value": "24/7", "label": "DM and WhatsApp replies" }
+        {
+          "value": "7 days",
+          "label": "to first content live"
+        },
+        {
+          "value": "48 hrs",
+          "label": "first-draft turnaround"
+        },
+        {
+          "value": "24/7",
+          "label": "DM and WhatsApp replies"
+        }
       ],
       "funnelTitle": "Where 100,000 views go",
       "funnelBadge": "Example, not a client result",
       "funnelSteps": [
-        { "label": "Views", "value": "100,000", "width": 100 },
-        { "label": "Profile visits", "value": "6,000", "width": 42 },
-        { "label": "DMs and clicks", "value": "1,200", "width": 20 },
-        { "label": "Qualified leads", "value": "320", "width": 9 },
-        { "label": "Customers", "value": "80", "width": 4 }
+        {
+          "label": "Views",
+          "value": "100,000",
+          "width": 100
+        },
+        {
+          "label": "Profile visits",
+          "value": "6,000",
+          "width": 42
+        },
+        {
+          "label": "DMs and clicks",
+          "value": "1,200",
+          "width": 20
+        },
+        {
+          "label": "Qualified leads",
+          "value": "320",
+          "width": 9
+        },
+        {
+          "label": "Customers",
+          "value": "80",
+          "width": 4
+        }
       ],
       "funnelNote": "An illustrative funnel, not a promise. Our job is to widen every step: better hooks, a sharper profile, faster replies."
     },
@@ -148,17 +177,38 @@
     "factorsTitle": "What sets the number",
     "factorsLede": "Not a menu with multipliers. Four things decide most of the price, and all four go in writing before work starts.",
     "factors": [
-      { "title": "Scope", "body": "How many services, channels and deliverables are in play." },
-      { "title": "Production", "body": "Shoot days, editing volume and original assets." },
-      { "title": "Build", "body": "Integrations, platforms, data and compliance." },
-      { "title": "Pace", "body": "Launch date, timeline and how much runs at once." }
+      {
+        "title": "Scope",
+        "body": "How many services, channels and deliverables are in play."
+      },
+      {
+        "title": "Production",
+        "body": "Shoot days, editing volume and original assets."
+      },
+      {
+        "title": "Build",
+        "body": "Integrations, platforms, data and compliance."
+      },
+      {
+        "title": "Pace",
+        "body": "Launch date, timeline and how much runs at once."
+      }
     ],
     "quoteTitle": "How the quote works",
     "quoteLede": "Three steps, no discovery theatre. You leave the call knowing what happens next.",
     "quoteSteps": [
-      { "title": "Call", "body": "Twenty minutes on the goal, the offer and the deadline." },
-      { "title": "Scope", "body": "We write down what is included, what is not, and who owns what." },
-      { "title": "Quote", "body": "A fixed project price or monthly rate, sent within two working days." }
+      {
+        "title": "Call",
+        "body": "Twenty minutes on the goal, the offer and the deadline."
+      },
+      {
+        "title": "Scope",
+        "body": "We write down what is included, what is not, and who owns what."
+      },
+      {
+        "title": "Quote",
+        "body": "A fixed project price or monthly rate, sent within two working days."
+      }
     ],
     "faqTitle": "Pricing questions"
   },
@@ -200,50 +250,6 @@
     "successTitle": "You're in.",
     "successBody": "We have your details and will message you on WhatsApp within 24 hours."
   },
-  "aboutPage": {
-    "eyebrow": "About Zannid & Co.",
-    "title": "A growth team, not a content vendor.",
-    "lede": "Zannid & Co. exists for brands that are doing good work and being ignored for it. We bring strategy, production, paid media, automation and engineering into one team so the work has a job beyond looking good.",
-    "storyTitle": "Why we started",
-    "story": [
-      "Most small brands do not have a marketing problem. They have an ownership problem. A designer here, an ads freelancer there, a cousin who edits reels. Each piece can be fine; together they never become a system.",
-      "We built Zannid to be that system: one team that plans the month, shoots the content, runs the ads, answers the DMs and reports on what moved. The same people who promise the result are the ones doing the work.",
-      "We work with cafés and restaurants, real estate, education, retail, events and production houses across India and internationally. Different categories, same standard: strategy first, craft second, measurement always."
-    ],
-    "principlesTitle": "What we believe",
-    "principles": [
-      {
-        "title": "Strategy first",
-        "body": "Every reel has a job: reach, trust or sale. We start with the why, not the trend."
-      },
-      {
-        "title": "One owner",
-        "body": "One team, one WhatsApp group, one invoice. No vendor ping-pong."
-      },
-      {
-        "title": "No lock-in",
-        "body": "Monthly plans. We earn next month by delivering this one."
-      },
-      {
-        "title": "You own it all",
-        "body": "Raw footage, edits, ad accounts and automations stay yours, forever."
-      },
-      {
-        "title": "Fast, then right",
-        "body": "First drafts in 48 hours. First content live in 7 days. Speed is a feature, not an excuse."
-      },
-      {
-        "title": "Anywhere",
-        "body": "From neighbourhood cafés to global D2C brands: same team, same standard."
-      }
-    ],
-    "numbers": [
-      { "value": "19", "label": "services under one roof" },
-      { "value": "25", "label": "brands in the client wall" },
-      { "value": "48h", "label": "first-draft turnaround" },
-      { "value": "7 days", "label": "to first content live" }
-    ]
-  },
   "faqPage": {
     "eyebrow": "FAQ",
     "title": "Questions, answered.",
@@ -270,98 +276,20 @@
     "budgetLabel": "Monthly budget",
     "regionLabel": "Region"
   },
-  "privacy": {
-    "title": "Privacy policy",
-    "updated": "Last updated: 23 November 2026",
-    "sections": [
-      {
-        "heading": "What we collect",
-        "body": [
-          "When you submit an audit, contact or brief form we collect the name, brand, WhatsApp number, email address, service interest, budget range, region and message you choose to give us.",
-          "We also receive basic technical information such as your browser user agent and the time of submission, used to keep the form working and to stop spam."
-        ]
-      },
-      {
-        "heading": "Why we collect it",
-        "body": [
-          "We use your details only to respond to your enquiry, prepare an audit or proposal, and manage a working relationship if you become a client.",
-          "We do not sell your data, add you to a newsletter you did not ask for, or share your details with advertisers."
-        ]
-      },
-      {
-        "heading": "Where it is stored",
-        "body": [
-          "Form submissions are stored in a managed Postgres database (Supabase) with access restricted to Zannid & Co. The site itself is hosted on Vercel.",
-          "We keep enquiry records only as long as needed to respond and to meet our accounting and legal obligations."
-        ]
-      },
-      {
-        "heading": "Cookies and analytics",
-        "body": [
-          "The site does not set advertising cookies or use analytics.",
-          "If we add privacy-respecting analytics later, this page will say what is measured before it goes live."
-        ]
-      },
-      {
-        "heading": "Your choices",
-        "body": [
-          "You can ask us to access, correct or delete the enquiry data we hold about you by emailing hello@zannid.co. We will respond within a reasonable period.",
-          "If you are in the EU or UK, you may also have the right to object to processing or lodge a complaint with your local data protection authority."
-        ]
-      },
-      {
-        "heading": "Contact",
-        "body": [
-          "For any privacy question, email hello@zannid.co with the subject line “Privacy”."
-        ]
-      }
-    ]
-  },
-  "terms": {
-    "title": "Terms of service",
-    "updated": "Last updated: 23 November 2026",
-    "sections": [
-      {
-        "heading": "Using this site",
-        "body": [
-          "This website is operated by Zannid & Co. By using it you agree to these terms. The content is provided for information and nothing on it is a binding offer or quote."
-        ]
-      },
-      {
-        "heading": "Services and quotes",
-        "body": [
-          "Every engagement is confirmed by a written scope and quote. Deliverables, timelines, revision rounds and payment terms are set out there. Only that document confirms a price or availability.",
-          "Ad spend, domain, hosting, third-party subscriptions, payment gateway charges and travel are billed separately unless a scope says otherwise."
-        ]
-      },
-      {
-        "heading": "Payments and cancellation",
-        "body": [
-          "Monthly plans are billed in advance and can be cancelled with notice before the next billing cycle. Project work usually requires a deposit before production starts.",
-          "Late payments may pause delivery. Work already produced or media already spent remains payable."
-        ]
-      },
-      {
-        "heading": "Intellectual property",
-        "body": [
-          "On full payment, you own the final deliverables produced for you, including raw footage and edits. We retain the right to show the work in our portfolio unless you ask us not to in writing.",
-          "Our own tools, templates, processes and pre-existing materials remain ours."
-        ]
-      },
-      {
-        "heading": "Results",
-        "body": [
-          "Marketing outcomes depend on your offer, market, budget and response times. We commit to the scope and the standard of work, not to a specific revenue outcome.",
-          "Statistics on this site are sourced from third-party research and are labelled with their source."
-        ]
-      },
-      {
-        "heading": "Liability and law",
-        "body": [
-          "To the extent permitted by law, our liability is limited to the fees paid for the affected engagement. These terms are governed by the laws of India, with courts in Hyderabad having jurisdiction.",
-          "Questions about these terms: hello@zannid.co."
-        ]
-      }
-    ]
+  "clientsPage": {
+    "eyebrow": "Clients",
+    "title": "Twenty-five brands. One standard.",
+    "lede": "Cafés, restaurants, real estate, education, events, retail, production houses and a tech fest. Different categories, the same job: make the work impossible to scroll past.",
+    "formTitle": "Tell us the problem.",
+    "formLede": "Name, brand and the thing that is not working. Press apply and your email app opens with the brief filled in, addressed to us.",
+    "steps": [
+      "A reply from a human, not a bot",
+      "A straight answer on whether we fit",
+      "If we do: a scope, a quote, a start date"
+    ],
+    "note": "This only sends us a message. No payment, no account, no commitment.",
+    "submitNote": "Opens your email app · goes to our inbox",
+    "wallTitle": "The client wall",
+    "wallLede": "Brands we have shot, posted, advertised or built for."
   }
 }

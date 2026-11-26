@@ -1,30 +1,31 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
-import {
-  content,
-  serviceGroups,
-  services,
-  servicesInGroup,
-  totalOptions,
-} from '../../lib/site';
+import { optionPrice, servicesInGroup, totalOptions } from '../../lib/site';
+import { getData } from '../../lib/data';
+const { services, groups, content } = await getData();
 const page = content.servicesPage;
-const groups = serviceGroups.map((group) => ({
+const departments = groups.map((group) => ({
   ...group,
-  count: servicesInGroup(group.slug).length,
+  count: servicesInGroup(services, group.slug).length,
 }));
+const thumbs = [
+  '/assets/img/strategy.jpg',
+  '/assets/img/shoot.jpg',
+  '/assets/img/performance.jpg',
+  '/assets/img/set-wide.jpg',
+];
 ---
-
 <Base
-  title="Services | 19 services, 5 departments · Zannid & Co."
-  description="Brand, content, growth, websites, AI, SaaS and mobile engineering. Nineteen services with named options, scoped and quoted per engagement."
+  title={`Services | ${services.length} services, ${groups.length} departments · Zannid & Co.`}
+  description="Brand, content, growth, websites, AI, SaaS and mobile engineering. Every service comes with named options, scoped and quoted per engagement."
 >
   <section class="svc-hero">
     <div class="wrap svc-hero-grid">
       <div>
         <h1 class="display">
-          Nineteen services.<br />
-          <span class="svc-quiet">Five departments.</span><br />
+          {services.length} services.<br />
+          <span class="svc-quiet">{groups.length} departments.</span><br />
           One team.
         </h1>
       </div>
@@ -37,7 +38,7 @@ const groups = serviceGroups.map((group) => ({
           </div>
           <div>
             <dt>Named options</dt>
-            <dd class="mono">{totalOptions}</dd>
+            <dd class="mono">{totalOptions(services)}</dd>
           </div>
         </dl>
       </div>
@@ -49,7 +50,7 @@ const groups = serviceGroups.map((group) => ({
       <aside class="svc-rail" aria-label="Departments">
         <p class="rail-label">{page.railTitle}</p>
         <nav>
-          {groups.map((group) => (
+          {departments.map((group) => (
             <a href={`#${group.slug}`}>
               <span>{group.title}</span>
               <span class="mono">{group.count}</span>
@@ -64,18 +65,26 @@ const groups = serviceGroups.map((group) => ({
 
       <div class="svc-groups">
         <h2 class="sr" id="index-title">Service index</h2>
-        {groups.map((group) => (
+        {departments.map((group, groupIndex) => (
           <section class="svc-group" id={group.slug} aria-labelledby={`${group.slug}-title`}>
             <header class="svc-group-head">
               <div>
                 <h3 class="display" id={`${group.slug}-title`}>{group.title}</h3>
                 <p>{group.blurb}</p>
               </div>
+              <img
+                class="svc-thumb"
+                src={thumbs[groupIndex % thumbs.length]}
+                alt=""
+                width="760"
+                height="570"
+                loading="lazy"
+              />
               <span class="svc-count mono">{group.count} services</span>
             </header>
 
             <div class="svc-rows">
-              {servicesInGroup(group.slug).map((service) => (
+              {servicesInGroup(services, group.slug).map((service) => (
                 <a class="svc-row" href={`/services/${service.slug}`} data-reveal>
                   <div class="svc-row-head">
                     <span class="svc-row-icon" aria-hidden="true">
@@ -89,12 +98,15 @@ const groups = serviceGroups.map((group) => ({
 
                   <div class="svc-opts">
                     <span class="svc-opts-label">{service.options.length} options</span>
-                    {service.options.map((option) => (
-                      <span class="opt-line">
-                        <b>{option.name}</b>
-                        <span>{option.timeline}</span>
-                      </span>
-                    ))}
+                    {service.options.map((option) => {
+                      const price = optionPrice(service, option);
+                      return (
+                        <span class="opt-line">
+                          <b>{option.name}</b>
+                          <span>{price ? `${option.timeline} · ${price}` : option.timeline}</span>
+                        </span>
+                      );
+                    })}
                   </div>
 
                   <span class="svc-row-go" aria-hidden="true">

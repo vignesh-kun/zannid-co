@@ -1,0 +1,184 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { getData } from '../lib/data';
+import { isAuthed } from '../lib/auth';
+import { chapterNumber, illustrationsFor, journeyChapters } from '../lib/site';
+import '../styles/journey.css';
+
+export const prerender = false;
+
+const { journey } = await getData();
+const isAdmin = isAuthed(Astro.request);
+const chapters = journeyChapters(journey, isAdmin);
+const total = chapters.length;
+const drafts = chapters.filter((chapter) => !chapter.published).length;
+
+const description =
+  'The Zannid & Co. story, chapter by chapter: the ownership problem that started the studio, the team it grew into, the brands that tested it and what gets written next.';
+
+const meta = `${String(total).padStart(2, '0')} chapters`;
+---
+
+<Base title="Journey | How Zannid & Co. got here." description={description} bodyClass="journey-page">
+  <header class="jr-hero">
+    <div class="wrap jr-hero-grid">
+      <div class="jr-hero-main">
+        <h1 class="display">How Zannid &amp; Co. got here.</h1>
+        {
+          total > 0 && (
+            <p class="jr-folio mono">
+              <span>{meta}</span>
+              <i aria-hidden="true" />
+              <span>Illustrated</span>
+            </p>
+          )
+        }
+      </div>
+      <div class="jr-hero-side">
+        <p class="lede">
+          Not a timeline of dates. A book of decisions: the problem that started the studio, the
+          bench that grew out of it, the brands that tested it, and the chapter being written now.
+        </p>
+        {
+          drafts > 0 && (
+            <p class="jr-draft-note">
+              {drafts} {drafts === 1 ? 'chapter is' : 'chapters are'} still a draft. Only you can see{' '}
+              {drafts === 1 ? 'it' : 'them'}.
+            </p>
+          )
+        }
+        {total > 0 && <p class="jr-cue mono">Scroll to turn the page</p>}
+      </div>
+    </div>
+  </header>
+
+  {
+    total === 0 ? (
+      <section class="jr-empty wrap">
+        <div class="jr-empty-plate">
+          <p class="jr-empty-num mono">Chapter 01</p>
+          <h2 class="display">The first page is still blank.</h2>
+          <p class="lede">
+            Zannid&rsquo;s journey is being set down one chapter at a time. Nothing has been published
+            yet &mdash; when it is, it will appear here exactly as it was written.
+          </p>
+          <div class="actions">
+            <a class="btn" href="/work">
+              See the work <Icon name="arrow" size={16} />
+            </a>
+            <a class="btn ghost" href="/contact">Talk to us</a>
+          </div>
+        </div>
+      </section>
+    ) : (
+      <section class="jr" aria-label="The Zannid journey">
+        <div class="jr-flow" data-flow style={`--jr-count:${total}`}>
+          <div class="jr-stage" data-stage>
+            <div class="jr-spread">
+              {chapters.map((chapter, index) => {
+                const left = illustrationsFor(chapter, 'left');
+                const right = illustrationsFor(chapter, 'right');
+                return (
+                  <article
+                    class={`jr-scene${index === 0 ? ' is-active' : ''}`}
+                    id={`chapter-${index + 1}`}
+                    data-scene={index}
+                  >
+                    <div class="jr-art jr-art-left" data-side="left">
+                      {left.map((art, artIndex) => (
+                        <span class="jr-piece" data-piece={artIndex}>
+                          <img
+                            src={art.src}
+                            alt={art.alt || ''}
+                            width="900"
+                            height="900"
+                            loading={index < 2 ? 'eager' : 'lazy'}
+                            decoding="async"
+                          />
+                        </span>
+                      ))}
+                    </div>
+
+                    <div class="jr-copy">
+                      <p class="jr-marker mono">
+                        <span>{chapter.date || `Chapter ${chapterNumber(index)}`}</span>
+                        <span class="jr-cat">{chapter.category}</span>
+                      </p>
+                      <h2 class="jr-title display">{chapter.title}</h2>
+                      {chapter.subtitle && <p class="jr-sub">{chapter.subtitle}</p>}
+                      {chapter.description && <p class="jr-desc">{chapter.description}</p>}
+                      {!chapter.published && <p class="jr-draft mono">Draft</p>}
+                    </div>
+
+                    <div class="jr-art jr-art-right" data-side="right">
+                      {right.map((art, artIndex) => (
+                        <span class="jr-piece" data-piece={artIndex}>
+                          <img
+                            src={art.src}
+                            alt={art.alt || ''}
+                            width="900"
+                            height="900"
+                            loading={index < 2 ? 'eager' : 'lazy'}
+                            decoding="async"
+                          />
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            <div class="jr-meter">
+              <div class="jr-tabs">
+                {chapters.map((chapter, index) => (
+                  <a
+                    class="jr-tab"
+                    href={`#chapter-${index + 1}`}
+                    data-tab={index}
+                    aria-label={`Chapter ${index + 1}: ${chapter.title}`}
+                    aria-current={index === 0 ? 'true' : undefined}
+                  >
+                    <span aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+              <p class="jr-count mono" aria-hidden="true">
+                <b data-count-current>01</b>
+                <span>/</span>
+                <span>{String(total).padStart(2, '0')}</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="jr-triggers" aria-hidden="true">
+            {chapters.map((chapter) => (
+              <div class="jr-trigger" data-trigger={chapter.id} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="cta-panel glass" data-reveal>
+        <h2 class="display">Write the next chapter with us.</h2>
+        <p class="lede">
+          Every chapter here started with someone asking what was actually holding their growth
+          back. Ask us that, and we will answer in writing.
+        </p>
+        <div class="actions">
+          <a class="btn" href="/audit">Get my free growth audit <Icon name="arrow" /></a>
+          <a class="btn ghost" href="/contact">Book a Free Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import '../scripts/journey';
+  </script>
+</Base>

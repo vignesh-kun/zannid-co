@@ -1,12 +1,14 @@
 ---
 import Icon from './Icon.astro';
-import { navigation, siteConfig } from '../lib/site';
+import { navigation } from '../lib/site';
+import { getData } from '../lib/data';
 
+const { site } = await getData();
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const active = (href: string) => path === href || (href !== '/' && path.startsWith(`${href}/`));
 ---
 {
-  siteConfig.showUrgencyBanner && (
+  site.showUrgencyBanner && (
     <div class="offer-banner">
       <span class="dot" aria-hidden="true" />
       <span>
@@ -20,14 +22,7 @@ const active = (href: string) => path === href || (href !== '/' && path.startsWi
 <header class="site-head" data-head>
   <div class="head-inner wrap">
     <a class="brand" href="/" aria-label="Zannid & Co. home">
-      <svg viewBox="-6 0 150 120" aria-hidden="true">
-        <g transform="skewX(-16) translate(30,0)">
-          <path d="M10 28 L96 12 L104 12 L40 92 L106 84 L98 104 L8 112 L0 112 L66 34 L4 40 Z" fill="currentColor" />
-          <path d="M-8 76 L126 46" class="brand-cut" stroke-width="6" />
-        </g>
-      </svg>
-      <span class="brand-word">ZANNID</span>
-      <span class="brand-co">&amp; CO.</span>
+      <img class="brand-logo" src="/assets/zannid-logo.png" alt="" width="54" height="54" />
     </a>
 
     <nav class="desktop-nav" aria-label="Main">
@@ -62,8 +57,8 @@ const active = (href: string) => path === href || (href !== '/' && path.startsWi
       </ul>
     </nav>
     <div class="mobile-menu-foot">
-      <a href={`mailto:${siteConfig.email}`}><Icon name="mail" size={16} /> {siteConfig.email}</a>
-      <a href={siteConfig.instagram} target="_blank" rel="noopener"><Icon name="instagram" size={16} /> {siteConfig.instagramHandle}</a>
+      <a href={`mailto:${site.email}`}><Icon name="mail" size={16} /> {site.email}</a>
+      <a href={site.instagram} target="_blank" rel="noopener"><Icon name="instagram" size={16} /> {site.instagramHandle}</a>
     </div>
   </div>
 </header>

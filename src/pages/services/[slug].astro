@@ -1,26 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
-import {
-  canonicalUrl,
-  content,
-  groupFor,
-  relatedServices,
-  services,
-  siteConfig,
-  type Service,
-} from '../../lib/site';
+import { canonicalUrl, groupFor, optionPrice, relatedServices } from '../../lib/site';
+import { getData } from '../../lib/data';
 
-export function getStaticPaths() {
-  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+const { services, groups, content, site } = await getData();
+const service = services.find((item) => item.slug === Astro.params.slug);
+
+if (!service) {
+  return Astro.rewrite('/404');
 }
 
-interface Props {
-  service: Service;
-}
-const { service } = Astro.props;
-const group = groupFor(service);
-const related = relatedServices(service);
+const group = groupFor(groups, service);
+const related = relatedServices(services, service);
 const pageTitle = `${service.title} | ${service.summary.replace(/\.$/, '')} · Zannid & Co.`;
 const description = `${service.summary} ${service.options.length} ways to scope it. Quoted per engagement.`.slice(0, 158);
 const schema = {
@@ -29,17 +21,17 @@ const schema = {
   name: service.title,
   serviceType: service.title,
   description: service.summary,
-  url: canonicalUrl(`/services/${service.slug}`),
-  provider: { '@type': 'ProfessionalService', name: 'Zannid & Co.', url: siteConfig.canonical },
+  url: canonicalUrl(site, `/services/${service.slug}`),
+  provider: { '@type': 'ProfessionalService', name: site.name, url: site.canonical },
   areaServed: ['India', 'Worldwide'],
 };
 const crumbs = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: canonicalUrl('/') },
-    { '@type': 'ListItem', position: 2, name: 'Services', item: canonicalUrl('/services') },
-    { '@type': 'ListItem', position: 3, name: service.title, item: canonicalUrl(`/services/${service.slug}`) },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: canonicalUrl(site, '/') },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: canonicalUrl(site, '/services') },
+    { '@type': 'ListItem', position: 3, name: service.title, item: canonicalUrl(site, `/services/${service.slug}`) },
   ],
 };
 ---
@@ -63,7 +55,7 @@ const crumbs = {
           <div class="svc-meta">
             {group && <span class="svc-chip">{group.title}</span>}
             <span class="svc-chip">{service.options.length} options</span>
-            <span class="svc-chip">Pricing quoted per scope</span>
+            <span class="svc-chip">{service.showPrice ? 'Indicative pricing' : 'Pricing quoted per scope'}</span>
           </div>
           <div class="actions">
             <a class="btn" href={`/contact?service=${service.slug}`}>
@@ -75,10 +67,13 @@ const crumbs = {
 
         <aside class="scope-card glass" aria-labelledby="scope-heading">
           <p class="scope-label">Pricing</p>
-          <h2 class="display" id="scope-heading">Quoted, not guessed.</h2>
+          <h2 class="display" id="scope-heading">
+            {service.showPrice ? 'Where each option lands.' : 'Quoted, not guessed.'}
+          </h2>
           <p>
-            Tell us the goal and the deadline. We send a written scope, a price and a start date
-            within two working days.
+            {service.showPrice
+              ? 'Prices shown are indicative starting points for the scope described. Every engagement is confirmed in writing before work starts.'
+              : 'Tell us the goal and the deadline. We send a written scope, a price and a start date within two working days.'}
           </p>
           <ul class="scope-list">
             <li><Icon name="check" size={15} /><span>20-minute scoping call</span></li>
@@ -100,34 +95,38 @@ const crumbs = {
         <div>
           <h2 class="display" id="options-title">Pick the option that fits.</h2>
           <p class="lede">
-            Same team, same standard. The scope changes, not the quality. Each option is quoted
-            after a short call.
+            Same team, same standard. The scope changes, not the quality. Every option is confirmed
+            in a short call before anyone starts.
           </p>
         </div>
       </div>
 
       <div class="opt-grid">
-        {service.options.map((option, i) => (
-          <article class="opt-card glass" data-reveal data-delay={String(i)}>
-            <div class="opt-card-top">
-              <span class="opt-time mono">{option.timeline}</span>
-              <Icon name={service.icon as 'compass'} size={19} />
-            </div>
-            <h3>{option.name}</h3>
-            <p class="opt-best">{option.bestFor}</p>
-            <ul>
-              {option.includes.map((item) => (
-                <li><Icon name="check" size={15} /><span>{item}</span></li>
-              ))}
-            </ul>
-            <a
-              class="text-link"
-              href={`/contact?service=${service.slug}&option=${encodeURIComponent(option.name)}`}
-            >
-              Ask about this option <Icon name="arrow" size={15} />
-            </a>
-          </article>
-        ))}
+        {service.options.map((option, i) => {
+          const price = optionPrice(service, option);
+          return (
+            <article class="opt-card glass" data-reveal data-delay={String(i)}>
+              <div class="opt-card-top">
+                <span class="opt-time mono">{option.timeline}</span>
+                <Icon name={service.icon as 'compass'} size={19} />
+              </div>
+              <h3>{option.name}</h3>
+              {price && <p class="opt-price mono">{price}</p>}
+              {option.bestFor && <p class="opt-best">{option.bestFor}</p>}
+              <ul>
+                {option.includes.map((item) => (
+                  <li><Icon name="check" size={15} /><span>{item}</span></li>
+                ))}
+              </ul>
+              <a
+                class="text-link"
+                href={`/contact?service=${service.slug}&option=${encodeURIComponent(option.name)}`}
+              >
+                Ask about this option <Icon name="arrow" size={15} />
+              </a>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -155,25 +154,27 @@ const crumbs = {
     </div>
   </section>
 
-  <section class="section-tight" aria-labelledby="related-title">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <div>
-          <h2 class="display" id="related-title">Often paired with.</h2>
+  {related.length > 0 && (
+    <section class="section-tight" aria-labelledby="related-title">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div>
+            <h2 class="display" id="related-title">Often paired with.</h2>
+          </div>
+        </div>
+        <div class="related-grid">
+          {related.map((item) => (
+            <a class="related-card glass" href={`/services/${item.slug}`} data-reveal>
+              <span class="num-tag">{groupFor(groups, item)?.title}</span>
+              <strong>{item.title}</strong>
+              <span>{item.options.length} options</span>
+              <Icon name="arrow" size={17} />
+            </a>
+          ))}
         </div>
       </div>
-      <div class="related-grid">
-        {related.map((item) => (
-          <a class="related-card glass" href={`/services/${item.slug}`} data-reveal>
-            <span class="num-tag">{groupFor(item)?.title}</span>
-            <strong>{item.title}</strong>
-            <span>{item.options.length} options</span>
-            <Icon name="arrow" size={17} />
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <section class="section-tight">
     <div class="wrap">

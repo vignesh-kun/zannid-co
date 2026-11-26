@@ -1,9 +1,11 @@
 ---
 import '../styles/global.css';
+import '../styles/glass.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
-import { canonicalUrl, siteConfig } from '../lib/site';
+import { canonicalUrl } from '../lib/site';
+import { getData } from '../lib/data';
 
 interface Props {
   title: string;
@@ -12,15 +14,16 @@ interface Props {
   noindex?: boolean;
 }
 const { title, description, bodyClass = '', noindex = false } = Astro.props;
-const canonical = canonicalUrl(Astro.url.pathname);
+const { site } = await getData();
+const canonical = canonicalUrl(site, Astro.url.pathname);
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: siteConfig.name,
+  name: site.name,
   description,
-  url: siteConfig.canonical,
-  email: siteConfig.email,
-  sameAs: [siteConfig.instagram],
+  url: site.canonical,
+  email: site.email,
+  sameAs: [site.instagram],
   areaServed: ['India', 'Worldwide'],
   knowsAbout: [
     'Brand strategy',
@@ -52,10 +55,11 @@ const schema = {
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#f7f4f0" />
+    <link rel="icon" href="/assets/zannid-logo.png" type="image/png" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <meta name="theme-color" content="#f4f1f8" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -66,12 +70,6 @@ const schema = {
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="aurora" aria-hidden="true">
-      <span class="glow glow-a"></span>
-      <span class="glow glow-b"></span>
-      <span class="glow glow-c"></span>
-      <span class="glow glow-d"></span>
-    </div>
     <Header />
     <main id="main" tabindex="-1">
       <slot />

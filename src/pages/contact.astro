@@ -1,18 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import {
-  budgetOptions,
-  content,
-  regionOptions,
-  serviceGroups,
-  services,
-  servicesInGroup,
-  siteConfig,
-  whatsappLink,
-} from '../lib/site';
+import { budgetOptions, regionOptions, servicesInGroup, whatsappLink } from '../lib/site';
+import { getData } from '../lib/data';
+const { services, groups, content, site } = await getData();
 const page = content.contactPage;
-const wa = whatsappLink('Hi Zannid & Co., I want to talk about growing my brand.');
+const wa = whatsappLink(site, 'Hi Zannid & Co., I want to talk about growing my brand.');
 ---
 <Base
   title="Contact | Tell us what you are trying to grow · Zannid & Co."
@@ -32,8 +25,8 @@ const wa = whatsappLink('Hi Zannid & Co., I want to talk about growing my brand.
         <div class="form-card glass" data-reveal>
           <form
             data-lead-form
-            data-wa={siteConfig.whatsapp}
-            data-email={siteConfig.email}
+            data-wa={site.whatsapp}
+            data-email={site.email}
             novalidate
           >
             <div data-form-fields>
@@ -71,9 +64,9 @@ const wa = whatsappLink('Hi Zannid & Co., I want to talk about growing my brand.
                   <label for="contact-service">Service interest</label>
                   <select id="contact-service" name="service" required data-error="Choose the service you are most interested in.">
                     <option value="">Choose one</option>
-                    {serviceGroups.map((group) => (
+                    {groups.map((group) => (
                       <optgroup label={group.title}>
-                        {servicesInGroup(group.slug).map((service) => (
+                        {servicesInGroup(services, group.slug).map((service) => (
                           <option value={service.slug}>{service.title}</option>
                         ))}
                       </optgroup>
@@ -147,7 +140,7 @@ const wa = whatsappLink('Hi Zannid & Co., I want to talk about growing my brand.
 
           <noscript>
             <p class="micro" style="margin-top:16px">
-              The form needs JavaScript. Email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or
+              The form needs JavaScript. Email <a href={`mailto:${site.email}`}>{site.email}</a> or
               <a href={wa}> message us on WhatsApp</a> instead.
             </p>
           </noscript>
@@ -160,19 +153,24 @@ const wa = whatsappLink('Hi Zannid & Co., I want to talk about growing my brand.
               <span class="way-label"><Icon name="whatsapp" size={18} /> WhatsApp</span>
               <span class="way-meta">replies in minutes</span>
             </a>
-            <a href={`mailto:${siteConfig.email}`}>
+            <a href={`mailto:${site.email}`}>
               <span class="way-label"><Icon name="mail" size={18} /> Email</span>
-              <span class="way-meta">{siteConfig.email}</span>
+              <span class="way-meta">{site.email}</span>
             </a>
-            <a href={siteConfig.instagram} target="_blank" rel="noopener">
+            <a href={site.instagram} target="_blank" rel="noopener">
               <span class="way-label"><Icon name="instagram" size={18} /> Instagram</span>
-              <span class="way-meta">{siteConfig.instagramHandle}</span>
+              <span class="way-meta">{site.instagramHandle}</span>
             </a>
             <a href="/audit">
               <span class="way-label"><Icon name="spark" size={18} /> Free audit</span>
               <span class="way-meta">start here</span>
             </a>
           </div>
+          <ul class="studio-meta">
+            {site.city && <li><Icon name="compass" size={16} /><span>{site.city}</span></li>}
+            {site.hours && <li><Icon name="clock" size={16} /><span>{site.hours}</span></li>}
+            {site.phone && <li><Icon name="phone" size={16} /><a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a></li>}
+          </ul>
           <p class="micro">{page.waysNote}</p>
         </aside>
       </div>

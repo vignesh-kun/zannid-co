@@ -1,0 +1,98 @@
+{
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: 23 November 2026",
+    "intro": "Plain English, no surprises. This page explains what happens to the details you share with us.",
+    "sections": [
+      {
+        "heading": "What we collect",
+        "body": [
+          "When you submit an audit, contact or brief form we collect the name, brand, WhatsApp number, email address, service interest, budget range, region and message you choose to give us.",
+          "We also receive basic technical information such as your browser user agent and the time of submission, used to keep the form working and to stop spam."
+        ]
+      },
+      {
+        "heading": "Why we collect it",
+        "body": [
+          "We use your details only to respond to your enquiry, prepare an audit or proposal, and manage a working relationship if you become a client.",
+          "We do not sell your data, add you to a newsletter you did not ask for, or share your details with advertisers."
+        ]
+      },
+      {
+        "heading": "Where it is stored",
+        "body": [
+          "Form submissions are stored in a managed Postgres database (Supabase) with access restricted to Zannid & Co. The site itself is hosted on Vercel.",
+          "We keep enquiry records only as long as needed to respond and to meet our accounting and legal obligations."
+        ]
+      },
+      {
+        "heading": "Cookies and analytics",
+        "body": [
+          "The site does not set advertising cookies or use analytics.",
+          "If we add privacy-respecting analytics later, this page will say what is measured before it goes live."
+        ]
+      },
+      {
+        "heading": "Your choices",
+        "body": [
+          "You can ask us to access, correct or delete the enquiry data we hold about you by emailing hello@zannid.co. We will respond within a reasonable period.",
+          "If you are in the EU or UK, you may also have the right to object to processing or lodge a complaint with your local data protection authority."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "For any privacy question, email hello@zannid.co with the subject line “Privacy”."
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of service",
+    "updated": "Last updated: 23 November 2026",
+    "intro": "The short version: clear scopes, clear ownership, no surprise invoices.",
+    "sections": [
+      {
+        "heading": "Using this site",
+        "body": [
+          "This website is operated by Zannid & Co. By using it you agree to these terms. The content is provided for information and nothing on it is a binding offer or quote."
+        ]
+      },
+      {
+        "heading": "Services and quotes",
+        "body": [
+          "Every engagement is confirmed by a written scope and quote. Deliverables, timelines, revision rounds and payment terms are set out there. Only that document confirms a price or availability.",
+          "Ad spend, domain, hosting, third-party subscriptions, payment gateway charges and travel are billed separately unless a scope says otherwise."
+        ]
+      },
+      {
+        "heading": "Payments and cancellation",
+        "body": [
+          "Monthly plans are billed in advance and can be cancelled with notice before the next billing cycle. Project work usually requires a deposit before production starts.",
+          "Late payments may pause delivery. Work already produced or media already spent remains payable."
+        ]
+      },
+      {
+        "heading": "Intellectual property",
+        "body": [
+          "On full payment, you own the final deliverables produced for you, including raw footage and edits. We retain the right to show the work in our portfolio unless you ask us not to in writing.",
+          "Our own tools, templates, processes and pre-existing materials remain ours."
+        ]
+      },
+      {
+        "heading": "Results",
+        "body": [
+          "Marketing outcomes depend on your offer, market, budget and response times. We commit to the scope and the standard of work, not to a specific revenue outcome.",
+          "Statistics on this site are sourced from third-party research and are labelled with their source."
+        ]
+      },
+      {
+        "heading": "Liability and law",
+        "body": [
+          "To the extent permitted by law, our liability is limited to the fees paid for the affected engagement. These terms are governed by the laws of India, with courts in Hyderabad having jurisdiction.",
+          "Questions about these terms: hello@zannid.co."
+        ]
+      }
+    ]
+  }
+}

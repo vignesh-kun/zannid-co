@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProseSections from '../components/ProseSections.astro';
-import { content } from '../lib/site';
-const page = content.terms;
+import { getData } from '../lib/data';
+const { legal } = await getData();
+const page = legal.terms;
 ---
 <Base
   title="Terms of service | Zannid & Co."
@@ -12,7 +13,7 @@ const page = content.terms;
     <div class="wrap prose-wrap">
       <p class="eyebrow">Legal</p>
       <h1 class="display">{page.title}</h1>
-      <p class="lede">The short version: clear scopes, clear ownership, no surprise invoices.</p>
+      {page.intro && <p class="lede">{page.intro}</p>}
     </div>
   </section>
 

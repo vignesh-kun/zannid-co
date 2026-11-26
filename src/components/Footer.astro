@@ -1,34 +1,32 @@
 ---
 import Icon from './Icon.astro';
-import { serviceGroups, siteConfig, whatsappLink } from '../lib/site';
+import { whatsappLink } from '../lib/site';
+import { getData } from '../lib/data';
+const { site, groups } = await getData();
+const wa = whatsappLink(site);
 const year = new Date().getFullYear();
 ---
 <footer class="site-foot">
   <div class="wrap foot-grid">
     <div class="foot-brand">
       <a class="brand" href="/" aria-label="Zannid & Co. home">
-        <svg viewBox="-6 0 150 120" aria-hidden="true">
-          <g transform="skewX(-16) translate(30,0)">
-            <path d="M10 28 L96 12 L104 12 L40 92 L106 84 L98 104 L8 112 L0 112 L66 34 L4 40 Z" fill="currentColor" />
-            <path d="M-8 76 L126 46" class="brand-cut" stroke-width="6" />
-          </g>
-        </svg>
-        <span class="brand-word">ZANNID</span>
-        <span class="brand-co">&amp; CO.</span>
+        <img class="brand-logo" src="/assets/zannid-logo.png" alt="" width="96" height="96" />
       </a>
       <p>Strategy. Content. Growth.<br />A growth agency for brands in India and worldwide.</p>
-      <a class="foot-mail" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+      <a class="foot-mail" href={`mailto:${site.email}`}>{site.email}</a>
     </div>
 
     <div class="foot-col">
       <h2>Services</h2>
-      {serviceGroups.map((group) => <a href={`/services#${group.slug}`}>{group.title}</a>)}
-      <a class="foot-more" href="/services">All nineteen services <Icon name="arrow" size={14} /></a>
+      {groups.map((group) => <a href={`/services#${group.slug}`}>{group.title}</a>)}
+      <a class="foot-more" href="/services">All services <Icon name="arrow" size={14} /></a>
     </div>
 
     <div class="foot-col">
       <h2>Company</h2>
       <a href="/work">Work</a>
+      <a href="/clients">Clients</a>
+      <a href="/journey">Journey</a>
       <a href="/pricing">Pricing</a>
       <a href="/about">About</a>
       <a href="/faq">FAQ</a>
@@ -37,15 +35,15 @@ const year = new Date().getFullYear();
 
     <div class="foot-col">
       <h2>Connect</h2>
-      <a href={siteConfig.instagram} target="_blank" rel="noopener">Instagram</a>
-      <a href={whatsappLink()} target={whatsappLink().startsWith('http') ? '_blank' : undefined} rel="noopener">WhatsApp</a>
+      <a href={site.instagram} target="_blank" rel="noopener">Instagram</a>
+      <a href={wa} target={wa.startsWith('http') ? '_blank' : undefined} rel="noopener">WhatsApp</a>
       <a href="/contact">Contact</a>
-      <a href={`mailto:${siteConfig.email}`}>Email</a>
+      <a href={`mailto:${site.email}`}>Email</a>
     </div>
   </div>
 
   <div class="wrap foot-legal">
-    <span>© {year} {siteConfig.name}. All rights reserved.</span>
+    <span>© {year} {site.name}. All rights reserved.</span>
     <div>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>

@@ -1,0 +1,8 @@
+export function json(status: number, body: unknown, headers: Record<string, string> = {}): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'content-type': 'application/json', 'cache-control': 'no-store', ...headers },
+  });
+}
+
+export const noStore = { 'cache-control': 'no-store' };

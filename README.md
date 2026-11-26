@@ -1,6 +1,6 @@
 # Zannid & Co. website
 
-Multi-page, data-driven site for Zannid & Co. Astro + Three.js on Vercel. Every business fact lives in JSON under `src/data/`; components only render.
+Multi-page, data-driven site for Zannid & Co. Astro + Three.js on Vercel. Every business fact lives in JSON under `src/data/`; components only render. In production the `/admin` dashboard edits the same content at runtime — the JSON files below are the seed values.
 
 ## Where to edit
 
@@ -12,6 +12,7 @@ Multi-page, data-driven site for Zannid & Co. Astro + Three.js on Vercel. Every 
 | `src/data/bundles.json` | Starter / Growth / Scale engagement shapes and included service slugs |
 | `src/data/clients.json` | The 25 client-wall entries |
 | `src/data/work.json` | Case-study reels, links and public engagement |
+| `src/data/journey.json` | The chapters of `/journey`, each with its date marker, story and cut-out PNGs |
 | `src/data/faqs.json` | General, pricing and process FAQs |
 | `src/data/content.json` | Page copy, stats, process, form budget/region options and legal pages |
 
@@ -109,3 +110,68 @@ npm run build
 ```
 
 `npm run check:design` still points at the Impeccable audit script; it is optional and not needed to deploy.
+
+## Admin dashboard
+
+The site renders on the server and reads its content at request time, so a save in the dashboard is live immediately — no rebuild, no code edit.
+
+| | |
+| --- | --- |
+| URL | `/admin` — not linked anywhere on the public site, type it directly |
+| Password | `ADMIN_PASSWORD` in `.env` (gitignored). Nothing is hardcoded. |
+| Session | Signed, HttpOnly, SameSite=Strict cookie, 12 hours. Changing the password signs everyone out. |
+| Sections | Services, Work & case studies, Clients, Journey, About (story, values, team, location), Contact details, FAQ, Privacy & terms |
+| Bulk edits | **Import JSON** in every section, with a file picker or paste box and an expected-shape example. Imports are validated before anything is saved. |
+| Images | Case studies, clients and team photos are set by URL: a public image URL or a file you add under `public/`. Journey illustrations are uploaded as transparent PNGs. |
+
+### Prices
+
+Each service has a **Prices on site** toggle (the checkbox column in the services list, and a switch inside the service). When it is on, any option with a price shows it on the services index and the service page, and the scope card switches to "Where each option lands". When it is off, every page keeps the quote-only wording. An individual option can hide its own price with **Show this price**.
+
+### Where content is stored
+
+| Environment | Backend | Notes |
+| --- | --- | --- |
+| Local `npm run dev` | `.data/content.json` | Created on first save, gitignored. Falls back to `src/data/*.json`. |
+| Vercel | Supabase `site_content` | The deployed filesystem is read-only, so run `supabase/schema.sql` once, then set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. |
+
+The dashboard header shows which backend is active and warns when it is on the local file. Illustration uploads use the same switch: Supabase Storage on Vercel, `.data/uploads/` locally.
+
+### JSON import shapes
+
+Every section expects the same shape it stores:
+
+- `services` — list of `{ title, shortTitle, group, icon, summary, showPrice, options[] }`, where each option is `{ name, bestFor, timeline, price, showPrice, includes[] }`
+- `work` — list of `{ title, client, text, tag, stat, href, image, from, to }`
+- `clients` — list of `{ name, description, industry, website, logo }`
+- `journey` — list of `{ title, date, subtitle, description, category, published, illustrations[] }`, where each illustration is `{ src, side: "left" | "right", alt, order }`
+- `faqs` — list of `{ group, q, a }`
+- `about` — one object with `story[]`, `values[]`, `numbers[]`, `team[]` and `location{}`
+- `site` — one object of contact, studio and canonical settings
+- `legal` — one object with `privacy` and `terms` documents
+
+Slugs are generated from titles on save, and duplicate slugs get a numeric suffix, so importing the same file twice never breaks a page.
+
+## Journey
+
+`/journey` is a scroll-driven picture book, not a timeline: each published chapter becomes one full-screen spread with cut-out illustrations on the left and right and the story in the middle. The chapter count comes from the data, so three chapters means three spreads and twenty means twenty.
+
+- **Navigation:** Journey sits between Clients and Pricing in `navigation` (`src/lib/site.ts`), which feeds the desktop nav, the mobile menu and the footer.
+- **Content:** every field is edited in `/admin` → Journey, including publish state and order. Drag a chapter in the list, or use ↑ ↓.
+- **Drafts:** an unpublished chapter is invisible to visitors and visible to you while signed in, marked `Draft`, for preview.
+- **Empty state:** with no published chapters the page says the first chapter is unwritten rather than inventing one.
+
+### Illustrations
+
+Uploads are validated twice — in the browser and again on the server, which is the authority:
+
+1. PNG signature bytes (not the extension or the browser MIME type).
+2. A real decode with sharp, which must report a PNG with an alpha channel.
+3. At least one pixel with alpha below 255, so an opaque PNG with an alpha channel is still rejected. Anti-aliased edges and soft shadows pass.
+4. 96–3000 px on a side, 6 MB maximum.
+
+JPG, JPEG, WebP, SVG, GIF and renamed files are refused. The preview checkerboard is CSS only; the stored file keeps its own transparency.
+
+Stored files follow the same backend as the content: Supabase Storage (bucket `journey`, public) when `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are set, otherwise `.data/uploads/` served by `/api/journey/media/…`. Only the reference is saved in the content record, and replacing or removing an illustration deletes the old file on the next save once nothing else points at it.
+
+The seed illustrations are generated geometry rather than stock images: `node scripts/make-journey-art.mjs` redraws all ten into `public/assets/journey/`. Replace any of them from the dashboard.

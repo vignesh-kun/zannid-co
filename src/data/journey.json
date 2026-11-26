@@ -1,0 +1,132 @@
+[
+  {
+    "id": "the-beginning",
+    "title": "The ownership problem",
+    "date": "Chapter 01",
+    "subtitle": "Five vendors. No owner.",
+    "description": "Most small brands do not have a marketing problem. They have an ownership problem: a designer here, an ads freelancer there, a cousin who edits reels. Zannid started with a single question — what if the same team planned the month, shot the content, ran the ads and answered the DMs?",
+    "category": "Beginning",
+    "order": 0,
+    "published": true,
+    "illustrations": [
+      {
+        "src": "/assets/journey/01-note.png",
+        "side": "left",
+        "alt": "A folded paper note carrying the Zannid Z mark",
+        "order": 0
+      },
+      {
+        "src": "/assets/journey/01-threads.png",
+        "side": "right",
+        "alt": "Three loose paper pieces connected to a single black knot",
+        "order": 1
+      }
+    ],
+    "createdAt": "2026-11-26T00:00:00.000Z",
+    "updatedAt": "2026-11-26T00:00:00.000Z"
+  },
+  {
+    "id": "the-vision",
+    "title": "One team, one invoice",
+    "date": "Chapter 02",
+    "subtitle": "Strategy first, craft second, measurement always.",
+    "description": "Not another content vendor. A growth team that owns the whole engine: strategy, reels and shoots, editing, design, Meta ads, creators, websites and AI automation, measured on growth rather than on post counts.",
+    "category": "Vision",
+    "order": 1,
+    "published": true,
+    "illustrations": [
+      {
+        "src": "/assets/journey/02-orbit.png",
+        "side": "left",
+        "alt": "A glass sphere inside a black orbit ring",
+        "order": 0
+      },
+      {
+        "src": "/assets/journey/02-strips.png",
+        "side": "right",
+        "alt": "Five stacked paper strips in the Zannid palette",
+        "order": 1
+      }
+    ],
+    "createdAt": "2026-11-26T00:00:00.000Z",
+    "updatedAt": "2026-11-26T00:00:00.000Z"
+  },
+  {
+    "id": "execution",
+    "title": "Nineteen services, five departments",
+    "date": "Chapter 03",
+    "subtitle": "Brand, growth, websites, product, care.",
+    "description": "The bench grew into departments. Every service became a set of named options with a timeline, so a neighbourhood café and a global D2C brand can buy the same standard of work at the scope that fits them.",
+    "category": "Execution",
+    "order": 2,
+    "published": true,
+    "illustrations": [
+      {
+        "src": "/assets/journey/03-camera.png",
+        "side": "left",
+        "alt": "A paper-cut camera with a warm glass lens",
+        "order": 0
+      },
+      {
+        "src": "/assets/journey/03-film.png",
+        "side": "right",
+        "alt": "A strip of film cut from paper",
+        "order": 1
+      }
+    ],
+    "createdAt": "2026-11-26T00:00:00.000Z",
+    "updatedAt": "2026-11-26T00:00:00.000Z"
+  },
+  {
+    "id": "growth",
+    "title": "Twenty-five brands, one standard",
+    "date": "Chapter 04",
+    "subtitle": "Different categories. Same discipline.",
+    "description": "Cafés and restaurants, real estate, education, retail, events and production houses, across India and internationally. The briefs change, the method does not: understand the offer, build the content, then measure what moved.",
+    "category": "Growth",
+    "order": 3,
+    "published": true,
+    "illustrations": [
+      {
+        "src": "/assets/journey/04-bars.png",
+        "side": "left",
+        "alt": "Paper bars rising left to right",
+        "order": 0
+      },
+      {
+        "src": "/assets/journey/04-arrow.png",
+        "side": "right",
+        "alt": "Ascending paper chevrons with warm confetti",
+        "order": 1
+      }
+    ],
+    "createdAt": "2026-11-26T00:00:00.000Z",
+    "updatedAt": "2026-11-26T00:00:00.000Z"
+  },
+  {
+    "id": "whats-next",
+    "title": "The next chapter",
+    "date": "Chapter 05",
+    "subtitle": "Automation, product and the long game.",
+    "description": "What is being built now: AI that answers DMs and books calls, products and platforms for brands that need more than a page, and relationships that outlast a monthly retainer. The next chapter gets written with the brands we work with.",
+    "category": "What's next",
+    "order": 4,
+    "published": true,
+    "illustrations": [
+      {
+        "src": "/assets/journey/05-rocket.png",
+        "side": "left",
+        "alt": "A paper rocket with a warm paper flame",
+        "order": 0
+      },
+      {
+        "src": "/assets/journey/05-window.png",
+        "side": "right",
+        "alt": "An open paper window with light behind it",
+        "order": 1
+      }
+    ],
+    "createdAt": "2026-11-26T00:00:00.000Z",
+    "updatedAt": "2026-11-26T00:00:00.000Z"
+  }
+]

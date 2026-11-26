@@ -25,3 +25,22 @@ create index if not exists leads_created_at_idx on public.leads (created_at desc
 
 -- Lock the table: no anonymous access. The website writes with the service role key (server only).
 alter table public.leads enable row level security;
+
+-- ── Dashboard content ──────────────────────────────────────────────
+-- One row per editable collection: services, work, clients, journey, faqs, about, site, legal.
+-- The site reads these at request time, so dashboard saves go live immediately.
+create table if not exists public.site_content (
+  key         text primary key,
+  data        jsonb not null,
+  updated_at  timestamptz not null default now()
+);
+
+alter table public.site_content enable row level security;
+
+-- ── Journey illustrations ─────────────────────────────────────────
+-- Transparent PNGs uploaded from /admin → Journey live in this public
+-- Storage bucket; the content records only store the public URL. The
+-- dashboard creates the bucket on first upload, this keeps it reproducible.
+insert into storage.buckets (id, name, public)
+values ('journey', 'journey', true)
+on conflict (id) do nothing;

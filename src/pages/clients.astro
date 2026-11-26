@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { getData } from '../lib/data';
+import { initials, whatsappLink } from '../lib/site';
+const { clients, content, site } = await getData();
+const page = content.clientsPage;
+const wa = whatsappLink(site, 'Hi Zannid & Co., I want to work with you.');
+---
+<Base
+  title="Clients | Work with us · Zannid & Co."
+  description="Twenty-five brands across food, retail, real estate, education, events and production. Tell us your brand and the problem, and we will reply by email."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">{page.eyebrow}</p>
+      <h1 class="display">{page.title}</h1>
+      <p class="lede">{page.lede}</p>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="apply-title">
+    <div class="wrap">
+      <div class="apply-grid">
+        <div data-reveal>
+          <h2 class="display" id="apply-title">{page.formTitle}</h2>
+          <p class="lede">{page.formLede}</p>
+          <ul class="include-list">
+            {page.steps.map((step) => (
+              <li>
+                <span class="icon-wrap"><Icon name="check" size={14} /></span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="micro">{page.note}</p>
+        </div>
+
+        <div class="form-card glass" data-reveal data-delay="1">
+          <form data-apply-form data-email={site.email} data-wa={site.whatsapp} novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="apply-name">Your name</label>
+                <input id="apply-name" name="name" autocomplete="name" maxlength="120" required data-error="Add your name." />
+              </div>
+              <div class="field">
+                <label for="apply-brand">Brand or business</label>
+                <input id="apply-brand" name="brand" autocomplete="organization" maxlength="160" required data-error="Add your brand name." />
+              </div>
+              <div class="field">
+                <label for="apply-email">Email</label>
+                <input id="apply-email" name="email" type="email" autocomplete="email" maxlength="200" required data-error="Add an email we can reply to." />
+              </div>
+              <div class="field">
+                <label for="apply-phone">WhatsApp <span class="micro">(optional)</span></label>
+                <input id="apply-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" />
+              </div>
+              <div class="field full">
+                <label for="apply-problem">The problem, in a sentence or two</label>
+                <textarea id="apply-problem" name="problem" rows="4" maxlength="1200" required data-error="Tell us what you are trying to fix." placeholder="We post every day and nothing turns into enquiries."></textarea>
+              </div>
+              <div class="hp" aria-hidden="true">
+                <label for="apply-website">Website</label>
+                <input id="apply-website" name="website" tabindex="-1" autocomplete="off" />
+              </div>
+            </div>
+            <div class="form-foot">
+              <button class="btn" type="submit">Apply <Icon name="arrow" /></button>
+              <span class="micro">{page.submitNote}</span>
+            </div>
+            <p class="form-status" data-apply-status role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="wall-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="eyebrow">The client wall</p>
+          <h2 class="display" id="wall-title">{page.wallTitle}</h2>
+          <p class="lede">{page.wallLede}</p>
+        </div>
+      </div>
+      <div class="client-grid">
+        {clients.map((client, i) => (
+          <article class="client-tile" data-reveal data-delay={String(i % 3)}>
+            {client.logo && client.logo !== 'placeholder' ? (
+              <img class="client-logo" src={client.logo} alt="" loading="lazy" />
+            ) : (
+              <span class="client-mark" aria-hidden="true">{initials(client.name)}</span>
+            )}
+            <strong>{client.name}</strong>
+            {client.description && <span>{client.description}</span>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="cta-panel glass" data-reveal>
+        <p class="eyebrow" style="justify-content:center">Prefer a conversation?</p>
+        <h2 class="display">Tell us on WhatsApp instead.</h2>
+        <p class="lede">Same brief, faster reply. We answer during working hours, usually within minutes.</p>
+        <div class="actions">
+          <a class="btn" href={wa} target={wa.startsWith('http') ? '_blank' : undefined} rel="noopener">
+            <Icon name="whatsapp" size={16} /> Message us
+          </a>
+          <a class="btn ghost" href="/work">See the work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import '../scripts/apply';
+  </script>
+</Base>

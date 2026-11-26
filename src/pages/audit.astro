@@ -1,18 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import {
-  budgetOptions,
-  content,
-  regionOptions,
-  serviceGroups,
-  services,
-  servicesInGroup,
-  siteConfig,
-  whatsappLink,
-} from '../lib/site';
+import { budgetOptions, regionOptions, servicesInGroup, whatsappLink } from '../lib/site';
+import { getData } from '../lib/data';
+const { services, groups, content, site } = await getData();
 const page = content.auditPage;
-const wa = whatsappLink('Hi Zannid & Co., I want a free growth audit.');
+const wa = whatsappLink(site, 'Hi Zannid & Co., I want a free growth audit.');
 ---
 <Base
   title="Free growth audit | A 30-day plan in 48 hours · Zannid & Co."
@@ -55,8 +48,8 @@ const wa = whatsappLink('Hi Zannid & Co., I want a free growth audit.');
 
           <form
             data-lead-form
-            data-wa={siteConfig.whatsapp}
-            data-email={siteConfig.email}
+            data-wa={site.whatsapp}
+            data-email={site.email}
             novalidate
           >
             <div data-form-fields>
@@ -77,9 +70,9 @@ const wa = whatsappLink('Hi Zannid & Co., I want a free growth audit.');
                   <label for="audit-service">Service interest</label>
                   <select id="audit-service" name="service" required data-error="Choose the service you are most curious about.">
                     <option value="">Choose one</option>
-                    {serviceGroups.map((group) => (
+                    {groups.map((group) => (
                       <optgroup label={group.title}>
-                        {servicesInGroup(group.slug).map((service) => (
+                        {servicesInGroup(services, group.slug).map((service) => (
                           <option value={service.slug}>{service.title}</option>
                         ))}
                       </optgroup>
@@ -131,7 +124,7 @@ const wa = whatsappLink('Hi Zannid & Co., I want a free growth audit.');
 
           <noscript>
             <p class="micro" style="margin-top:16px">
-              The form needs JavaScript. Email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or
+              The form needs JavaScript. Email <a href={`mailto:${site.email}`}>{site.email}</a> or
               <a href={wa}> message us on WhatsApp</a> instead.
             </p>
           </noscript>

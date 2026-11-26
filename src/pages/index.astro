@@ -1,36 +1,80 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { clients, content, initials } from '../lib/site';
+import { initials } from '../lib/site';
+import { getData } from '../lib/data';
 
+const { clients, content, site } = await getData();
 const home = content.home;
 const marquee = [...clients, ...clients];
+const city = site.city || 'Hyderabad';
+const gallery = [
+  {
+    src: '/assets/img/strategy.jpg',
+    label: 'Brand & strategy',
+    kicker: 'Week one',
+    href: '/services#branding-and-brand-strategy',
+    alt: 'A brand workshop table with printed moodboards and colour swatches',
+  },
+  {
+    src: '/assets/img/shoot.jpg',
+    label: 'Reels & content',
+    kicker: 'On set',
+    href: '/services',
+    alt: 'A short-form video shoot in progress with a camera on a gimbal',
+  },
+  {
+    src: '/assets/img/performance.jpg',
+    label: 'Growth & ads',
+    kicker: 'Every week',
+    href: '/services',
+    alt: 'A laptop and phone showing colourful performance charts on a glass desk',
+  },
+  {
+    src: '/assets/img/set-wide.jpg',
+    label: 'Studio & production',
+    kicker: 'In house',
+    href: '/work',
+    alt: 'A colour-graded studio set with softboxes and a gradient backdrop',
+  },
+];
 ---
 <Base
   title="Zannid & Co. | Growth agency for brands that refuse to be ignored"
   description="Strategy, reels, Meta ads, creators, websites and AI automations from one growth team. Working with brands across India and worldwide. Claim a free growth audit."
   bodyClass="home"
 >
-  <canvas id="ring-canvas" aria-hidden="true"></canvas>
-  <div class="ring-caption" aria-hidden="true">
-    <span data-ring-index>01</span>
-    <span class="ring-sep">/</span>
-    <span data-ring-label>Start</span>
-  </div>
-
   <section class="hero section" id="top" data-label="Start">
-    <div class="wrap orbit">
-      <p class="eyebrow">{home.hero.eyebrow}</p>
-      <h1 class="display">
-        {home.hero.titleBefore} <span class="accent">{home.hero.titleAccent}</span>
-      </h1>
-      <p class="lede">{home.hero.lede}</p>
-      <div class="actions">
-        <a class="btn" href="/contact">{home.hero.primary} <Icon name="arrow" /></a>
-        <a class="btn ghost" href="/audit">{home.hero.secondary}</a>
+    <div class="shader-field" aria-hidden="true"><canvas data-shader></canvas></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">
+          {home.hero.titleBefore} <span class="accent">{home.hero.titleAccent}</span>
+        </h1>
+        <p class="lede">{home.hero.lede}</p>
+        <div class="actions">
+          <a class="btn" href="/contact">{home.hero.primary} <Icon name="arrow" /></a>
+          <a class="btn ghost" href="/audit">{home.hero.secondary}</a>
+        </div>
+        <p class="hero-note">{home.hero.note}</p>
+        <p class="hero-hint" aria-hidden="true"><span></span> Scroll. You can see the work.</p>
       </div>
-      <p class="hero-note">{home.hero.note}</p>
-      <p class="hero-hint" aria-hidden="true"><span></span> Scroll. The ring shows the way.</p>
+
+      <div class="hero-visual" data-reveal>
+        <figure class="hero-shot">
+          <img
+            src="/assets/img/studio-team.jpg"
+            alt="The Zannid & Co. team reviewing a brand board in the studio"
+            width="880"
+            height="1184"
+            fetchpriority="high"
+          />
+        </figure>
+        <div class="hero-badge glass">
+          <span class="mono">{city} · Worldwide</span>
+          <b>Strategy, reels, ads and web from one team.</b>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -54,8 +98,35 @@ const marquee = [...clients, ...clients];
       </div>
       <div class="fix-line glass" data-reveal>
         <Icon name="spark" size={22} />
-        <span><strong>Zannid fixes all three.</strong> One team that plans, shoots, posts, advertises and automates, measured on growth, not on posts.</span>
+        <span>{home.problems.fix}</span>
         <a class="text-link" href="/about">How we work <Icon name="arrow" size={15} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" id="gallery" aria-labelledby="gallery-title">
+    <div class="wrap orbit">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="eyebrow">In the room</p>
+          <h2 class="display" id="gallery-title">See what you are buying.</h2>
+          <p class="lede">
+            Strategy sessions, sets, edits and ad dashboards. The work is visual before it is verbal,
+            so here is the shape of it.
+          </p>
+        </div>
+        <a class="text-link" href="/services">All services <Icon name="arrow" size={15} /></a>
+      </div>
+      <div class="media-rail">
+        {gallery.map((item, i) => (
+          <a class="media-card" href={item.href} data-reveal data-delay={String(i % 3)}>
+            <img src={item.src} alt={item.alt} width="880" height="1184" loading="lazy" />
+            <span class="media-cap">
+              {item.label}
+              <span>{item.kicker}</span>
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -126,6 +197,25 @@ const marquee = [...clients, ...clients];
     </div>
   </section>
 
+  <section class="section-tight" aria-labelledby="showcase-title">
+    <div class="wrap orbit">
+      <figure class="showcase" data-reveal>
+        <img
+          src="/assets/img/set-wide.jpg"
+          alt="A studio set lit for a brand shoot, with a violet to peach gradient backdrop"
+          width="1392"
+          height="752"
+          loading="lazy"
+        />
+        <figcaption class="showcase-caption glass">
+          <p class="eyebrow">On set</p>
+          <h2 id="showcase-title">Light, colour and framing decided before the first frame.</h2>
+          <a class="text-link" href="/work">See the work <Icon name="arrow" size={15} /></a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
   <section class="logo-strip section-tight" aria-labelledby="clients-title">
     <div class="wrap orbit">
       <div class="section-head" data-reveal>
@@ -133,9 +223,9 @@ const marquee = [...clients, ...clients];
           <p class="eyebrow">{home.clients.eyebrow}</p>
           <h2 class="display" id="clients-title">{home.clients.title}</h2>
         </div>
-        <a class="text-link" href="/work">See the client wall <Icon name="arrow" size={15} /></a>
+        <a class="text-link" href="/clients">See the client wall <Icon name="arrow" size={15} /></a>
       </div>
-      <div class="logo-marquee glass" data-reveal>
+      <div class="logo-marquee" data-reveal>
         <div class="logo-track">
           {marquee.map((client, i) => (
             <div class:list={['logo-tile', { dup: i >= clients.length }]} aria-hidden={i >= clients.length ? 'true' : undefined}>
@@ -188,17 +278,6 @@ const marquee = [...clients, ...clients];
   </section>
 
   <script>
-    let ringLoaded = false;
-    const loadRing = () => {
-      if (ringLoaded || !window.matchMedia('(min-width: 1024px)').matches) return;
-      ringLoaded = true;
-      import('../scripts/ring');
-    };
-    const idleRing = () => {
-      if ('requestIdleCallback' in window) requestIdleCallback(loadRing, { timeout: 900 });
-      else setTimeout(loadRing, 300);
-    };
-    idleRing();
-    addEventListener('resize', loadRing, { passive: true });
+    import '../scripts/shader';
   </script>
 </Base>

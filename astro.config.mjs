@@ -6,9 +6,10 @@ const config = JSON.parse(
   readFileSync(new URL('./src/data/site.config.json', import.meta.url), 'utf8'),
 );
 
-// Static pages plus one serverless function (src/pages/api/lead.ts)
+// Server rendering: every page reads the content store at request time, so
+// edits made in /admin appear immediately. Vercel runs the pages as functions.
 export default defineConfig({
   site: config.canonical,
-  output: 'static',
+  output: 'server',
   adapter: vercel(),
 });
